@@ -13,24 +13,24 @@ public class Question <Type> {
     private final int number;
     private final String theme;
     private final int difficulty;
-    private final Type énoncé;    //QCM, VF or RC
+    private final Type enonce;    //QCM, VF or RC
     
     
     public Question(int nbr, String theme, int level, Type type){
         this.number = nbr;
         this.theme = theme;
         this.difficulty = level;
-        this.énoncé = type;        
+        this.enonce = type;        
     }
     
     
     public void Afficher(){
         System.out.println("difficulty: \t"+this.difficulty);
-        System.out.println("-> "+this.énoncé);
+        System.out.println("-> "+this.enonce);
     }
     
     
     public void Saisir(){
-        //this.énoncé.afficher();    //marche pas aled
+        //this.enonce.afficher();    //marche pas aled
     }
 }

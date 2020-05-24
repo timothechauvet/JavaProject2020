@@ -11,17 +11,24 @@ import static java.lang.Math.random;
  *
  * @author remyc
  */
-public class Thèmes {
-    private String [] thèmes = new String [9];
+public class Themes {
+    public String [] themes = new String [10];
     private Integer prev;   //index of current theme, is Integer so that it can be initialized to null
 
     
-    public Thèmes() {
-        this.thèmes[0] = "Scinces";
-        this.thèmes[1] = "Sport";
-        this.thèmes[2] = "Histoire";
+    public Themes() {
+        this.themes[0] = "Biologie";
+        this.themes[1] = "Sport";
+        this.themes[2] = "Histoire";
+        this.themes[3] = "Informatique";
+        this.themes[4] = "Aérospatial";
+        this.themes[5] = "Aéronautique";
+        this.themes[6] = "je";
+        this.themes[7] = "n'ai";
+        this.themes[8] = "plus";
+        this.themes[9] = "d'idée";
         /* ... à continuer*/
-        this.prev = null;
+        this.prev = null;        
     }
     
     
@@ -29,7 +36,7 @@ public class Thèmes {
         
     }
     
-    public int SélectionnerTheme() {
+    public int SelectionnerTheme() {
         int rdn = (int) (Math.random() * 10);
         while(rdn == this.prev) {   //then new theme is same as previous and need to be changed
             rdn = (int) (Math.random() * 10);
@@ -41,12 +48,12 @@ public class Thèmes {
     }
     
     public int [] SelectionnerCinqThemes() {
-        int [] selectedThemes = new int [4];
+        int [] selectedThemes = new int [5];
         for(int i=0; i<selectedThemes.length; i++) {    //select 5 differents themes
             int rdn = (int) (Math.random() * 10);
             for(int j=0; j<selectedThemes.length; j++) {    //checks if randomly selected index (rdn) is already selected
                 if(selectedThemes [j] == rdn) break;
-                if(j == 4) selectedThemes[i] = rdn;
+                if(j == selectedThemes.length) selectedThemes[i] = rdn;
             }
         }
         
@@ -54,10 +61,10 @@ public class Thèmes {
     }
     
     public void Afficher() {
-        for(int i=0; i<this.thèmes.length; i++) {
-            System.out.println(i + " -> " + this.thèmes[i]);
+        for(int i=0; i<this.themes.length; i++) {
+            System.out.println(i + " -> " + this.themes[i]);
         }
-        System.out.println("selected theme: " + this.thèmes[this.prev]);
+        System.out.println("selected theme: " + this.themes[this.prev]);
     }
     
     

@@ -5,7 +5,7 @@
  */
 package java_prjt;
 
-import Questions.Thèmes;
+import Questions.Themes;
 
 import Questions.Type.QCM;
 import Questions.Type.VF;
@@ -31,16 +31,16 @@ public class JAVA_Prjt {
     
     
      public static void test () {
-        Thèmes t = new Thèmes();
+        Themes t = new Themes();
         
         QCM qcm = new QCM("hey", "ho", "let's", "go", "oui");
         VF vf = new VF("vraiment?", true);
         RC rc = new RC("un hotel?", "trivago");
         
-        Question <QCM> q = new Question <QCM> (0, t.thèmes[t.SélectionnerTheme()], 1, qcm);
+        Question <QCM> q = new Question <QCM> (0, t.themes[t.SelectionnerTheme()], 1, qcm);
         ListeQuestions lq = new ListeQuestions(q);
         for(int i=0; i<9; i++){
-            lq.AjouterQuestion(new Question <QCM> (i+1, t.thèmes[t.SélectionnerTheme()], i%3+1, qcm));
+            lq.AjouterQuestion(new Question <QCM> (i+1, t.themes[t.SelectionnerTheme()], i%3+1, qcm));
         }
         lq.AfficherListe();
     }
