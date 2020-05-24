@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java_prjt;
+
 
 import Questions.Themes;
 
@@ -28,15 +28,15 @@ public class JAVA_Prjt {
         // TODO code application logic here
         test();
     }
-    
-    
-     public static void test () {
+
+
+    public static void test () {
         Themes t = new Themes();
-        
+
         QCM qcm = new QCM("hey", "ho", "let's", "go", "oui");
         VF vf = new VF("vraiment?", true);
         RC rc = new RC("un hotel?", "trivago");
-        
+
         Question <QCM> q = new Question <QCM> (0, t.themes[t.SelectionnerTheme()], 1, qcm);
         ListeQuestions lq = new ListeQuestions(q);
         for(int i=0; i<9; i++){
@@ -44,5 +44,5 @@ public class JAVA_Prjt {
         }
         lq.AfficherListe();
     }
-    
+
 }
