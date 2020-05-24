@@ -6,22 +6,20 @@
 package Questions.Type;
 
 /**
- *
  * @author remyc
  */
-public class VF {
-    private final String question;
+public class VF extends QuestionType {
     private final boolean correcteAnswer;
 
-    
+
     public VF(String question, boolean correcteAnswer) {
-        this.question = question;
+        super(question);
         this.correcteAnswer = correcteAnswer;
     }
 
-
-    public void afficher(){
-        System.out.println("'"+ this.question +"'");
-        System.out.print("Your answer: ");
+    @Override
+    public void afficher() {
+        super.afficher();
+        System.out.print("True or False? ");
     }
 }

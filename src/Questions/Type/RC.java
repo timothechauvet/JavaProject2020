@@ -6,22 +6,21 @@
 package Questions.Type;
 
 /**
- *
  * @author remyc
  */
-public class RC {
-    private final String question;
+public class RC extends QuestionType {
     private final String correctAnswer;
 
 
     public RC(String question, String correctAnswer) {
-        this.question = question;
+        super(question);
         this.correctAnswer = correctAnswer;
     }
-    
-    
-    public void afficher(){
-        System.out.println("'"+ this.question +"'");
+
+
+    @Override
+    public void afficher() {
+        super.afficher();
         System.out.print("Your answer: ");
     }
 }

@@ -7,49 +7,40 @@ package Questions;
 
 import Questions.Type.QCM;
 
+import java.util.*;
+
 /**
- *
  * @author remyc
  */
 public class ListeQuestions {
-    private Question curr;
-    private ListeQuestions next;
+    //leave raw or as Question<TypeQuestion>?
+    private LinkedList<Question> questions;
 
-    
-    public ListeQuestions(Question curr, ListeQuestions next) {
-        this.curr = curr;
-        this.next = next;
+
+    public ListeQuestions() {
+        questions = new LinkedList<>();
     }
-    public ListeQuestions(Question curr) {
-        this.curr = curr;
-        this.next = null;
-    }
-    
-    
+
+
     public void AfficherListe() {
-        if(this.curr != null) {
-            curr.Afficher();
-            next.AfficherListe();
-        }
-    }
-    
-    public void AjouterQuestion (Question<QCM> q) {
-        if(this.curr != null) this.next.AjouterQuestion(q);
-        else this.curr = q;
-    }
-    
-    public void SupprimerQuestion(int index) {
-        int cpt=0;
-        if(cpt == index-1){
-            this.next = this.next.next;
-        }
-        else SupprimerQuestion(index, cpt);
-    }
-    private void SupprimerQuestion(int index, int cpt) {
-        if(cpt == index-1){
-            this.next = this.next.next;
-        }
+        questions.forEach(Question::Afficher);
     }
 
+    public void AjouterQuestion(Question question) {
+        questions.add(question);
+    }
 
+    public boolean SupprimerQuestion(int qNum) {
+        for (Question q : questions) {
+            if (qNum == q.getNumber()) {
+                return questions.remove(q);
+            }
+        }
+        return false;
+    }
+
+    public Question SelectionnerQuestion(String theme, int difficulty) {
+        //TODO
+        return null;
+    }
 }

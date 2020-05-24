@@ -5,32 +5,38 @@
  */
 package Questions;
 
+import Questions.Type.QuestionType;
+
 /**
- *
  * @author remyc
  */
-public class Question <Type> {
+public class Question<Type extends QuestionType> {
     private final int number;
+    private static int qTotal = 0;
     private final String theme;
     private final int difficulty;
     private final Type enonce;    //QCM, VF or RC
-    
-    
-    public Question(int nbr, String theme, int level, Type type){
-        this.number = nbr;
+
+
+    public Question(String theme, int level, Type type) {
+        this.number = ++qTotal;
         this.theme = theme;
         this.difficulty = level;
-        this.enonce = type;        
+        this.enonce = type;
     }
-    
-    
-    public void Afficher(){
-        System.out.println("difficulty: \t"+this.difficulty);
-        System.out.println("-> "+this.enonce);
+
+    public int getNumber() {
+        return number;
     }
-    
-    
-    public void Saisir(){
+
+    public void Afficher() {
+        System.out.println("\n\nDifficulty: \t" + this.difficulty);
+        System.out.println("Theme : \t" + this.theme); //TEMP
+        enonce.afficher();
+    }
+
+
+    public void Saisir() {
         //this.enonce.afficher();    //marche pas aled
     }
 }
