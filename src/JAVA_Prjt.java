@@ -16,7 +16,6 @@ import Questions.ListeQuestions;
 
 
 /**
- *
  * @author remyc
  */
 public class JAVA_Prjt {
@@ -30,18 +29,19 @@ public class JAVA_Prjt {
     }
 
 
-    public static void test () {
+    public static void test() {
         Themes t = new Themes();
 
         QCM qcm = new QCM("hey", "ho", "let's", "go", "oui");
         VF vf = new VF("vraiment?", true);
         RC rc = new RC("un hotel?", "trivago");
 
-        Question <QCM> q = new Question <QCM> (0, t.themes[t.SelectionnerTheme()], 1, qcm);
-        ListeQuestions lq = new ListeQuestions(q);
-        for(int i=0; i<9; i++){
-            lq.AjouterQuestion(new Question <QCM> (i+1, t.themes[t.SelectionnerTheme()], i%3+1, qcm));
-        }
+        ListeQuestions lq = new ListeQuestions();
+
+        lq.AjouterQuestion(new Question<QCM>(t.themes[t.SelectionnerTheme()], (int) (Math.random() * 3), qcm));
+        lq.AjouterQuestion(new Question<VF>(t.themes[t.SelectionnerTheme()], (int) (Math.random() * 3), vf));
+        lq.AjouterQuestion(new Question<RC>(t.themes[t.SelectionnerTheme()], (int) (Math.random() * 3), rc));
+
         lq.AfficherListe();
     }
 
