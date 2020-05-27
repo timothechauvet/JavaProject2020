@@ -39,4 +39,9 @@ public class Question<Type extends QuestionType> {
     public void Saisir() {
         //this.enonce.afficher();    //marche pas aled
     }
+    
+    public boolean checkAnswer()
+    {
+    	return true;
+    }
 }
