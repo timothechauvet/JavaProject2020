@@ -19,7 +19,7 @@ public class EnsJoueurs {
         this.joueurs  = new Vector(20);
     }
     
-    public void Créer () {
+    public void Creer () {
         for(int i=0; i<20; i++){
             //this.joueurs.add();
         }

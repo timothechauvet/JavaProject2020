@@ -5,8 +5,6 @@
  */
 package Questions;
 
-import Questions.Type.QCM;
-
 import java.util.*;
 
 /**
