@@ -5,6 +5,8 @@
  */
 package Questions.Type;
 
+import Questions.QuestionType;
+
 /**
  * @author remyc
  */
@@ -20,6 +22,6 @@ public class VF extends QuestionType {
     @Override
     public void afficher() {
         super.afficher();
-        System.out.print("True or False? ");
+        System.out.print("True or False?: ");
     }
 }

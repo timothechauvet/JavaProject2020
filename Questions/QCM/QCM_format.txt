@@ -1,0 +1,6 @@
+En ligne par ligne:
+question
+réponse 1
+réponse 2
+réponse 3
+bonne réponse

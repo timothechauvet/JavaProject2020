@@ -1,4 +1,4 @@
-package Questions.Type;
+package Questions;
 
 public class QuestionType {
     protected final String enonce;
