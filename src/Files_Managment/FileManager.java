@@ -21,10 +21,10 @@ import java.io.FileWriter;
  * @author remyc
  */
 public class FileManager {
-    private final String Prjt_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020";
-    private final String VF_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\VF";
-    private final String RC_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\RC";
-    private final String QCM_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\QCM";
+    private final String Prjt_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020";
+    private final String VF_path =      "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\VF";
+    private final String RC_path =      "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\RC";
+    private final String QCM_path =     "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\QCM";
     
     
     boolean DEBBUGING = true;
@@ -64,7 +64,7 @@ public class FileManager {
                 else {
                     ca = false;
                 }
-                return new VF(question, ca);
+                return new VF("theme", 1, question, ca);
             }
             catch (IOException ioe) {
                 System.out.println("\nERROR:\t" + ioe);
@@ -89,7 +89,7 @@ public class FileManager {
             
             try {
                 String question = br.readLine();
-                return new RC(question, br.readLine());
+                return new RC("theme", 1, question, br.readLine());
             }
             catch(IOException ioe) {
                 System.out.println("\nERROR:\t" + ioe);
@@ -117,7 +117,9 @@ public class FileManager {
                 String r1 = br.readLine();
                 String r2 = br.readLine();
                 String r3 = br.readLine();
-                return new QCM(question, r1, r2, r3, br.readLine());
+                String r4 = br.readLine();
+                int correctAnswer = Integer.parseInt(br.readLine());
+                return new QCM("theme", 1, question, correctAnswer, r1, r2, r3, r4);
             }
             catch(IOException ioe) {
                 System.out.println("\nERROR:\t" + ioe);
@@ -137,7 +139,7 @@ public class FileManager {
     
     
     //Ajouter une question VF
-    public void AjouterQuestion (String question, boolean correctAnswer) {
+    public void ajouterQuestion (String question, boolean correctAnswer) {
         try {
             File file = new File(VF_path +"\\"+ question +".txt");
             if (!file.createNewFile()) System.out.println("\nERROR: \tfile '"+question+".txt' already exists");
@@ -174,7 +176,8 @@ public class FileManager {
     }
     
     //Ajouter une question QCM
-    public void ajouterQuestion (String question, String r1, String r2, String r3, String correctAnswer) {
+    public void ajouterQuestion (String question, String r1, String r2, String r3, String r4, int correctAnswer) {
+        //correctAnwser is the indx of the correct answer
         try {
             File file = new File(QCM_path +"\\"+ question +".txt");
             if (!file.createNewFile()) System.out.println("\nERROR: \tfile '"+question+".txt' already exists");

@@ -60,7 +60,7 @@ public class Joueur {
     
     
     public void saisir (Question q) {
-    	q.Afficher();
+    	q.afficher();
         
     }
     

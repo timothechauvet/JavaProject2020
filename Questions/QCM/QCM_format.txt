@@ -1,7 +1,7 @@
 En ligne par ligne:
 question
+réponse 0
 réponse 1
 réponse 2
 réponse 3
-réponse 4
-bonne réponse
+nbr de la bonne réponse

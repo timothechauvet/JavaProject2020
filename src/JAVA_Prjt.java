@@ -27,7 +27,7 @@ public class JAVA_Prjt {
         // TODO code application logic here
         
         test_classes();
-        //test_ReadFromFiles();
+        test_ReadFromFiles();
     }
 
 
@@ -39,11 +39,15 @@ public class JAVA_Prjt {
         VF vf = new VF(t.themes[t.selectionnerTheme()], 3, "vraiment?", true);
 
         ListeQuestions lq = new ListeQuestions();
-
-
-        lq.AjouterQuestion(new Question<QCM>(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), qcm));
-        lq.AjouterQuestion(new Question<VF>(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), vf));
-        lq.AjouterQuestion(new Question<RC>(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), rc));
+        
+        
+        lq.ajouterQuestion(qcm);
+        lq.ajouterQuestion(rc);
+        lq.ajouterQuestion(vf);
+        /*lq.AjouterQuestion(new Question <QCM>   (t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), qcm));
+        lq.AjouterQuestion(new Question <VF>    (t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), vf));
+        lq.AjouterQuestion(new Question <RC>    (t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), rc));
+        */
 
         lq.afficherListe();
     }
@@ -64,28 +68,31 @@ public class JAVA_Prjt {
         
         
         FM.displayDir(VF_path);
-        VF VF1 = FM.VFFromFile("\\VF1.txt");
-        Question q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), VF1);
-        listeQuestions.ajouterQuestion(q);
+        VF vf1 = FM.VFFromFile("\\VF1.txt");
+        /*Question q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), );
+        listeQuestions.ajouterQuestion(q);*/
+        listeQuestions.ajouterQuestion(vf1);
         
         FM.displayDir(RC_path);
-        RC RC1 = FM.RCFromFile("\\RC1.txt");
-        q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), RC1);
-        listeQuestions.ajouterQuestion(q);
+        RC rc1 = FM.RCFromFile("\\RC1.txt");
+        /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), RC1);
+        listeQuestions.ajouterQuestion(q);*/
+        listeQuestions.ajouterQuestion(rc1);
         
         FM.displayDir(QCM_path);
-        QCM QCM1 = FM.QCMFromFile("\\QCM1.txt");
-        q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), QCM1);
-        listeQuestions.ajouterQuestion(q);
+        QCM qcm1 = FM.QCMFromFile("\\QCM1.txt");
+        /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), QCM1);
+        listeQuestions.ajouterQuestion(q);*/
+        listeQuestions.ajouterQuestion(qcm1);
         
         
         listeQuestions.afficherListe();
         
         
         
-        FM.AjouterQuestion("Le ciel est bleu", true);
-        FM.AjouterQuestion("Un hotel?", "trivago");
-        FM.ajouterQuestion("2 + 2 = ?", "4", "2", "Quick Maths!", "4");
+        FM.ajouterQuestion("Le ciel est bleu", true);
+        FM.ajouterQuestion("Un hotel", "trivago");
+        FM.ajouterQuestion("2 + 2 = ?", "4", "6", "2", "Quick Maths!", 0);
         FM.displayDir(VF_path);
         FM.displayDir(RC_path);
         FM.displayDir(QCM_path);

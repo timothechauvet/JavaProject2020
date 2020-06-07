@@ -20,7 +20,6 @@ public abstract class Question <T> {
 
     
 
-
     public Question(String theme, int level, String enonce, T correctAnswer) {
         this.number = ++qTotal;
         this.theme = theme;
@@ -30,6 +29,9 @@ public abstract class Question <T> {
         this.correctAnswer = correctAnswer;
     }
 
+    
+    
+    
     public int getNumber() {
         return number;
     }
@@ -46,7 +48,7 @@ public abstract class Question <T> {
 
     }
     
-    public boolean checkAnswer() {
-        return true;
+    public boolean checkAnswer(T answer) {
+        return correctAnswer == answer;
     }
 }
