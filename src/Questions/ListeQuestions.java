@@ -11,33 +11,33 @@ import java.util.*;
  * @author remyc
  */
 public class ListeQuestions {
-    //leave raw or as Question<TypeQuestion>?
-    private LinkedList<Question> questions;
+    private LinkedList <Question> questions;
 
 
-    public ListeQuestions() {
-        questions = new LinkedList<>();
+    public ListeQuestions () {
+        questions = new LinkedList <Question> ();
     }
 
+    
+    
 
-    public void AfficherListe() {
-        questions.forEach(Question::Afficher);
+    public void afficherListe () {
+        questions.forEach(Question :: afficher);
     }
 
-    public void AjouterQuestion(Question question) {
+    public void ajouterQuestion (Question question) {
         questions.add(question);
     }
 
-    public boolean SupprimerQuestion(int qNum) {
+    public void supprimerQuestion (int qNum) {
         for (Question q : questions) {
             if (qNum == q.getNumber()) {
-                return questions.remove(q);
+                questions.remove(q);
             }
         }
-        return false;
     }
 
-    public Question SelectionnerQuestion(String theme, int difficulty) {
+    public Question selectionnerQuestion (String theme, int difficulty) {
         //TODO
         return null;
     }

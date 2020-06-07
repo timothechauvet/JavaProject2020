@@ -1,0 +1,3 @@
+En ligne par ligne:
+question
+bonne réponse (T ou F)

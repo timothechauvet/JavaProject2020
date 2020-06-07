@@ -7,39 +7,46 @@ package Questions;
 
 /**
  * @author remyc
+ * @param <T> is either QCM, RC or VF
  */
-public class Question<Type extends QuestionType> {
+public abstract class Question <T> {
     private final int number;
     private static int qTotal = 0;
     private final String theme;
     private final int difficulty;
-    private final Type enonce;    //QCM, VF or RC
+    
+    private final String enonce;
+    private final T correctAnswer;    //depends on the type of questio; QCM, VF or RC
+
+    
 
 
-    public Question(String theme, int level, Type type) {
+    public Question(String theme, int level, String enonce, T correctAnswer) {
         this.number = ++qTotal;
         this.theme = theme;
         this.difficulty = level;
-        this.enonce = type;
+        
+        this.enonce = enonce;
+        this.correctAnswer = correctAnswer;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public void Afficher() {
-        System.out.println("\n\nDifficulty: \t" + this.difficulty);
+    public void afficher() {
+        System.out.println("\n\nQuestion n°\t" + this.number);
+        System.out.println("Difficulty: \t" + this.difficulty);
         System.out.println("Theme : \t" + this.theme); //TEMP
-        enonce.afficher();
+        System.out.println(enonce);
     }
 
 
-    public void Saisir() {
-        //this.enonce.afficher();    //marche pas aled
+    public void saisir() {
+
     }
     
-    public boolean checkAnswer()
-    {
-    	return true;
+    public boolean checkAnswer() {
+        return true;
     }
 }

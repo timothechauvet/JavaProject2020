@@ -59,12 +59,12 @@ public class Joueur {
     }
     
     
-    public void Saisir (Question q) {
+    public void saisir (Question q) {
     	q.Afficher();
         
     }
     
-    public void Afficher () {
+    public void afficher () {
         System.out.println("Player # " + this.nbr + " : \t" + this.name);
         System.out.println(" -> Score = " + this.score);
         System.out.print(" -> State = ");
@@ -88,11 +88,11 @@ public class Joueur {
         }
     }
     
-    public void MAJScore (int s) {
+    public void majScore (int s) {
     	this.score += s;        
     }
     
-    public void ChangerEtat (int etat) {
+    public void changerEtat (int etat) {
     	this.etat = (etat <= 4 && etat >= 0) ? etat : this.etat;
     }
 }

@@ -5,40 +5,54 @@
  */
 package Files_Managment;
 
+import Questions.Type.VF;
+import Questions.Type.RC;
+import Questions.Type.QCM;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-
-import Questions.Type.VF;
-import Questions.Type.RC;
-import Questions.Type.QCM;
+import java.io.FileWriter;
 
 /**
  *
  * @author remyc
  */
 public class FileManager {
+    private final String Prjt_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020";
+    private final String VF_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\VF";
+    private final String RC_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\RC";
+    private final String QCM_path = "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\QCM";
+    
     
     boolean DEBBUGING = true;
     
     
-    public void DisplayDir (String directory) {
-        System.out.println("\tContent of directory:\n\t" + directory);
-        File f = new File(directory);
-        
-        String[] filenames = f.list();
-        for(String filename : filenames){
-            System.out.println(" -> " + filename);
+    public void displayDir (String directory) {
+        try {
+            System.out.println("\n\tContent of directory:\n\t" + directory);
+            File f = new File(directory);
+
+            String[] filenames = f.list();
+            for(String filename : filenames){
+                System.out.println(" -> " + filename);
+            }
         }
+        catch (NullPointerException npe) {
+            System.out.println("\nERROR:\t" + npe);
+            npe.printStackTrace();
+        }
+        
     }
     
     
-    public VF VFFromFile (String path) {
-        if (DEBBUGING) System.out.println("Reading VF rom file");
+    
+    public VF VFFromFile (String fileName) {
+        if (DEBBUGING) System.out.println("Reading VF from file");
         try {
-            FileReader fr = new FileReader(path);
+            FileReader fr = new FileReader(VF_path + fileName);
             BufferedReader br = new BufferedReader(fr);
             
             try {
@@ -52,24 +66,25 @@ public class FileManager {
                 }
                 return new VF(question, ca);
             }
-            catch(IOException ioe) {
+            catch (IOException ioe) {
+                System.out.println("\nERROR:\t" + ioe);
                 System.out.println(ioe);
             }
             
             return null;
         }
-        catch(FileNotFoundException fnfe) {
+        catch (FileNotFoundException fnfe) {
+            System.out.println("\nERROR:\t" + fnfe);
             System.out.println(fnfe);
         }
         
         return null;
     }
     
-    
-    public RC RCFromFile (String path) {
-        if (DEBBUGING) System.out.println("Reading RC rom file");
+    public RC RCFromFile (String fileName) {
+        if (DEBBUGING) System.out.println("Reading RC from file");
         try {
-            FileReader fr = new FileReader(path);
+            FileReader fr = new FileReader(RC_path + fileName);
             BufferedReader br = new BufferedReader(fr);
             
             try {
@@ -77,23 +92,24 @@ public class FileManager {
                 return new RC(question, br.readLine());
             }
             catch(IOException ioe) {
+                System.out.println("\nERROR:\t" + ioe);
                 System.out.println(ioe);
             }
             
             return null;
         }
         catch(FileNotFoundException fnfe) {
+            System.out.println("\nERROR:\t" + fnfe);
             System.out.println(fnfe);
         }
         
         return null;
     }
     
-    
-    public QCM QCMFromFile (String path) {
-        if (DEBBUGING) System.out.println("Reading RC rom file");
+    public QCM QCMFromFile (String fileName) {
+        if (DEBBUGING) System.out.println("Reading RC from file");
         try {
-            FileReader fr = new FileReader(path);
+            FileReader fr = new FileReader(QCM_path + fileName);
             BufferedReader br = new BufferedReader(fr);
             
             try {
@@ -104,16 +120,80 @@ public class FileManager {
                 return new QCM(question, r1, r2, r3, br.readLine());
             }
             catch(IOException ioe) {
+                System.out.println("\nERROR:\t" + ioe);
                 System.out.println(ioe);
             }
             
             return null;
         }
         catch(FileNotFoundException fnfe) {
+            System.out.println("\nERROR:\t" + fnfe);
             System.out.println(fnfe);
         }
         
         return null;
     }
+    
+    
+    
+    //Ajouter une question VF
+    public void AjouterQuestion (String question, boolean correctAnswer) {
+        try {
+            File file = new File(VF_path +"\\"+ question +".txt");
+            if (!file.createNewFile()) System.out.println("\nERROR: \tfile '"+question+".txt' already exists");
+            else {
+                FileWriter fw = new FileWriter(file);
+                fw.write(question + "\n");
+                if (correctAnswer) fw.write("T");
+                else fw.write("F");
+                fw.close();
+            }
+        }
+        catch (IOException ioe) {
+            System.out.println("\nERROR:\t" + ioe);
+            System.out.println("method called : 'public void AjouterQuestion (String question, boolean correctAnswer)'");
+        }
+    }
+    
+    //Ajouter une question RC
+    public void ajouterQuestion (String question, String correctAnswer) {
+        try {
+            File file = new File(RC_path +"\\"+ question +".txt");
+            if (!file.createNewFile()) System.out.println("\nERROR: \tfile '"+question+".txt' already exists");
+            else {
+                FileWriter fw = new FileWriter(file);
+                fw.write(question + "\n");
+                fw.write(correctAnswer);
+                fw.close();
+            }
+        }
+        catch (IOException ioe) {
+            System.out.println("\nERROR:\t" + ioe);
+            System.out.println("method called : 'public void AjouterQuestion (String question, String correctAnswer)'");
+        }
+    }
+    
+    //Ajouter une question QCM
+    public void ajouterQuestion (String question, String r1, String r2, String r3, String correctAnswer) {
+        try {
+            File file = new File(QCM_path +"\\"+ question +".txt");
+            if (!file.createNewFile()) System.out.println("\nERROR: \tfile '"+question+".txt' already exists");
+            else {
+                FileWriter fw = new FileWriter(file);
+                fw.write(question + "\n");
+                fw.write(r1);
+                fw.write(r2);
+                fw.write(r3);
+                fw.write(correctAnswer);
+                fw.close();
+            }
+        }
+        catch (IOException ioe) {
+            System.out.println("\nERROR:\t" + ioe);
+            System.out.println("method called : 'public void AjouterQuestion (String question, String r1, String r2, String r3, String correctAnswer)'");
+        }
+    }
+    
+    
     
 }
