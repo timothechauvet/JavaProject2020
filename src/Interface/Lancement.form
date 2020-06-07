@@ -24,11 +24,33 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbl_theme" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="comboBox_theme" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="lbl_niveau" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="comboBox_niveau" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbl_nbJoueur" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="comboBox_nbJoueur" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="1238" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbl_creerSQT" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbl_qst" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lbl_thematique" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -40,65 +62,25 @@
                                   <Component id="comboBox_theme1" min="-2" max="-2" attributes="0"/>
                                   <Component id="comboBox_niveau1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lbl_b" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtF_addREP2" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lbl_d" min="-2" pref="14" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtF_addREP4" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                                      <Component id="lbl_reponses" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lbl_a" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtF_addREP1" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lbl_c" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtF_addREP3" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btn_rc" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btn_vf" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btn_qcm" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="checkBox_repA" pref="246" max="32767" attributes="0"/>
-                                  <Component id="checkBox_repC" max="32767" attributes="0"/>
-                                  <Component id="checkBox_repD" max="32767" attributes="0"/>
-                                  <Component id="checkBox_repB" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="btn_ajouterQST" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbl_theme" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboBox_theme" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                              <Component id="lbl_niveau" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="comboBox_niveau" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbl_nbJoueur" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="comboBox_nbJoueur" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btn_jeu" min="-2" pref="169" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="1238" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btn_jeu" min="-2" pref="169" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="lbl_creerSQT" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="370" max="-2" attributes="0"/>
-                      <Component id="lbl_reponses" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="114" max="32767" attributes="0"/>
@@ -108,20 +90,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_nbJoueur" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBox_nbJoueur" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="btn_jeu" min="-2" pref="58" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbl_nbJoueur" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboBox_nbJoueur" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_theme" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboBox_theme" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -130,9 +104,10 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="157" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="comboBox_theme1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="comboBox_niveau1" min="-2" max="-2" attributes="0"/>
@@ -143,49 +118,28 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbl_creerSQT" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_reponses" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="lbl_thematique" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lbl_difficulte" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbl_a" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtF_addREP1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="checkBox_repA" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btn_ajouterQST" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtF_addREP2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="checkBox_repB" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_b" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="checkBox_repC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtF_addREP3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_c" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="checkBox_repD" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtF_addREP4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_d" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="lbl_thematique" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lbl_difficulte" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="btn_qcm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_jeu" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
+                          <Component id="btn_rc" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_vf" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="64" max="32767" attributes="0"/>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -357,90 +311,37 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbl_reponses">
       <Properties>
-        <Property name="text" type="java.lang.String" value="4 : R&#xe9;ponses possibles"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_a">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="a )"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_b">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="b )"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_c">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="c )"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_d">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="d )"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtF_addREP1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="une r&#xe9;ponse..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtF_addREP2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="une r&#xe9;ponse..."/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtF_addREP2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtF_addREP3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="une r&#xe9;ponse..."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtF_addREP4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="une r&#xe9;ponse..."/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtF_addREP4ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="checkBox_repA">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="a est la bonne r&#xe9;ponse"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="checkBox_repC">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="c est la bonne r&#xe9;ponse"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="checkBox_repD">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="d est la bonne r&#xe9;ponse"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBox_repDActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="checkBox_repB">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="b est la bonne r&#xe9;ponse"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBox_repBActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btn_ajouterQST">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ajouter la question"/>
+        <Property name="text" type="java.lang.String" value="4 : Type de la question et r&#xe9;ponses"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_jeu">
       <Properties>
         <Property name="text" type="java.lang.String" value="Commencer le jeu"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_qcm">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="QCM"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_qcmMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_rc">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="R&#xe9;ponse courte"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_rcMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_vf">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vrai / Faux"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_vfMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

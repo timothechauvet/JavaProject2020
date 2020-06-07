@@ -43,20 +43,10 @@ public class Lancement extends javax.swing.JFrame {
         lbl_qst = new javax.swing.JLabel();
         txtF_addQST = new javax.swing.JTextField();
         lbl_reponses = new javax.swing.JLabel();
-        lbl_a = new javax.swing.JLabel();
-        lbl_b = new javax.swing.JLabel();
-        lbl_c = new javax.swing.JLabel();
-        lbl_d = new javax.swing.JLabel();
-        txtF_addREP1 = new javax.swing.JTextField();
-        txtF_addREP2 = new javax.swing.JTextField();
-        txtF_addREP3 = new javax.swing.JTextField();
-        txtF_addREP4 = new javax.swing.JTextField();
-        checkBox_repA = new javax.swing.JCheckBox();
-        checkBox_repC = new javax.swing.JCheckBox();
-        checkBox_repD = new javax.swing.JCheckBox();
-        checkBox_repB = new javax.swing.JCheckBox();
-        btn_ajouterQST = new javax.swing.JButton();
         btn_jeu = new javax.swing.JButton();
+        btn_qcm = new javax.swing.JButton();
+        btn_rc = new javax.swing.JButton();
+        btn_vf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,66 +109,59 @@ public class Lancement extends javax.swing.JFrame {
 
         txtF_addQST.setText("une question...");
 
-        lbl_reponses.setText("4 : Réponses possibles");
-
-        lbl_a.setText("a )");
-
-        lbl_b.setText("b )");
-
-        lbl_c.setText("c )");
-
-        lbl_d.setText("d )");
-
-        txtF_addREP1.setText("une réponse...");
-
-        txtF_addREP2.setText("une réponse...");
-        txtF_addREP2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtF_addREP2ActionPerformed(evt);
-            }
-        });
-
-        txtF_addREP3.setText("une réponse...");
-
-        txtF_addREP4.setText("une réponse...");
-        txtF_addREP4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtF_addREP4ActionPerformed(evt);
-            }
-        });
-
-        checkBox_repA.setText("a est la bonne réponse");
-
-        checkBox_repC.setText("c est la bonne réponse");
-
-        checkBox_repD.setText("d est la bonne réponse");
-        checkBox_repD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBox_repDActionPerformed(evt);
-            }
-        });
-
-        checkBox_repB.setText("b est la bonne réponse");
-        checkBox_repB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBox_repBActionPerformed(evt);
-            }
-        });
-
-        btn_ajouterQST.setText("Ajouter la question");
+        lbl_reponses.setText("4 : Type de la question et réponses");
 
         btn_jeu.setText("Commencer le jeu");
+
+        btn_qcm.setText("QCM");
+        btn_qcm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_qcmMouseClicked(evt);
+            }
+        });
+
+        btn_rc.setText("Réponse courte");
+        btn_rc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_rcMouseClicked(evt);
+            }
+        });
+
+        btn_vf.setText("Vrai / Faux");
+        btn_vf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_vfMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_theme)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(lbl_niveau)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_nbJoueur)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_creerSQT)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbl_qst)
                                     .addComponent(lbl_thematique)
@@ -188,68 +171,29 @@ public class Lancement extends javax.swing.JFrame {
                                     .addComponent(txtF_addQST, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboBox_theme1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboBox_niveau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(90, 90, 90)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbl_b)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtF_addREP2))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lbl_d, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtF_addREP4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(110, 110, 110)
+                                        .addComponent(lbl_reponses))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbl_a)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtF_addREP1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lbl_c)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtF_addREP3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(checkBox_repA, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                                    .addComponent(checkBox_repC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(checkBox_repD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(checkBox_repB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(28, 28, 28)
-                                .addComponent(btn_ajouterQST))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_theme)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(lbl_niveau)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lbl_nbJoueur)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1238, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(lbl_creerSQT)
-                        .addGap(370, 370, 370)
-                        .addComponent(lbl_reponses)))
+                                        .addGap(131, 131, 131)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btn_rc)
+                                            .addComponent(btn_vf)
+                                            .addComponent(btn_qcm))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)))))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_nbJoueur)
-                            .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_nbJoueur)
+                    .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_theme)
                     .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,9 +201,10 @@ public class Lancement extends javax.swing.JFrame {
                     .addComponent(lbl_niveau))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(30, 30, 30)
                         .addComponent(comboBox_theme1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(comboBox_niveau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,63 +213,46 @@ public class Lancement extends javax.swing.JFrame {
                             .addComponent(txtF_addQST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_qst, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_creerSQT)
                             .addComponent(lbl_reponses))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(lbl_thematique)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbl_difficulte))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbl_a)
-                                    .addComponent(txtF_addREP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkBox_repA)
-                                    .addComponent(btn_ajouterQST))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtF_addREP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkBox_repB)
-                                    .addComponent(lbl_b))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(checkBox_repC)
-                                    .addComponent(txtF_addREP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbl_c))
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(checkBox_repD)
-                                    .addComponent(txtF_addREP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbl_d))))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(lbl_thematique)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_difficulte))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_qcm)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_rc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_vf)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtF_addREP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtF_addREP4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtF_addREP4ActionPerformed
-
-    private void checkBox_repDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_repDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkBox_repDActionPerformed
-
-    private void checkBox_repBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_repBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkBox_repBActionPerformed
-
     private void comboBox_niveau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_niveau1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBox_niveau1ActionPerformed
 
-    private void txtF_addREP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtF_addREP2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtF_addREP2ActionPerformed
+    private void btn_qcmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_qcmMouseClicked
+        CreationQST_qcm addQST = new CreationQST_qcm(txtF_addQST.getText(), comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex()), comboBox_niveau1.getSelectedIndex()+1);
+        addQST.setVisible(true);
+    }//GEN-LAST:event_btn_qcmMouseClicked
+
+    private void btn_rcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rcMouseClicked
+        CreationQST_RC addQST = new CreationQST_RC(txtF_addQST.getText(), comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex()), comboBox_niveau1.getSelectedIndex()+1);
+        addQST.setVisible(true);
+    }//GEN-LAST:event_btn_rcMouseClicked
+
+    private void btn_vfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_vfMouseClicked
+        CreationQST_VF addQST = new CreationQST_VF(txtF_addQST.getText(), comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex()), comboBox_niveau1.getSelectedIndex()+1);
+        addQST.setVisible(true);
+    }//GEN-LAST:event_btn_vfMouseClicked
 
     /**
      * @param args the command line arguments
@@ -362,23 +290,17 @@ public class Lancement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_ajouterQST;
     private javax.swing.JButton btn_jeu;
-    private javax.swing.JCheckBox checkBox_repA;
-    private javax.swing.JCheckBox checkBox_repB;
-    private javax.swing.JCheckBox checkBox_repC;
-    private javax.swing.JCheckBox checkBox_repD;
+    private javax.swing.JButton btn_qcm;
+    private javax.swing.JButton btn_rc;
+    private javax.swing.JButton btn_vf;
     private javax.swing.JComboBox<String> comboBox_nbJoueur;
     private javax.swing.JComboBox<String> comboBox_niveau;
     private javax.swing.JComboBox<String> comboBox_niveau1;
     private javax.swing.JComboBox<String> comboBox_theme;
     private javax.swing.JComboBox<String> comboBox_theme1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbl_a;
-    private javax.swing.JLabel lbl_b;
-    private javax.swing.JLabel lbl_c;
     private javax.swing.JLabel lbl_creerSQT;
-    private javax.swing.JLabel lbl_d;
     private javax.swing.JLabel lbl_difficulte;
     private javax.swing.JLabel lbl_nbJoueur;
     private javax.swing.JLabel lbl_niveau;
@@ -388,9 +310,5 @@ public class Lancement extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_theme;
     private javax.swing.JTable table_questions;
     private javax.swing.JTextField txtF_addQST;
-    private javax.swing.JTextField txtF_addREP1;
-    private javax.swing.JTextField txtF_addREP2;
-    private javax.swing.JTextField txtF_addREP3;
-    private javax.swing.JTextField txtF_addREP4;
     // End of variables declaration//GEN-END:variables
 }
