@@ -32,8 +32,12 @@ public abstract class Question <T> {
     
     
     
-    public int getNumber() {
+    public int getNumber () {
         return number;
+    }
+    
+    public int getDifficulty () {
+        return this.difficulty;
     }
 
     public void afficher() {
@@ -45,7 +49,7 @@ public abstract class Question <T> {
 
 
     public void saisir() {
-
+        /*Une méthode Saisir qui permet la saisie d’une fonction d’un type T donné.*/
     }
     
     public boolean checkAnswer(T answer) {
