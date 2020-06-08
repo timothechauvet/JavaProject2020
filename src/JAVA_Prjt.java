@@ -6,15 +6,20 @@
 
 
 
-import Questions.ListeQuestions;
 import Questions.Themes;
 import Questions.Question;
+import Questions.ListeQuestions;
 
 import Questions.Type.QCM;
 import Questions.Type.VF;
 import Questions.Type.RC;
 
+import Joueurs.Joueur;
+import Joueurs.EnsJoueurs;
+
+
 import Files_Managment.FileManager;
+import java.util.Vector;
 /**
  * @author remyc
  */
@@ -26,20 +31,45 @@ public class JAVA_Prjt {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        test_classes();
-        test_ReadFromFiles();
+        test_Theme();
+        test_Question();
+        test_ListeQuestions();
+        test_Joueur();
+        test_EnsJoueurs();
+        
+        test_FileManager();
     }
 
+    
+    
+    
 
-    public static void test_classes () {
+    public static void test_Theme () {
+        System.out.println("\n\t -------- test_Theme --------");
         Themes t = new Themes();    //the different themes are hard coded
-
+        
+        t.afficher();
+        t.modifierTheme(9, "Culture G");
+        t.afficher();
+        
+        int [] themes = t.selectionnerCinqThemes();
+        System.out.println("\nselected themes:");
+        for (int index : themes) {
+            System.out.println(" -> " + t.themes[index]);
+        }
+    }
+    
+    
+    public static void test_Question () {
+        System.out.println("\n\t -------- test_Question --------");
+        Themes t = new Themes();    //the different themes are hard coded
+        
         QCM qcm = new QCM(t.themes[t.selectionnerTheme()], 1, "répondez svp", 1, "hey", "ho", "let's", "go");
         RC rc = new RC(t.themes[t.selectionnerTheme()], 2, "un hotel?", "trivago");
         VF vf = new VF(t.themes[t.selectionnerTheme()], 3, "vraiment?", true);
 
-        ListeQuestions lq = new ListeQuestions();
         
+        ListeQuestions lq = new ListeQuestions();
         
         lq.ajouterQuestion(qcm);
         lq.ajouterQuestion(rc);
@@ -53,7 +83,73 @@ public class JAVA_Prjt {
     }
     
     
-    public static void test_ReadFromFiles () {
+    public static void test_ListeQuestions () {
+        System.out.println("\n\t -------- test_ListeQuestions --------");
+        ListeQuestions lq = new ListeQuestions ();
+        
+        lq.afficherListe();
+        
+        System.out.println("\n\tadd question");
+        VF vf = new VF("thme", 3, "vraiment?", true);
+        lq.ajouterQuestion(vf);
+        QCM qcm = new QCM("thme", 1, "répondez svp", 1, "hey", "ho", "let's", "go");
+        lq.ajouterQuestion(qcm);
+        RC rc = new RC("thme", 2, "un hotel?", "trivago");
+        lq.ajouterQuestion(rc);
+        lq.afficherListe();
+        
+        System.out.println("\n\tselect question");
+        Question q = lq.selectionnerQuestion(2);
+        q.afficher();
+        
+        System.out.println("\n\tdelete question");
+        lq.supprimerQuestion(5);
+        lq.afficherListe();
+    }
+    
+    
+    public static void test_Joueur () {
+        System.out.println("\n\t -------- test_Joueur --------");
+        Joueur j = new Joueur(1, "Billy");
+        
+        j.afficher();
+        
+        j.majScore(10);
+        j.changerEtat(0);
+        j.afficher();
+        
+        QCM qcm = new QCM("thme", 1, "répondez svp", 1, "hey", "ho", "let's", "go");
+        if (j.saisir(qcm, 3)) System.out.println("WIN!");
+        else System.out.println("LOSE!");
+        if (j.saisir(qcm, 1)) System.out.println("WIN!");
+        else System.out.println("LOSE!");
+    }
+    
+    
+    public static void test_EnsJoueurs () {
+        System.out.println("\n\t -------- test_EnsJoueur --------");
+        Joueur j = new Joueur(1, "Billy");
+        Vector <Joueur> vect = new Vector();
+        vect.add(j);
+        EnsJoueurs ej = new EnsJoueurs(vect);
+        
+        System.out.println("\n\tdisplay player");
+        ej.afficher();
+        
+        System.out.println("\n\tadd new player");
+        Joueur j2 = new Joueur(2, "Max");
+        ej.ajouterJoueur(j2);
+        ej.afficher();
+        
+        System.out.println("\n\tselect random playter");
+        ej.selectionnerJoueur().afficher();
+    }
+    
+    
+    
+    
+    public static void test_FileManager () {
+        System.out.println("\n\t -------- test_FileManager --------");
         FileManager FM = new FileManager();
         
         String Prjt_path =  "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020";

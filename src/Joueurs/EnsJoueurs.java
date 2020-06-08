@@ -12,17 +12,32 @@ import java.util.Vector;
  * @author remyc
  */
 public class EnsJoueurs {
-    private Vector joueurs;
+    private Vector <Joueur> joueurs;
 
     
     public EnsJoueurs(Vector joueurs) {
+        this.joueurs  = joueurs;
+    }
+    public EnsJoueurs () {
         this.joueurs  = new Vector(20);
     }
+    
+    
     
     public void creer () {
         for(int i=0; i<20; i++){
             //this.joueurs.add();
         }
+    }
+    
+    
+    
+    public void ajouterJoueur (Joueur j) {
+        joueurs.add(j);
+    }
+    
+    public void afficher () {
+        for (Joueur j : joueurs) j.afficher();
     }
     
     public Joueur selectionnerJoueur () {

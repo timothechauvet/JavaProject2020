@@ -36,9 +36,16 @@ public class ListeQuestions {
             }
         }
     }
+    
+    public Question getRandomQuestion () {
+        return questions.get((int) (Math.random() * questions.size()));
+    }
 
-    public Question selectionnerQuestion (String theme, int difficulty) {
-        //TODO
-        return null;
+    public Question selectionnerQuestion (int difficulty) {
+        ListeQuestions selectedQuestions = new ListeQuestions();
+        for (Question q : questions) {
+            if (q.getDifficulty() == difficulty) selectedQuestions.ajouterQuestion(q);
+        }
+        return selectedQuestions.getRandomQuestion();
     }
 }

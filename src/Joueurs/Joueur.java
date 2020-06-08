@@ -11,7 +11,7 @@ import Questions.Question;
  *
  * @author remyc
  */
-public class Joueur {
+public class Joueur <R> {
 //	Variables
     private final int nbr;
     private final String name;
@@ -59,10 +59,14 @@ public class Joueur {
     }
     
     
-    public void saisir (Question q) {
+    
+    
+    public boolean saisir (Question q, R answer) {
     	q.afficher();
-        
+        return q.checkAnswer(answer);
     }
+    
+    
     
     public void afficher () {
         System.out.println("Player # " + this.nbr + " : \t" + this.name);
@@ -88,7 +92,7 @@ public class Joueur {
         }
     }
     
-    public void majScore (int s) {
+    public void majScore (int s) {  //depends on the current phase
     	this.score += s;        
     }
     
