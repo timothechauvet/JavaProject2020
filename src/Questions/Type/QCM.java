@@ -5,32 +5,28 @@
  */
 package Questions.Type;
 
-import Questions.QuestionType;
+import Questions.Question;
 
 /**
  * @author remyc
  */
-public class QCM extends QuestionType {
-    private final String r1;
-    private final String r2;
-    private final String r3;
-    private final String correctAnswer;
-
-
-    public QCM(String question, String r1, String r2, String r3, String CA) {
-        super(question);
-        this.r1 = r1;
-        this.r2 = r2;
-        this.r3 = r3;
-        this.correctAnswer = CA;
+public class QCM extends Question {
+    private final String [] answers;
+    
+    
+    public QCM (String theme, int level, String enonce, int correctAnswer, String r1, String r2, String r3, String r4) {
+        super(theme, level, enonce, correctAnswer);
+        this.answers = new String [4];
+        this.answers[0] = r1;
+        this.answers[1] = r2;
+        this.answers[2] = r3;
+        this.answers[3] = r4;
     }
 
-    @Override
+    
     public void afficher() {
         super.afficher();
-        System.out.println(" -> " + this.r1);
-        System.out.println(" -> " + this.r2);
-        System.out.println(" -> " + this.r3);
+        for (String answer : this.answers) System.out.println(" -> " + answer);
         System.out.print("Your answer: ");
     }
 }

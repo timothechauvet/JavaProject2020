@@ -19,13 +19,13 @@ public class EnsJoueurs {
         this.joueurs  = new Vector(20);
     }
     
-    public void Creer () {
+    public void creer () {
         for(int i=0; i<20; i++){
             //this.joueurs.add();
         }
     }
     
-    public Joueur SelectionnerJoueur () {
+    public Joueur selectionnerJoueur () {
         return (Joueur) this.joueurs.get((int) (Math.random() * this.joueurs.size()));
     }
 }

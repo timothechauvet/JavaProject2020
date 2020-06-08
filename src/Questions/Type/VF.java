@@ -5,18 +5,16 @@
  */
 package Questions.Type;
 
-import Questions.QuestionType;
+import Questions.Question;
 
 /**
  * @author remyc
  */
-public class VF extends QuestionType {
-    private final boolean correcteAnswer;
+public class VF extends Question {
 
 
-    public VF(String question, boolean correcteAnswer) {
-        super(question);
-        this.correcteAnswer = correcteAnswer;
+    public VF (String theme, int level, String enonce, boolean correctAnswer) {
+        super(theme, level, enonce, correctAnswer);
     }
 
     @Override

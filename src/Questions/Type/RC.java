@@ -5,18 +5,16 @@
  */
 package Questions.Type;
 
-import Questions.QuestionType;
+import Questions.Question;
 
 /**
  * @author remyc
  */
-public class RC extends QuestionType {
-    private final String correctAnswer;
+public class RC extends Question {
 
 
-    public RC(String question, String correctAnswer) {
-        super(question);
-        this.correctAnswer = correctAnswer;
+    public RC (String theme, int level, String enonce, String correctAnswer) {
+        super(theme, level, enonce, correctAnswer);
     }
 
 

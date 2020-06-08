@@ -5,8 +5,6 @@
  */
 package Questions;
 
-import static java.lang.Math.random;
-
 /**
  * @author remyc
  */
@@ -24,18 +22,18 @@ public class Themes {
         this.themes[5] = "Aéronautique";
         this.themes[6] = "Literature";
         this.themes[7] = "Musique";
-        this.themes[8] = "Filmes";
+        this.themes[8] = "Films";
         this.themes[9] = "Culture Générale";
         /* ... à continuer*/
         this.prev = -1;
     }
 
 
-    public void ModifierTheme() {
+    public void modifierTheme() {
 
     }
 
-    public int SelectionnerTheme() {
+    public int selectionnerTheme() {
         int rdn = (int) (Math.random() * 10);
         while (rdn == this.prev) {   //then new theme is same as previous and need to be changed
             rdn = (int) (Math.random() * 10);
@@ -45,7 +43,7 @@ public class Themes {
         return this.prev;
     }
 
-    public int[] SelectionnerCinqThemes() {
+    public int[] selectionnerCinqThemes() {
         int[] selectedThemes = new int[5];
         for (int i = 0; i < selectedThemes.length; i++) {    //select 5 differents themes
             int rdn = (int) (Math.random() * 10);
@@ -58,7 +56,7 @@ public class Themes {
         return selectedThemes;
     }
 
-    public void Afficher() {
+    public void afficher() {
         for (int i = 0; i < this.themes.length; i++) {
             System.out.println(i + " -> " + this.themes[i]);
         }
