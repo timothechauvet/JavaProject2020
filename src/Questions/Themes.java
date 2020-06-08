@@ -5,27 +5,30 @@
  */
 package Questions;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 /**
  * @author remyc
  */
 public class Themes {
-    public String[] themes = new String[10];
-    private int prev;   //index of current theme, is Integer so that it can be initialized to null
+    public Theme[] themes = new Theme[10];
+    private int prev;   //index of current theme
 
 
     public Themes () {
-        this.themes[0] = "Biologie";
-        this.themes[1] = "Sport";
-        this.themes[2] = "Histoire";
-        this.themes[3] = "Informatique";
-        this.themes[4] = "Aérospatial";
-        this.themes[5] = "Aéronautique";
-        this.themes[6] = "Literature";
-        this.themes[7] = "Musique";
-        this.themes[8] = "Films";
-        this.themes[9] = "Culture Générale";
+        this.themes[0] = new Theme("Biologie");
+        this.themes[1] = new Theme("Sport");
+        this.themes[2] = new Theme("Histoire");
+        this.themes[3] = new Theme("Informatique");
+        this.themes[4] = new Theme("Aérospatial");
+        this.themes[5] = new Theme("Aéronautique");
+        this.themes[6] = new Theme("Literature");
+        this.themes[7] = new Theme("Musique");
+        this.themes[8] = new Theme("Films");
+        this.themes[9] = new Theme("Culture Générale");
         /* ... à continuer*/
-        this.prev = 0;
+        this.prev = -1; //initial value of prev is -1 so that any theme can be selected
     }
     
     
@@ -36,7 +39,7 @@ public class Themes {
 
     public void modifierTheme(int index, String newTheme) {
         try {
-            themes[index] = newTheme;
+            themes[index] = new Theme(newTheme);
         }
         catch (ArrayIndexOutOfBoundsException aiobe) {
             System.out.println("\nERROR:\t" + aiobe);
@@ -45,28 +48,27 @@ public class Themes {
     }
 
     public int selectionnerTheme() {
-        int rdn = (int) (Math.random() * 10);
-        while (rdn == this.prev) {   //then new theme is same as previous and need to be changed
-            rdn = (int) (Math.random() * 10);
-        }
+        int newTheme;
+        do {   //then new theme is same as previous and need to be changed
+            newTheme = (int) (Math.random() * 10);
+        } while (newTheme == this.prev);
 
-        this.prev = rdn;
+        this.prev = newTheme;
         return this.prev;
     }
 
     public int[] selectionnerCinqThemes() {
         int[] selectedThemes = new int[5];
-        
-        for (int i = 0; i < selectedThemes.length; i++) {    //select 5 differents themes
-            //int rdn = (int) (Math.random() * 10);
-            int rdn = selectionnerTheme();
-            
+        int newTheme;
+
+        for (int i = 0; i < 5; i++) {    //select 5 differents themes
             if (DEBBUGING) System.out.println("prev = " + prev);
-            
-            for (int j = 0; j < selectedThemes.length; j++) {    //checks if randomly selected index (rdn) is already selected
-                if (selectedThemes[j] == rdn) break;
-                if (j == selectedThemes.length-1) selectedThemes[i] = rdn;
-            }
+
+            do{
+                newTheme=selectionnerTheme();
+            } while (Arrays.asList(selectedThemes).contains(newTheme));
+
+            selectedThemes[i]=newTheme;
             
             if (DEBBUGING) {
                 System.out.println();
@@ -82,7 +84,7 @@ public class Themes {
         for (int i = 0; i < this.themes.length; i++) {
             System.out.println(i + " -> " + this.themes[i]);
         }
-        System.out.println("selected theme: " + this.themes[this.prev]);
+        System.out.println("selected theme: " + (this.prev== -1 ? "none" : this.themes[this.prev]));
     }
 
 

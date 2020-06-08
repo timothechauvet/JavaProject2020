@@ -5,18 +5,14 @@
  */
 package Questions.Type;
 
-import Questions.Question;
 
 /**
  * @author remyc
  */
-public class RC extends Question {
-
-
-    public RC (String theme, int level, String enonce, String correctAnswer) {
-        super(theme, level, enonce, correctAnswer);
+public class RC extends QuestionType<String> {
+    public RC (String enonce, String correct) {
+        super(enonce,correct);
     }
-
 
     @Override
     public void afficher() {

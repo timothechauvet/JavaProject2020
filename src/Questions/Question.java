@@ -5,33 +5,26 @@
  */
 package Questions;
 
+import Questions.Type.QuestionType;
+import Questions.Type.RC;
+
 /**
  * @author remyc
  * @param <T> is either QCM, RC or VF
  */
-public abstract class Question <T> {
+public class Question <T extends QuestionType> {
     private final int number;
     private static int qTotal = 0;
-    private final String theme;
     private final int difficulty;
     
-    private final String enonce;
-    private final T correctAnswer;    //depends on the type of questio; QCM, VF or RC
+    private final T enonce;     //depends on the type of question; QCM, VF or RC
 
-    
-
-    public Question(String theme, int level, String enonce, T correctAnswer) {
+    public Question(int level, T enonce) {
         this.number = ++qTotal;
-        this.theme = theme;
         this.difficulty = level;
-        
         this.enonce = enonce;
-        this.correctAnswer = correctAnswer;
     }
 
-    
-    
-    
     public int getNumber () {
         return number;
     }
@@ -43,16 +36,11 @@ public abstract class Question <T> {
     public void afficher() {
         System.out.println("\n\nQuestion n°\t" + this.number);
         System.out.println("Difficulty: \t" + this.difficulty);
-        System.out.println("Theme : \t" + this.theme); //TEMP
-        System.out.println(enonce);
+        enonce.afficher();
     }
 
 
-    public void saisir() {
-        /*Une méthode Saisir qui permet la saisie d’une fonction d’un type T donné.*/
-    }
-    
-    public boolean checkAnswer(T answer) {
-        return correctAnswer == answer;
+    public boolean saisir(Object reponse) {
+        return enonce.checkAnswer(reponse);
     }
 }

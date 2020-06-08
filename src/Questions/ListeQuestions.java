@@ -13,13 +13,9 @@ import java.util.*;
 public class ListeQuestions {
     private LinkedList <Question> questions;
 
-
     public ListeQuestions () {
         questions = new LinkedList <Question> ();
     }
-
-    
-    
 
     public void afficherListe () {
         questions.forEach(Question :: afficher);
@@ -33,6 +29,7 @@ public class ListeQuestions {
         for (Question q : questions) {
             if (qNum == q.getNumber()) {
                 questions.remove(q);
+                break;
             }
         }
     }

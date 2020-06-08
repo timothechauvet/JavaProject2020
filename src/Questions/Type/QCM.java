@@ -10,12 +10,11 @@ import Questions.Question;
 /**
  * @author remyc
  */
-public class QCM extends Question {
+public class QCM extends QuestionType<Integer> {
     private final String [] answers;
     
-    
-    public QCM (String theme, int level, String enonce, int correctAnswer, String r1, String r2, String r3, String r4) {
-        super(theme, level, enonce, correctAnswer);
+    public QCM(String enonce, int correct, String r1, String r2, String r3, String r4) {
+        super(enonce, correct);
         this.answers = new String [4];
         this.answers[0] = r1;
         this.answers[1] = r2;

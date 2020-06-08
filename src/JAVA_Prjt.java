@@ -63,11 +63,10 @@ public class JAVA_Prjt {
     public static void test_Question () {
         System.out.println("\n\t -------- test_Question --------");
         Themes t = new Themes();    //the different themes are hard coded
-        
-        QCM qcm = new QCM(t.themes[t.selectionnerTheme()], 1, "répondez svp", 1, "hey", "ho", "let's", "go");
-        RC rc = new RC(t.themes[t.selectionnerTheme()], 2, "un hotel?", "trivago");
-        VF vf = new VF(t.themes[t.selectionnerTheme()], 3, "vraiment?", true);
 
+        Question<QCM> qcm= new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go"));
+        Question<RC> rc= new Question<>(1,new RC("un hotel?","trivago"));
+        Question<VF> vf = new Question<>(3,new VF("vraiment?", true));
         
         ListeQuestions lq = new ListeQuestions();
         
@@ -90,16 +89,16 @@ public class JAVA_Prjt {
         lq.afficherListe();
         
         System.out.println("\n\tadd question");
-        VF vf = new VF("thme", 3, "vraiment?", true);
+        Question<VF> vf = new Question<>(3,new VF("vraiment?", true));
         lq.ajouterQuestion(vf);
-        QCM qcm = new QCM("thme", 1, "répondez svp", 1, "hey", "ho", "let's", "go");
+        Question<QCM> qcm= new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go"));
         lq.ajouterQuestion(qcm);
-        RC rc = new RC("thme", 2, "un hotel?", "trivago");
+        Question<RC> rc= new Question<>(1,new RC("un hotel?","trivago"));
         lq.ajouterQuestion(rc);
         lq.afficherListe();
         
         System.out.println("\n\tselect question");
-        Question q = lq.selectionnerQuestion(2);
+        Question q = lq.selectionnerQuestion(1);
         q.afficher();
         
         System.out.println("\n\tdelete question");
@@ -117,8 +116,8 @@ public class JAVA_Prjt {
         j.majScore(10);
         j.changerEtat(0);
         j.afficher();
-        
-        QCM qcm = new QCM("thme", 1, "répondez svp", 1, "hey", "ho", "let's", "go");
+
+        Question<QCM> qcm= new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go"));
         if (j.saisir(qcm, 3)) System.out.println("WIN!");
         else System.out.println("LOSE!");
         if (j.saisir(qcm, 1)) System.out.println("WIN!");
@@ -144,48 +143,46 @@ public class JAVA_Prjt {
         System.out.println("\n\tselect random playter");
         ej.selectionnerJoueur().afficher();
     }
-    
-    
-    
-    
+
+
     public static void test_FileManager () {
         System.out.println("\n\t -------- test_FileManager --------");
         FileManager FM = new FileManager();
-        
+
         String Prjt_path =  "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020";
         String VF_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\VF";
         String RC_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\RC";
         String QCM_path =   "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\QCM";
-        
-    
+
+
         Themes t = new Themes();
         ListeQuestions listeQuestions = new ListeQuestions();
         listeQuestions.afficherListe();
-        
-        
+
+
         FM.displayDir(VF_path);
         VF vf1 = FM.VFFromFile("\\VF1.txt");
         /*Question q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), );
         listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(vf1);
-        
+
         FM.displayDir(RC_path);
         RC rc1 = FM.RCFromFile("\\RC1.txt");
         /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), RC1);
         listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(rc1);
-        
+
         FM.displayDir(QCM_path);
         QCM qcm1 = FM.QCMFromFile("\\QCM1.txt");
         /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), QCM1);
         listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(qcm1);
-        
-        
+
+
         listeQuestions.afficherListe();
-        
-        
-        
+
+
+
         FM.ajouterQuestion("Le ciel est bleu", true);
         FM.ajouterQuestion("Un hotel", "trivago");
         FM.ajouterQuestion("2 + 2 = ?", "4", "6", "2", "Quick Maths!", 0);
@@ -193,5 +190,7 @@ public class JAVA_Prjt {
         FM.displayDir(RC_path);
         FM.displayDir(QCM_path);
     }
+    
+
 
 }

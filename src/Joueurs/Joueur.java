@@ -11,7 +11,7 @@ import Questions.Question;
  *
  * @author remyc
  */
-public class Joueur <R> {
+public class Joueur {
 //	Variables
     private final int nbr;
     private final String name;
@@ -61,9 +61,8 @@ public class Joueur <R> {
     
     
     
-    public boolean saisir (Question q, R answer) {
-    	q.afficher();
-        return q.checkAnswer(answer);
+    public boolean saisir (Question q, Object answer) {
+        return q.saisir(answer);
     }
     
     

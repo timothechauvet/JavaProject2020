@@ -10,11 +10,9 @@ import Questions.Question;
 /**
  * @author remyc
  */
-public class VF extends Question {
-
-
-    public VF (String theme, int level, String enonce, boolean correctAnswer) {
-        super(theme, level, enonce, correctAnswer);
+public class VF extends QuestionType<Boolean> {
+    public VF (String enonce, boolean correct) {
+        super(enonce,correct);
     }
 
     @Override
