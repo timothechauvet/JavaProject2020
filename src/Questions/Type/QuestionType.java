@@ -15,7 +15,7 @@ public abstract class QuestionType<T> {
 
     public boolean checkAnswer(Object answer) {
         if(answer.getClass().equals(correct.getClass())) {
-            return correct == answer;
+            return correct == (T) answer;
         }
         return false;
     }

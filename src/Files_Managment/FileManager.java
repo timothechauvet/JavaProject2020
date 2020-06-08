@@ -5,6 +5,7 @@
  */
 package Files_Managment;
 
+import Questions.Question;
 import Questions.Type.VF;
 import Questions.Type.RC;
 import Questions.Type.QCM;
@@ -21,10 +22,10 @@ import java.io.FileWriter;
  * @author remyc
  */
 public class FileManager {
-    private final String Prjt_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020";
-    private final String VF_path =      "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\VF";
-    private final String RC_path =      "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\RC";
-    private final String QCM_path =     "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\QCM";
+    private final String Prjt_path =    "";
+    private final String VF_path =      Prjt_path + "Questions\\VF";
+    private final String RC_path =      Prjt_path + "Questions\\RC";
+    private final String QCM_path =     Prjt_path + "Questions\\QCM";
     
     
     boolean DEBBUGING = true;
@@ -49,7 +50,7 @@ public class FileManager {
     
     
     
-    public VF VFFromFile (String fileName) {
+    public Question<VF> VFFromFile (String fileName) {
         if (DEBBUGING) System.out.println("Reading VF from file");
         try {
             FileReader fr = new FileReader(VF_path + fileName);
@@ -64,7 +65,7 @@ public class FileManager {
                 else {
                     ca = false;
                 }
-                return new VF("theme", 1, question, ca);
+                return new Question<>(1,new VF(question, ca));
             }
             catch (IOException ioe) {
                 System.out.println("\nERROR:\t" + ioe);
@@ -81,7 +82,7 @@ public class FileManager {
         return null;
     }
     
-    public RC RCFromFile (String fileName) {
+    public Question<RC> RCFromFile (String fileName) {
         if (DEBBUGING) System.out.println("Reading RC from file");
         try {
             FileReader fr = new FileReader(RC_path + fileName);
@@ -89,7 +90,7 @@ public class FileManager {
             
             try {
                 String question = br.readLine();
-                return new RC("theme", 1, question, br.readLine());
+                return new Question<>(1, new RC( question, br.readLine()));
             }
             catch(IOException ioe) {
                 System.out.println("\nERROR:\t" + ioe);
@@ -106,7 +107,7 @@ public class FileManager {
         return null;
     }
     
-    public QCM QCMFromFile (String fileName) {
+    public Question<QCM> QCMFromFile (String fileName) {
         if (DEBBUGING) System.out.println("Reading RC from file");
         try {
             FileReader fr = new FileReader(QCM_path + fileName);
@@ -119,7 +120,7 @@ public class FileManager {
                 String r3 = br.readLine();
                 String r4 = br.readLine();
                 int correctAnswer = Integer.parseInt(br.readLine());
-                return new QCM("theme", 1, question, correctAnswer, r1, r2, r3, r4);
+                return new Question<>(1, new QCM(question, correctAnswer, r1, r2, r3, r4));
             }
             catch(IOException ioe) {
                 System.out.println("\nERROR:\t" + ioe);
@@ -196,7 +197,6 @@ public class FileManager {
             System.out.println("method called : 'public void AjouterQuestion (String question, String r1, String r2, String r3, String correctAnswer)'");
         }
     }
-    
     
     
 }

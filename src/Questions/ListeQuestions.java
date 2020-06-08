@@ -11,22 +11,22 @@ import java.util.*;
  * @author remyc
  */
 public class ListeQuestions {
-    private LinkedList <Question> questions;
+    private LinkedList <Question<?>> questions;
 
     public ListeQuestions () {
-        questions = new LinkedList <Question> ();
+        questions = new LinkedList <> ();
     }
 
     public void afficherListe () {
         questions.forEach(Question :: afficher);
     }
 
-    public void ajouterQuestion (Question question) {
-        questions.add(question);
+    public boolean ajouterQuestion (Question<?> question) {
+        return questions.add(question);
     }
 
     public void supprimerQuestion (int qNum) {
-        for (Question q : questions) {
+        for (Question<?> q : questions) {
             if (qNum == q.getNumber()) {
                 questions.remove(q);
                 break;
@@ -34,13 +34,13 @@ public class ListeQuestions {
         }
     }
     
-    public Question getRandomQuestion () {
+    public Question<?> getRandomQuestion () {
         return questions.get((int) (Math.random() * questions.size()));
     }
 
-    public Question selectionnerQuestion (int difficulty) {
+    public Question<?> selectionnerQuestion (int difficulty) {
         ListeQuestions selectedQuestions = new ListeQuestions();
-        for (Question q : questions) {
+        for (Question<?> q : questions) {
             if (q.getDifficulty() == difficulty) selectedQuestions.ajouterQuestion(q);
         }
         return selectedQuestions.getRandomQuestion();

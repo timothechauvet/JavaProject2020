@@ -19,6 +19,7 @@ import Joueurs.EnsJoueurs;
 
 
 import Files_Managment.FileManager;
+
 import java.util.Vector;
 /**
  * @author remyc
@@ -52,10 +53,10 @@ public class JAVA_Prjt {
         t.modifierTheme(9, "Culture G");
         t.afficher();
         
-        int [] themes = t.selectionnerCinqThemes();
+        int [] cinqThemes = t.selectionnerCinqThemes();
         System.out.println("\nselected themes:");
-        for (int index : themes) {
-            System.out.println(" -> " + t.themes[index]);
+        for (int index : cinqThemes) {
+            System.out.println(" -> " + Themes.themes[index]);
         }
     }
     
@@ -98,7 +99,7 @@ public class JAVA_Prjt {
         lq.afficherListe();
         
         System.out.println("\n\tselect question");
-        Question q = lq.selectionnerQuestion(1);
+        Question<?> q = lq.selectionnerQuestion(1);
         q.afficher();
         
         System.out.println("\n\tdelete question");
@@ -149,10 +150,11 @@ public class JAVA_Prjt {
         System.out.println("\n\t -------- test_FileManager --------");
         FileManager FM = new FileManager();
 
-        String Prjt_path =  "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020";
-        String VF_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\VF";
-        String RC_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\RC";
-        String QCM_path =   "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\QCM";
+
+        String Prjt_path =  "";
+        String VF_path =    Prjt_path + "Questions\\VF";
+        String RC_path =    Prjt_path + "Questions\\RC";
+        String QCM_path =   Prjt_path + "Questions\\QCM";
 
 
         Themes t = new Themes();
@@ -161,19 +163,19 @@ public class JAVA_Prjt {
 
 
         FM.displayDir(VF_path);
-        VF vf1 = FM.VFFromFile("\\VF1.txt");
+        Question<VF> vf1 = FM.VFFromFile("\\VF1.txt");
         /*Question q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), );
         listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(vf1);
 
         FM.displayDir(RC_path);
-        RC rc1 = FM.RCFromFile("\\RC1.txt");
+        Question<RC> rc1 = FM.RCFromFile("\\RC1.txt");
         /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), RC1);
         listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(rc1);
 
         FM.displayDir(QCM_path);
-        QCM qcm1 = FM.QCMFromFile("\\QCM1.txt");
+        Question<QCM> qcm1 = FM.QCMFromFile("\\QCM1.txt");
         /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), QCM1);
         listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(qcm1);
@@ -190,7 +192,4 @@ public class JAVA_Prjt {
         FM.displayDir(RC_path);
         FM.displayDir(QCM_path);
     }
-    
-
-
 }

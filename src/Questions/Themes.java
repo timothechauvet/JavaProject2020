@@ -12,21 +12,21 @@ import java.util.stream.IntStream;
  * @author remyc
  */
 public class Themes {
-    public Theme[] themes = new Theme[10];
+    public static Theme[] themes = new Theme[10];
     private int prev;   //index of current theme
 
 
     public Themes () {
-        this.themes[0] = new Theme("Biologie");
-        this.themes[1] = new Theme("Sport");
-        this.themes[2] = new Theme("Histoire");
-        this.themes[3] = new Theme("Informatique");
-        this.themes[4] = new Theme("Aérospatial");
-        this.themes[5] = new Theme("Aéronautique");
-        this.themes[6] = new Theme("Literature");
-        this.themes[7] = new Theme("Musique");
-        this.themes[8] = new Theme("Films");
-        this.themes[9] = new Theme("Culture Générale");
+        themes[0] = new Theme("Biologie");
+        themes[1] = new Theme("Sport");
+        themes[2] = new Theme("Histoire");
+        themes[3] = new Theme("Informatique");
+        themes[4] = new Theme("Aérospatial");
+        themes[5] = new Theme("Aéronautique");
+        themes[6] = new Theme("Literature");
+        themes[7] = new Theme("Musique");
+        themes[8] = new Theme("Films");
+        themes[9] = new Theme("Culture Générale");
         /* ... à continuer*/
         this.prev = -1; //initial value of prev is -1 so that any theme can be selected
     }
@@ -35,7 +35,15 @@ public class Themes {
     
     boolean DEBBUGING = true;
     
-
+    public boolean addQuestion(String theme, Question<?> q)
+    {
+        int i;
+        for (i = 0; i < themes.length; i++) {
+            if(themes[i].getNom().equals(theme)) break;
+        }
+        if(i==themes.length) return false;
+        else return themes[i].getListe().ajouterQuestion(q);
+    }
 
     public void modifierTheme(int index, String newTheme) {
         try {
@@ -81,10 +89,10 @@ public class Themes {
 
     public void afficher() {
         System.out.println();
-        for (int i = 0; i < this.themes.length; i++) {
-            System.out.println(i + " -> " + this.themes[i]);
+        for (int i = 0; i < themes.length; i++) {
+            System.out.println(i + " -> " + themes[i]);
         }
-        System.out.println("selected theme: " + (this.prev== -1 ? "none" : this.themes[this.prev]));
+        System.out.println("selected theme: " + (this.prev== -1 ? "none" : themes[this.prev]));
     }
 
 

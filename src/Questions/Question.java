@@ -12,7 +12,7 @@ import Questions.Type.RC;
  * @author remyc
  * @param <T> is either QCM, RC or VF
  */
-public class Question <T extends QuestionType> {
+public class Question <T extends QuestionType<?>> {
     private final int number;
     private static int qTotal = 0;
     private final int difficulty;

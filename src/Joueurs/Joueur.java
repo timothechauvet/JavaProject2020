@@ -61,7 +61,7 @@ public class Joueur {
     
     
     
-    public boolean saisir (Question q, Object answer) {
+    public boolean saisir (Question<?> q, Object answer) {
         return q.saisir(answer);
     }
     
