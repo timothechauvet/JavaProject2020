@@ -39,7 +39,6 @@ public class PremierePhase implements Phase {
     public void PhaseDeJeu() {
         Themes t = Themes.instance;
         Theme chosen = t.getThemeAt(t.selectionnerTheme()); //TODO change selectionner to directly get theme object
-        String inStr;
         Scanner sc = new Scanner(System.in);
         Joueur playing;
         Question<?> q;
