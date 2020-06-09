@@ -14,15 +14,16 @@ import Questions.Question;
 public class Joueur {
 //	Variables
     private final int nbr;
+    private static int jTotal = 100;
     private final String name;
     private int score;
     private int etat;
     
-    public final int SELECTED 		= 0;
-    public final int WINNER 		= 1;
-    public final int SUPER_WINNER 	= 2;
-    public final int ELIMINATED		= 3;
-    public final int WAITING		= 4;
+    public static final int SELECTED 	= 0;
+    public static final int WINNER 		= 1;
+    public static final int SUPER_WINNER= 2;
+    public static final int ELIMINATED	= 3;
+    public static final int WAITING		= 4;
     
     
 //	Getters and setters
@@ -51,8 +52,9 @@ public class Joueur {
 	}
     
 //	Constructor
-    public Joueur(int nbr, String name) {
-        this.nbr 	= 100 + 10*nbr; /*Starts at 100 and increments by 10*/
+    public Joueur(String name) {
+        this.nbr 	= jTotal; /*Starts at 100 and increments by 10*/
+        jTotal += 10;
         this.name 	= name;
         this.score 	= 0;
         this.etat 	= 4;

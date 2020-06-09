@@ -8,39 +8,31 @@ package Joueurs;
 import java.util.Vector;
 
 /**
- *
  * @author remyc
  */
 public class EnsJoueurs {
-    private Vector <Joueur> joueurs;
+    // Create as singleton
+    public static final EnsJoueurs instance = new EnsJoueurs();
 
-    
-    public EnsJoueurs(Vector joueurs) {
-        this.joueurs  = joueurs;
+    private Vector<Joueur> joueurs;
+
+    public EnsJoueurs() {
+        joueurs = new Vector<Joueur>(20);
+        creer();
     }
-    public EnsJoueurs () {
-        this.joueurs  = new Vector(20);
-    }
-    
-    
-    
-    public void creer () {
-        for(int i=0; i<20; i++){
-            //this.joueurs.add();
+
+    private void creer() {
+        char name = 'A';
+        for (int i = 0; i < 20; i++) {
+            joueurs.add(new Joueur(Character.toString(name++)));
         }
     }
-    
-    
-    
-    public void ajouterJoueur (Joueur j) {
-        joueurs.add(j);
-    }
-    
-    public void afficher () {
+
+    public void afficher() {
         for (Joueur j : joueurs) j.afficher();
     }
-    
-    public Joueur selectionnerJoueur () {
-        return (Joueur) this.joueurs.get((int) (Math.random() * this.joueurs.size()));
+
+    public Joueur selectionnerJoueur() {
+        return (Joueur) joueurs.get((int) (Math.random() * joueurs.size()));
     }
 }

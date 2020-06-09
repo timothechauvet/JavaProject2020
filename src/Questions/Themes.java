@@ -12,11 +12,14 @@ import java.util.stream.IntStream;
  * @author remyc
  */
 public class Themes {
-    public static Theme[] themes = new Theme[10];
+    // Create as Singleton
+    public static final Themes instance = new Themes();
+
+    private Theme[] themes = new Theme[10];
     private int prev;   //index of current theme
 
 
-    public Themes () {
+    private Themes () {
         themes[0] = new Theme("Biologie");
         themes[1] = new Theme("Sport");
         themes[2] = new Theme("Histoire");
@@ -30,24 +33,30 @@ public class Themes {
         /* ... à continuer*/
         this.prev = -1; //initial value of prev is -1 so that any theme can be selected
     }
-    
-    
+
+    //-------TEMP FOR TESTS(?)--------
+    public Theme getThemeAt(int index) {
+        return (index<0 || index>9) ? null : this.themes[index];
+    }
+
+    public Theme[] getThemes() { return this.themes; }
+    //---------------------------------
     
     boolean DEBBUGING = true;
     
     public boolean addQuestion(String theme, Question<?> q)
     {
         int i;
-        for (i = 0; i < themes.length; i++) {
-            if(themes[i].getNom().equals(theme)) break;
+        for (i = 0; i < this.themes.length; i++) {
+            if(this.themes[i].getNom().equals(theme)) break;
         }
-        if(i==themes.length) return false;
-        else return themes[i].getListe().ajouterQuestion(q);
+        if(i==this.themes.length) return false;
+        else return this.themes[i].getListe().ajouterQuestion(q);
     }
 
     public void modifierTheme(int index, String newTheme) {
         try {
-            themes[index] = new Theme(newTheme);
+            this.themes[index] = new Theme(newTheme);
         }
         catch (ArrayIndexOutOfBoundsException aiobe) {
             System.out.println("\nERROR:\t" + aiobe);
@@ -89,10 +98,10 @@ public class Themes {
 
     public void afficher() {
         System.out.println();
-        for (int i = 0; i < themes.length; i++) {
-            System.out.println(i + " -> " + themes[i]);
+        for (int i = 0; i < this.themes.length; i++) {
+            System.out.println(i + " -> " + this.themes[i]);
         }
-        System.out.println("selected theme: " + (this.prev== -1 ? "none" : themes[this.prev]));
+        System.out.println("selected theme: " + (this.prev== -1 ? "none" : this.themes[this.prev]));
     }
 
 

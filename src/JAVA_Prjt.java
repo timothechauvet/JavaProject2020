@@ -47,7 +47,7 @@ public class JAVA_Prjt {
 
     public static void test_Theme () {
         System.out.println("\n\t -------- test_Theme --------");
-        Themes t = new Themes();    //the different themes are hard coded
+        Themes t = Themes.instance;    //the different themes are hard coded
         
         t.afficher();
         t.modifierTheme(9, "Culture G");
@@ -56,14 +56,14 @@ public class JAVA_Prjt {
         int [] cinqThemes = t.selectionnerCinqThemes();
         System.out.println("\nselected themes:");
         for (int index : cinqThemes) {
-            System.out.println(" -> " + Themes.themes[index]);
+            System.out.println(" -> " + Themes.instance.getThemeAt(index));
         }
     }
     
     
     public static void test_Question () {
         System.out.println("\n\t -------- test_Question --------");
-        Themes t = new Themes();    //the different themes are hard coded
+        Themes t = Themes.instance;    //there is a single instance of themes, the different themes are hard coded
 
         Question<QCM> qcm= new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go"));
         Question<RC> rc= new Question<>(1,new RC("un hotel?","trivago"));
@@ -110,7 +110,7 @@ public class JAVA_Prjt {
     
     public static void test_Joueur () {
         System.out.println("\n\t -------- test_Joueur --------");
-        Joueur j = new Joueur(1, "Billy");
+        Joueur j = new Joueur( "Billy");
         
         j.afficher();
         
@@ -128,20 +128,12 @@ public class JAVA_Prjt {
     
     public static void test_EnsJoueurs () {
         System.out.println("\n\t -------- test_EnsJoueur --------");
-        Joueur j = new Joueur(1, "Billy");
-        Vector <Joueur> vect = new Vector();
-        vect.add(j);
-        EnsJoueurs ej = new EnsJoueurs(vect);
+        EnsJoueurs ej = EnsJoueurs.instance; //there is a single instance of themes, the 20 players are named from A to T
         
         System.out.println("\n\tdisplay player");
         ej.afficher();
         
-        System.out.println("\n\tadd new player");
-        Joueur j2 = new Joueur(2, "Max");
-        ej.ajouterJoueur(j2);
-        ej.afficher();
-        
-        System.out.println("\n\tselect random playter");
+        System.out.println("\n\tselect random player");
         ej.selectionnerJoueur().afficher();
     }
 
@@ -157,7 +149,7 @@ public class JAVA_Prjt {
         String QCM_path =   Prjt_path + "Questions\\QCM";
 
 
-        Themes t = new Themes();
+        Themes t = Themes.instance;
         ListeQuestions listeQuestions = new ListeQuestions();
         listeQuestions.afficherListe();
 
