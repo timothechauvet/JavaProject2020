@@ -25,6 +25,7 @@ public class GameActions {
                 inJoueurs.remove(lastJoueur);
             }
         }
+        inJoueurs.forEach(Joueur::resetTime);
         return inJoueurs;
     }
 }
