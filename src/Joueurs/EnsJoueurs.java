@@ -5,7 +5,10 @@
  */
 package Joueurs;
 
-import java.util.Vector;
+import java.util.ArrayList;
+
+import static java.util.stream.Collectors.toCollection;
+
 
 /**
  * @author remyc
@@ -14,10 +17,10 @@ public class EnsJoueurs {
     // Create as singleton
     public static final EnsJoueurs instance = new EnsJoueurs();
 
-    private Vector<Joueur> joueurs;
+    private ArrayList<Joueur> joueurs;
 
     public EnsJoueurs() {
-        joueurs = new Vector<Joueur>(20);
+        joueurs = new ArrayList<Joueur>(20);
         creer();
     }
 
@@ -38,5 +41,9 @@ public class EnsJoueurs {
             selected=joueurs.get((int) (Math.random() * joueurs.size()));
         }while(selected.getEtat()!= Joueur.WAITING);
         return selected;
+    }
+
+    public ArrayList<Joueur> getSelected() {
+        return joueurs.stream().filter(j -> j.getScore() == Joueur.SELECTED).collect(toCollection(ArrayList::new));
     }
 }

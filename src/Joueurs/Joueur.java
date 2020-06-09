@@ -11,7 +11,7 @@ import Questions.Question;
  *
  * @author remyc
  */
-public class Joueur {
+public class Joueur implements Comparable<Joueur>{
 //	Variables
     private final int nbr;
     private static int jTotal = 100;
@@ -99,5 +99,10 @@ public class Joueur {
     
     public void changerEtat (int etat) {
     	this.etat = (etat <= 4 && etat >= 0) ? etat : this.etat;
+    }
+
+    @Override
+    public int compareTo(Joueur joueur) {
+        return Integer.compare(this.score,joueur.getScore());
     }
 }

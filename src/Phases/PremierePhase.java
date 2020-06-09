@@ -6,14 +6,14 @@ import Questions.Question;
 import Questions.Theme;
 import Questions.Themes;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Vector;
 
 public class PremierePhase implements Phase {
-    private Vector<Joueur> inPlay;
+    private ArrayList<Joueur> inPlay;
 
     public PremierePhase() {
-        this.inPlay = new Vector<>(4);
+        this.inPlay = new ArrayList<>(4);
 
         SelectionerJoueurs();
 
@@ -45,7 +45,7 @@ public class PremierePhase implements Phase {
         Question<?> q;
         boolean res=false;
 
-        Vector<Joueur> waiting = (Vector<Joueur>) inPlay.clone();
+        ArrayList<Joueur> waiting = new ArrayList<>(inPlay);
         while (!waiting.isEmpty())
         {
             playing = waiting.remove((int) (Math.random() * waiting.size()));
