@@ -5,18 +5,21 @@
  */
 package Interface;
 
+import Questions.*;
+import Questions.Type.*;
+
 /**
  *
  * @author lilian
  */
 public class CreationQST_RC extends javax.swing.JFrame {
-    private final String qst;
-    private final String theme;
+    private final String enonce;
+    private final ListeQuestions theme;
     private final int difficulte;
     
-    public CreationQST_RC(String q, String t, int d) {
-        qst = q;
-        theme = t;
+    public CreationQST_RC(String q, ListeQuestions l, int d) {
+        enonce = q;
+        theme = l;
         difficulte = d;
         initComponents();
     }
@@ -31,14 +34,14 @@ public class CreationQST_RC extends javax.swing.JFrame {
     private void initComponents() {
 
         lbl_reponses = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_reponse = new javax.swing.JTextField();
         btn_addQST = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbl_reponses.setText("Choisir la bonne réponse");
 
-        jTextField1.setText("Saisissez votre réponse");
+        txt_reponse.setText("Saisissez votre réponse");
 
         btn_addQST.setText("Ajouter la question");
         btn_addQST.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -55,7 +58,7 @@ public class CreationQST_RC extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_reponse, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(lbl_reponses))
@@ -70,7 +73,7 @@ public class CreationQST_RC extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(lbl_reponses)
                 .addGap(33, 33, 33)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_reponse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btn_addQST)
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -80,12 +83,14 @@ public class CreationQST_RC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_addQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addQSTMouseClicked
+        Question<RC> rc= new Question<>(difficulte,new RC(enonce,txt_reponse.getText()));
+        theme.ajouterQuestion(rc);
         this.dispose();
     }//GEN-LAST:event_btn_addQSTMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addQST;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_reponses;
+    private javax.swing.JTextField txt_reponse;
     // End of variables declaration//GEN-END:variables
 }

@@ -255,16 +255,16 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="10">
-            <StringItem index="0" value="Personnages importants"/>
-            <StringItem index="1" value="Technologie"/>
-            <StringItem index="2" value="Sport"/>
-            <StringItem index="3" value="G&#xe9;ographie"/>
-            <StringItem index="4" value="Culture g&#xe9;n&#xe9;rale"/>
-            <StringItem index="5" value="Dates"/>
-            <StringItem index="6" value="Internet"/>
-            <StringItem index="7" value="G&#xe9;opolitique"/>
-            <StringItem index="8" value="Logique"/>
-            <StringItem index="9" value="Th&#xe8;me surprise"/>
+            <StringItem index="0" value="Biologie"/>
+            <StringItem index="1" value="Sport"/>
+            <StringItem index="2" value="Histoire"/>
+            <StringItem index="3" value="Informatique"/>
+            <StringItem index="4" value="A&#xe9;rospatial"/>
+            <StringItem index="5" value="A&#xe9;ronautique"/>
+            <StringItem index="6" value="Lit&#xe9;rature"/>
+            <StringItem index="7" value="Musique"/>
+            <StringItem index="8" value="Film"/>
+            <StringItem index="9" value="Culture G&#xe9;n&#xe9;rale"/>
           </StringArray>
         </Property>
       </Properties>
@@ -318,6 +318,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Commencer le jeu"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_jeuMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_qcm">
       <Properties>

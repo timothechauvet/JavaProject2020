@@ -5,8 +5,6 @@
  */
 package Questions.Type;
 
-import Questions.Question;
-
 /**
  * @author remyc
  */
@@ -18,6 +16,5 @@ public class VF extends QuestionType<Boolean> {
     @Override
     public void afficher() {
         super.afficher();
-        System.out.print("True or False?: ");
     }
 }

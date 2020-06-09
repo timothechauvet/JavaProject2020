@@ -24,6 +24,5 @@ public class QCM extends QuestionType<Integer> {
     public void afficher() {
         super.afficher();
         for (String answer : this.answers) System.out.println(" -> " + answer);
-        System.out.print("Your answer: ");
     }
 }

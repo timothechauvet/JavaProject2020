@@ -6,25 +6,16 @@
 package Files_Managment;
 
 import Questions.ListeQuestions;
-import Questions.Question;
-import Questions.Type.VF;
-import Questions.Type.RC;
-import Questions.Type.QCM;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.FileOutputStream;
 
 import java.io.IOException;
-import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 
 import java.io.ObjectOutputStream;
-import java.util.LinkedList;
 
 /**
  *

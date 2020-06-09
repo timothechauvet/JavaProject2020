@@ -13,6 +13,7 @@ public abstract class QuestionType<T> implements Serializable {
 
     public void afficher() {
         System.out.println("'" + this.enonce + "'");
+        System.out.println("Correct rep: \t" + correct);
     }
 
     public boolean checkAnswer(Object answer) {

@@ -5,18 +5,22 @@
  */
 package Interface;
 
+import Questions.ListeQuestions;
+import Questions.Question;
+import Questions.Type.VF;
+
 /**
  *
  * @author lilian
  */
 public class CreationQST_VF extends javax.swing.JFrame {
     private final String qst;
-    private final String theme;
+    private final ListeQuestions theme;
     private final int difficulte;
 
-    public CreationQST_VF(String q, String t, int d) {
+    public CreationQST_VF(String q, ListeQuestions l, int d) {
         qst = q;
-        theme = t;
+        theme = l;
         difficulte = d;
         initComponents();
     }
@@ -106,7 +110,15 @@ public class CreationQST_VF extends javax.swing.JFrame {
     }//GEN-LAST:event_toggleBTN_fauxMouseClicked
 
     private void btn_addQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addQSTMouseClicked
-        this.dispose();
+        boolean rep;
+        if(toggleBTN_vrai.isSelected())
+            rep = true;
+        else
+            rep = false;
+        
+        Question<VF> vf = new Question<>(difficulte,new VF(qst,rep));
+        theme.ajouterQuestion(vf);
+        this.dispose();  
     }//GEN-LAST:event_btn_addQSTMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

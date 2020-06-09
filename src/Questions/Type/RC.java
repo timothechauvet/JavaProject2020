@@ -17,6 +17,5 @@ public class RC extends QuestionType<String> {
     @Override
     public void afficher() {
         super.afficher();
-        System.out.print("Your answer: ");
     }
 }

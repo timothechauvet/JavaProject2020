@@ -5,18 +5,23 @@
  */
 package Interface;
 
+import Questions.ListeQuestions;
+import Questions.Question;
+import Questions.Type.QCM;
+import Questions.Type.RC;
+
 /**
  *
  * @author lilian
  */
 public class CreationQST_qcm extends javax.swing.JFrame {
     private final String qst;
-    private final String theme;
+    private final ListeQuestions theme;
     private final int difficulte;
 
-    public CreationQST_qcm(String q, String t, int d) {
+    public CreationQST_qcm(String q, ListeQuestions l, int d) {
         qst = q;
-        theme = t;
+        theme = l;
         difficulte = d;
         initComponents();
     }
@@ -199,7 +204,21 @@ public class CreationQST_qcm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtF_addREP4ActionPerformed
 
     private void btn_ajouterQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ajouterQSTMouseClicked
-        this.dispose();
+        int res;
+        if(checkBox_repA.isSelected())
+            res = 1;
+        else if (checkBox_repB.isSelected())
+            res = 2;
+        else if (checkBox_repC.isSelected())
+            res = 3;
+        else if (checkBox_repD.isSelected())
+            res = 4;
+        else
+            res = -1;
+        
+        Question<QCM> qcm = new Question<>(difficulte,new QCM(qst,res,txtF_addREP1.getText(),txtF_addREP2.getText(),txtF_addREP3.getText(),txtF_addREP4.getText()));
+        theme.ajouterQuestion(qcm);
+        this.dispose();  
     }//GEN-LAST:event_btn_ajouterQSTMouseClicked
 
     private void checkBox_repAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkBox_repAMouseClicked
