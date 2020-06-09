@@ -19,7 +19,6 @@ public class QCM extends QuestionType<Integer> {
         this.answers[2] = r3;
         this.answers[3] = r4;
     }
-
     
     public void afficher() {
         super.afficher();

@@ -29,6 +29,10 @@ public class Question <T extends QuestionType<?>> implements Serializable{
         return number;
     }
     
+    public T getEnonce(){
+        return enonce;
+    }
+    
     public int getDifficulty () {
         return this.difficulty;
     }

@@ -46,4 +46,12 @@ public class ListeQuestions implements Serializable {
         }
         return selectedQuestions.getRandomQuestion();
     }
+    
+    public Question<?> getQuestionX(int i){
+        return questions.get(i);
+    }
+    
+    public int getLength(){
+        return questions.size();
+    }
 }
