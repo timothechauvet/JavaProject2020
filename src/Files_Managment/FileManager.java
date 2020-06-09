@@ -36,8 +36,8 @@ public class FileManager {
     private final String RC_path =      Prjt_path + "Questions\\RC";
     private final String QCM_path =     Prjt_path + "Questions\\QCM";
     
-    private final String Questions_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions";
-    private final String CultG_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\Culture Générale";
+    private final String Questions_path =   Prjt_path + "Questions";
+    private final String CultG_path =       Prjt_path + "Questions\\Culture Générale";
     
     boolean DEBBUGING = true;
     

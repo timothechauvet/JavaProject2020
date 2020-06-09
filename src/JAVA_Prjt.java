@@ -146,13 +146,13 @@ public class JAVA_Prjt {
         String RC_path =    Prjt_path + "Questions\\RC";
         String QCM_path =   Prjt_path + "Questions\\QCM";
         
-        String Questions_path =     Prjt_path + Questions";
-        String CultG_path =         Prjt_path + Questions\\Culture Générale";
+        String Questions_path =     Prjt_path + "Questions";
+        String CultG_path =         Prjt_path + "Questions\\Culture Générale";
         
         System.out.println("\n\tadd a new listeQuestions");
         //Themes t = new Themes();
         ListeQuestions lq = new ListeQuestions();
-        VF vf = new VF("Culture Générale", 1, "le ciel est bleu", true);
+        Question<VF> vf = new Question<>(3,new VF("vraiment?", true));
         lq.ajouterQuestion(vf);
         
         FM.displayDir(Questions_path);

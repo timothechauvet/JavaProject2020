@@ -33,10 +33,6 @@ public class Question <T extends QuestionType<?>> implements Serializable{
     public int getDifficulty () {
         return this.difficulty;
     }
-    
-    public String getenonce () {
-        return this.enonce;
-    }
 
     public void afficher() {
         System.out.println("\n\nQuestion n°\t" + this.number);

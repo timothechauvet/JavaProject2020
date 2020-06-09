@@ -1,6 +1,8 @@
 package Questions.Type;
 
-public abstract class QuestionType<T> {
+import java.io.Serializable;
+
+public abstract class QuestionType<T> implements Serializable {
     protected final String enonce;
     protected final T correct;
 
