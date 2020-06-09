@@ -5,12 +5,13 @@
  */
 package Questions;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  * @author remyc
  */
-public class ListeQuestions {
+public class ListeQuestions implements Serializable {
     private LinkedList <Question<?>> questions;
 
     public ListeQuestions () {

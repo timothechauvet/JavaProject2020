@@ -141,35 +141,41 @@ public class JAVA_Prjt {
     public static void test_FileManager () {
         System.out.println("\n\t -------- test_FileManager --------");
         FileManager FM = new FileManager();
-
-
         String Prjt_path =  "";
         String VF_path =    Prjt_path + "Questions\\VF";
         String RC_path =    Prjt_path + "Questions\\RC";
         String QCM_path =   Prjt_path + "Questions\\QCM";
-
-
-        Themes t = Themes.instance;
-        ListeQuestions listeQuestions = new ListeQuestions();
-        listeQuestions.afficherListe();
-
-
+        
+        String Questions_path =     Prjt_path + Questions";
+        String CultG_path =         Prjt_path + Questions\\Culture Générale";
+        
+        System.out.println("\n\tadd a new listeQuestions");
+        //Themes t = new Themes();
+        ListeQuestions lq = new ListeQuestions();
+        VF vf = new VF("Culture Générale", 1, "le ciel est bleu", true);
+        lq.ajouterQuestion(vf);
+        
+        FM.displayDir(Questions_path);
+        FM.ajouterListeQuestions(lq);
+        FM.displayDir(Questions_path);
+        
+        
+        System.out.println("\n\tcreate listeQuestions from file");
+        ListeQuestions lq2 = FM.getListeQuestionsFromFile();
+        lq2.afficherListe();
+        
+        /**
         FM.displayDir(VF_path);
         Question<VF> vf1 = FM.VFFromFile("\\VF1.txt");
-        /*Question q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), );
-        listeQuestions.ajouterQuestion(q);*/
+        listeQuestions.ajouterQuestion(q);*
         listeQuestions.ajouterQuestion(vf1);
 
         FM.displayDir(RC_path);
         Question<RC> rc1 = FM.RCFromFile("\\RC1.txt");
-        /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), RC1);
-        listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(rc1);
 
         FM.displayDir(QCM_path);
         Question<QCM> qcm1 = FM.QCMFromFile("\\QCM1.txt");
-        /*q = new Question(t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), QCM1);
-        listeQuestions.ajouterQuestion(q);*/
         listeQuestions.ajouterQuestion(qcm1);
 
 
@@ -183,5 +189,6 @@ public class JAVA_Prjt {
         FM.displayDir(VF_path);
         FM.displayDir(RC_path);
         FM.displayDir(QCM_path);
+        */
     }
 }

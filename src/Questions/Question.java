@@ -7,12 +7,13 @@ package Questions;
 
 import Questions.Type.QuestionType;
 import Questions.Type.RC;
+import java.io.Serializable;
 
 /**
  * @author remyc
  * @param <T> is either QCM, RC or VF
  */
-public class Question <T extends QuestionType<?>> {
+public class Question <T extends QuestionType<?>> implements Serializable{
     private final int number;
     private static int qTotal = 0;
     private final int difficulty;
@@ -31,6 +32,10 @@ public class Question <T extends QuestionType<?>> {
     
     public int getDifficulty () {
         return this.difficulty;
+    }
+    
+    public String getenonce () {
+        return this.enonce;
     }
 
     public void afficher() {
