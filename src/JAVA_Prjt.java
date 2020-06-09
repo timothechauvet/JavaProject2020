@@ -39,10 +39,14 @@ public class JAVA_Prjt {
         
         test_Question();
         test_ListeQuestions();
+        
         test_Theme();
         test_Themes();
+        
         test_Joueur();
         test_EnsJoueurs();
+        
+        
         
         test_FileManager();
     }
@@ -124,7 +128,7 @@ public class JAVA_Prjt {
         t.modifierTheme(9, "Culture G");
         t.afficher();
         
-        int [] cinqThemes = t.selectionnerCinqThemes();
+        int [] cinqThemes = t.selectionnerThemes(5);
         System.out.println("\n\tselected themes:");
         for (int index : cinqThemes) {
             System.out.println(" -> " + Themes.instance.getThemeAt(index));

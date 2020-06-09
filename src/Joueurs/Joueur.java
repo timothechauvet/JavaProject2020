@@ -27,7 +27,7 @@ public class Joueur implements Comparable<Joueur>{
     
     
 //	Getters and setters
-    public int getNbr() {
+        public int getNbr() {
 		return nbr;
 	}
 

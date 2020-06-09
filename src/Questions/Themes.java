@@ -6,7 +6,6 @@
 package Questions;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 /**
  * @author remyc
@@ -78,8 +77,8 @@ public class Themes {
         return this.prev;
     }
 
-    public int[] selectionnerCinqThemes() {
-        int[] selectedThemes = new int[5];
+    public int[] selectionnerThemes(int n) {
+        int[] selectedThemes = new int[n];
         int newTheme;
 
         for (int i = 0; i < 5; i++) {    //select 5 differents themes

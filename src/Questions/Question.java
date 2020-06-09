@@ -6,7 +6,6 @@
 package Questions;
 
 import Questions.Type.QuestionType;
-import Questions.Type.RC;
 import java.io.Serializable;
 
 /**
