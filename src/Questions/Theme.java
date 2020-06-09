@@ -21,4 +21,8 @@ public class Theme {
     public String toString() {
         return  nom;
     }
+
+    public void afficher() {
+        System.out.println("\tTheme: " + nom);
+    }
 }

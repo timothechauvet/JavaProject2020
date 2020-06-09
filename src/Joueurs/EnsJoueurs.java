@@ -33,6 +33,10 @@ public class EnsJoueurs {
     }
 
     public Joueur selectionnerJoueur() {
-        return (Joueur) joueurs.get((int) (Math.random() * joueurs.size()));
+        Joueur selected;
+        do {
+            selected=joueurs.get((int) (Math.random() * joueurs.size()));
+        }while(selected.getEtat()!= Joueur.WAITING);
+        return selected;
     }
 }
