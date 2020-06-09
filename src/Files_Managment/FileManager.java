@@ -5,6 +5,8 @@
  */
 package Files_Managment;
 
+import Questions.ListeQuestions;
+import Questions.Question;
 import Questions.Type.VF;
 import Questions.Type.RC;
 import Questions.Type.QCM;
@@ -13,8 +15,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.FileOutputStream;
+
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+
+import java.io.ObjectOutputStream;
+import java.util.LinkedList;
 
 /**
  *
@@ -26,6 +36,8 @@ public class FileManager {
     private final String RC_path =      "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\RC";
     private final String QCM_path =     "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\QCM";
     
+    private final String Questions_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions";
+    private final String CultG_path =    "D:\\WORK\\Efrei_L3 2019-2020\\JAVA\\JavaProject2020\\Questions\\Culture Générale";
     
     boolean DEBBUGING = true;
     
@@ -41,7 +53,7 @@ public class FileManager {
             }
         }
         catch (NullPointerException npe) {
-            System.out.println("\nERROR:\t" + npe);
+            System.out.println("\tPath does not exist");
             npe.printStackTrace();
         }
         
@@ -49,6 +61,68 @@ public class FileManager {
     
     
     
+    /*public void ajouterQuestion (ListeQuestions q)  {
+        try {
+            try{
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(Questions_path));
+                oos.writeObject(q);
+                oos.close();
+            }
+            catch (FileNotFoundException fnfe) {
+                //fnfe.printStackTrace();                
+            }
+            
+        }
+        catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }*/
+    
+    public void ajouterListeQuestions (ListeQuestions lq) {
+        try {
+            File file = new File(Questions_path + "\\ListesQuestions.txt");
+            FileOutputStream fop = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fop);
+
+            if (!file.exists()) file.createNewFile();
+            
+            oos.writeObject(lq);
+            
+            /*FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            lq = (LinkedList <Question>) ois.readObject();*/
+        }
+        catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+    
+    
+    public ListeQuestions getListeQuestionsFromFile () {
+        File file = new File(Questions_path + "\\ListesQuestions.txt");
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            try {
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                try {
+                    return (ListeQuestions) ois.readObject();
+                }
+                catch (ClassNotFoundException cnfe) {
+                    cnfe.printStackTrace();
+                }
+            }
+            catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
+        catch (FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    /**
     public VF VFFromFile (String fileName) {
         if (DEBBUGING) System.out.println("Reading VF from file");
         try {
@@ -196,6 +270,10 @@ public class FileManager {
             System.out.println("method called : 'public void AjouterQuestion (String question, String r1, String r2, String r3, String correctAnswer)'");
         }
     }
+    */
+    
+    
+    
     
     
     

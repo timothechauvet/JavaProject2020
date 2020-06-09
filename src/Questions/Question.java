@@ -5,11 +5,13 @@
  */
 package Questions;
 
+import java.io.Serializable;
+
 /**
  * @author remyc
  * @param <T> is either QCM, RC or VF
  */
-public abstract class Question <T> {
+public abstract class Question <T> implements Serializable {
     private final int number;
     private static int qTotal = 0;
     private final String theme;
@@ -38,6 +40,10 @@ public abstract class Question <T> {
     
     public int getDifficulty () {
         return this.difficulty;
+    }
+    
+    public String getenonce () {
+        return this.enonce;
     }
 
     public void afficher() {
