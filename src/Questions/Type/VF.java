@@ -17,4 +17,11 @@ public class VF extends QuestionType<Boolean> {
     public void afficher() {
         super.afficher();
     }
+
+    @Override
+    public void afficherReponse() {
+        super.afficherReponse();
+        String rep= answer ? "Vrai" : "Faux";
+        System.out.println("\t"+rep);
+    }
 }

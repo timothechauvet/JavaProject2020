@@ -24,4 +24,10 @@ public class QCM extends QuestionType<Integer> {
         super.afficher();
         for (String answer : this.answers) System.out.println(" -> " + answer);
     }
+
+    @Override
+    public void afficherReponse() {
+        super.afficherReponse();
+        System.out.println("\t"+answers[answer]);
+    }
 }
