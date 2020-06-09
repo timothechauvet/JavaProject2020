@@ -42,6 +42,7 @@ public class FileManager {
     boolean DEBBUGING = true;
     
     
+    
     public void displayDir (String directory) {
         try {
             System.out.println("\n\tContent of directory:\n\t" + directory);
@@ -58,48 +59,25 @@ public class FileManager {
         }
         
     }
+
     
     
-    
-    /*public void ajouterQuestion (ListeQuestions q)  {
+    public void ajouterListeQuestions (String fileName, ListeQuestions lq) {
         try {
-            try{
-                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(Questions_path));
-                oos.writeObject(q);
-                oos.close();
-            }
-            catch (FileNotFoundException fnfe) {
-                //fnfe.printStackTrace();                
-            }
-            
-        }
-        catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }*/
-    
-    public void ajouterListeQuestions (ListeQuestions lq) {
-        try {
-            File file = new File(Questions_path + "\\ListesQuestions.txt");
+            File file = new File(Questions_path + "\\"+fileName+".txt");
             FileOutputStream fop = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fop);
 
             if (!file.exists()) file.createNewFile();
-            
             oos.writeObject(lq);
-            
-            /*FileInputStream fis = new FileInputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            lq = (LinkedList <Question>) ois.readObject();*/
         }
         catch (IOException ioe) {
             ioe.printStackTrace();
         }
-    }
+    }    
     
-    
-    public ListeQuestions getListeQuestionsFromFile () {
-        File file = new File(Questions_path + "\\ListesQuestions.txt");
+    public ListeQuestions getListeQuestionsFromFile (String fileName) {
+        File file = new File(Questions_path + "\\"+fileName+".txt");
         try {
             FileInputStream fis = new FileInputStream(file);
             try {

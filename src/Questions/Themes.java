@@ -33,7 +33,12 @@ public class Themes {
         /* ... à continuer*/
         this.prev = -1; //initial value of prev is -1 so that any theme can be selected
     }
+    
+    boolean DEBBUGING = false;
 
+    
+    
+    
     //-------TEMP FOR TESTS(?)--------
     public Theme getThemeAt(int index) {
         return (index<0 || index>9) ? null : this.themes[index];
@@ -42,13 +47,12 @@ public class Themes {
     public Theme[] getThemes() { return this.themes; }
     //---------------------------------
     
-    boolean DEBBUGING = true;
     
     public boolean addQuestion(String theme, Question<?> q)
     {
         int i;
         for (i = 0; i < this.themes.length; i++) {
-            if(this.themes[i].getNom().equals(theme)) break;
+            if(this.themes[i].toString().equals(theme)) break;
         }
         if(i==this.themes.length) return false;
         else return this.themes[i].getListe().ajouterQuestion(q);
@@ -101,7 +105,7 @@ public class Themes {
         for (int i = 0; i < this.themes.length; i++) {
             System.out.println(i + " -> " + this.themes[i]);
         }
-        System.out.println("selected theme: " + (this.prev== -1 ? "none" : this.themes[this.prev]));
+        System.out.println("selected theme: " + (this.prev == -1 ? "none" : this.themes[this.prev]));
     }
 
 

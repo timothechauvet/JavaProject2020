@@ -6,8 +6,11 @@
 
 
 
-import Phases.PremierePhase;
+
+
+import Questions.Theme;
 import Questions.Themes;
+
 import Questions.Question;
 import Questions.ListeQuestions;
 
@@ -18,6 +21,7 @@ import Questions.Type.RC;
 import Joueurs.Joueur;
 import Joueurs.EnsJoueurs;
 
+import Phases.PremierePhase;
 
 import Files_Managment.FileManager;
 
@@ -32,33 +36,19 @@ public class JAVA_Prjt {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        test_Theme();
+        
         test_Question();
         test_ListeQuestions();
+        test_Theme();
+        test_Themes();
         test_Joueur();
         test_EnsJoueurs();
         
         test_FileManager();
     }
-
     
     
     
-
-    public static void test_Theme () {
-        System.out.println("\n\t -------- test_Theme --------");
-        Themes t = Themes.instance;    //the different themes are hard coded
-        
-        t.afficher();
-        t.modifierTheme(9, "Culture G");
-        t.afficher();
-        
-        int [] cinqThemes = t.selectionnerCinqThemes();
-        System.out.println("\nselected themes:");
-        for (int index : cinqThemes) {
-            System.out.println(" -> " + Themes.instance.getThemeAt(index));
-        }
-    }
     
     
     public static void test_Question () {
@@ -74,14 +64,9 @@ public class JAVA_Prjt {
         lq.ajouterQuestion(qcm);
         lq.ajouterQuestion(rc);
         lq.ajouterQuestion(vf);
-        /*lq.AjouterQuestion(new Question <QCM>   (t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), qcm));
-        lq.AjouterQuestion(new Question <VF>    (t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), vf));
-        lq.AjouterQuestion(new Question <RC>    (t.themes[t.selectionnerTheme()], (int) (Math.random() * 3), rc));
-        */
 
         lq.afficherListe();
-    }
-    
+    }    
     
     public static void test_ListeQuestions () {
         System.out.println("\n\t -------- test_ListeQuestions --------");
@@ -108,6 +93,45 @@ public class JAVA_Prjt {
     }
     
     
+    public static void test_Theme () {
+        System.out.println("\n\t -------- test_Theme --------");
+        //First we create one ListeQuestions for each 10 hardcoded themes
+        Themes themes = Themes.instance;    //the different themes are hard coded
+        for (Theme theme : themes.getThemes()) {
+            theme.ajouterQuestion(new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go")));
+            theme.afficher();
+        }
+        
+        System.out.println("\n\tsave each Theme as a file");
+        FileManager fm = new FileManager();
+        for (Theme theme : themes.getThemes()) {  
+            fm.ajouterListeQuestions(theme.toString(), theme.getListe());
+        }
+        fm.displayDir("Questions");
+        
+        System.out.println("\n\tload each Theme from files");
+        for (Theme theme : themes.getThemes()) {
+            theme.setListe(fm.getListeQuestionsFromFile(theme.toString()));
+            theme.afficher();
+        }
+    }
+    
+    public static void test_Themes () {
+        System.out.println("\n\t -------- test_Themes --------");
+        Themes t = Themes.instance;    //the different themes are hard coded
+        
+        t.afficher();
+        t.modifierTheme(9, "Culture G");
+        t.afficher();
+        
+        int [] cinqThemes = t.selectionnerCinqThemes();
+        System.out.println("\n\tselected themes:");
+        for (int index : cinqThemes) {
+            System.out.println(" -> " + Themes.instance.getThemeAt(index));
+        }
+    }
+    
+    
     public static void test_Joueur () {
         System.out.println("\n\t -------- test_Joueur --------");
         Joueur j = new Joueur( "Billy");
@@ -123,8 +147,7 @@ public class JAVA_Prjt {
         else System.out.println("LOSE!");
         if (j.saisir(qcm, 1)) System.out.println("WIN!");
         else System.out.println("LOSE!");
-    }
-    
+    }    
     
     public static void test_EnsJoueurs () {
         System.out.println("\n\t -------- test_EnsJoueur --------");
@@ -137,6 +160,7 @@ public class JAVA_Prjt {
         ej.selectionnerJoueur().afficher();
     }
 
+    
 
     public static void test_FileManager () {
         System.out.println("\n\t -------- test_FileManager --------");
@@ -149,46 +173,19 @@ public class JAVA_Prjt {
         String Questions_path =     Prjt_path + "Questions";
         String CultG_path =         Prjt_path + "Questions\\Culture Générale";
         
+        
         System.out.println("\n\tadd a new listeQuestions");
-        //Themes t = new Themes();
         ListeQuestions lq = new ListeQuestions();
-        Question<VF> vf = new Question<>(3,new VF("vraiment?", true));
+        Question <VF> vf = new Question <> (3, new VF("vraiment?", true));
         lq.ajouterQuestion(vf);
         
         FM.displayDir(Questions_path);
-        FM.ajouterListeQuestions(lq);
+        FM.ajouterListeQuestions("ListeQuestions", lq);
         FM.displayDir(Questions_path);
         
         
         System.out.println("\n\tcreate listeQuestions from file");
-        ListeQuestions lq2 = FM.getListeQuestionsFromFile();
+        ListeQuestions lq2 = FM.getListeQuestionsFromFile("ListeQuestions");
         lq2.afficherListe();
-        
-        /**
-        FM.displayDir(VF_path);
-        Question<VF> vf1 = FM.VFFromFile("\\VF1.txt");
-        listeQuestions.ajouterQuestion(q);*
-        listeQuestions.ajouterQuestion(vf1);
-
-        FM.displayDir(RC_path);
-        Question<RC> rc1 = FM.RCFromFile("\\RC1.txt");
-        listeQuestions.ajouterQuestion(rc1);
-
-        FM.displayDir(QCM_path);
-        Question<QCM> qcm1 = FM.QCMFromFile("\\QCM1.txt");
-        listeQuestions.ajouterQuestion(qcm1);
-
-
-        listeQuestions.afficherListe();
-
-
-
-        FM.ajouterQuestion("Le ciel est bleu", true);
-        FM.ajouterQuestion("Un hotel", "trivago");
-        FM.ajouterQuestion("2 + 2 = ?", "4", "6", "2", "Quick Maths!", 0);
-        FM.displayDir(VF_path);
-        FM.displayDir(RC_path);
-        FM.displayDir(QCM_path);
-        */
     }
 }

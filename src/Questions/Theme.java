@@ -9,14 +9,22 @@ public class Theme {
         liste = new ListeQuestions();
     }
 
-    public String getNom() {
-        return nom;
-    }
+    
 
+    public void ajouterQuestion(Question q) {
+        liste.ajouterQuestion(q);
+    }
+    
+    public void setListe (ListeQuestions lq) {
+        liste = lq;
+    }
+    
     public ListeQuestions getListe() {
         return liste;
     }
 
+    
+    
     @Override
     public String toString() {
         return  nom;
@@ -24,5 +32,6 @@ public class Theme {
 
     public void afficher() {
         System.out.println("\tTheme: " + nom);
+        liste.afficherListe();
     }
 }

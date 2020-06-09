@@ -19,11 +19,11 @@ public class Joueur implements Comparable<Joueur>{
     private int score;
     private int etat;
     
-    public static final int SELECTED 	= 0;
-    public static final int WINNER 		= 1;
-    public static final int SUPER_WINNER= 2;
-    public static final int ELIMINATED	= 3;
-    public static final int WAITING		= 4;
+    public static final int SELECTED        = 0;
+    public static final int WINNER          = 1;
+    public static final int SUPER_WINNER    = 2;
+    public static final int ELIMINATED      = 3;
+    public static final int WAITING         = 4;
     
     
 //	Getters and setters
