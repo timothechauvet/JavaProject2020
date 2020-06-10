@@ -40,34 +40,39 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lbl_d" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbl_c" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbl_b" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbl_a" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbl_rep1" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="lbl_rep2" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="lbl_rep4" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="lbl_rep3" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="checkBox_repC" alignment="0" max="32767" attributes="0"/>
-                          <Component id="checkBox_repB" alignment="0" max="32767" attributes="0"/>
-                          <Component id="checkBox_repA" alignment="0" max="32767" attributes="0"/>
-                          <Component id="checkBox_repD" alignment="1" min="-2" pref="175" max="-2" attributes="0"/>
+                          <Component id="lbl_error" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lbl_d" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lbl_c" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lbl_b" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lbl_a" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbl_rep1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="lbl_rep2" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="lbl_rep4" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="lbl_rep3" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="checkBox_repC" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="checkBox_repB" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="checkBox_repA" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="checkBox_repD" alignment="1" min="-2" pref="175" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace pref="133" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btn_valider" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_suivant" min="-2" pref="150" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -118,12 +123,13 @@
                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <Component id="lbl_error" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_valider" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_suivant" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -133,6 +139,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Valider la r&#xe9;ponse"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_validerMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_suivant">
       <Properties>
@@ -237,6 +246,13 @@
     <Component class="javax.swing.JLabel" name="lbl_rep3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Rep3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_error">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

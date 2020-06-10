@@ -6,18 +6,29 @@
 package Interface;
 
 import Joueurs.EnsJoueurs;
+import Joueurs.Joueur;
+import Questions.Question;
+import Questions.Type.*;
 
 /**
  *
  * @author lilian
  */
 public class Jeux_QCM extends javax.swing.JFrame {
-
+    Joueur joueur;
+    boolean qstRepondue;
+    Question<QCM> qst;
     /**
      * Creates new form Jeux
      */
     public Jeux_QCM() {
+        joueur = new Joueur( "Billy");
+        qst =new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go"));
         initComponents();
+        lbl_question.setText("Question : " + qst.getEnonce().getEnonce());
+        qstRepondue = false;
+        btn_suivant.setVisible(false);
+        btn_valider.setVisible(true);
     }
 
     /**
@@ -48,10 +59,16 @@ public class Jeux_QCM extends javax.swing.JFrame {
         lbl_rep2 = new javax.swing.JLabel();
         lbl_rep4 = new javax.swing.JLabel();
         lbl_rep3 = new javax.swing.JLabel();
+        lbl_error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btn_valider.setText("Valider la réponse");
+        btn_valider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_validerMouseClicked(evt);
+            }
+        });
 
         btn_suivant.setText("Joueur suivant");
         btn_suivant.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,6 +131,8 @@ public class Jeux_QCM extends javax.swing.JFrame {
 
         lbl_rep3.setText("Rep3");
 
+        lbl_error.setForeground(new java.awt.Color(204, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,28 +151,31 @@ public class Jeux_QCM extends javax.swing.JFrame {
                             .addComponent(lbl_score)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_d, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_c, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_b, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_a, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_rep1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_rep2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_rep4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_rep3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(checkBox_repC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkBox_repB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkBox_repA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkBox_repD, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbl_d, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbl_c, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbl_b, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbl_a, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_rep1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_rep2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_rep4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_rep3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(checkBox_repC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(checkBox_repB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(checkBox_repA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(checkBox_repD, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(133, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_valider, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_suivant, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -193,11 +215,12 @@ public class Jeux_QCM extends javax.swing.JFrame {
                             .addComponent(lbl_a)
                             .addComponent(lbl_rep1))
                         .addGap(92, 92, 92)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_valider)
                     .addComponent(btn_suivant))
-                .addGap(27, 27, 27))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,6 +253,44 @@ public class Jeux_QCM extends javax.swing.JFrame {
     private void btn_suivantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suivantMouseClicked
         
     }//GEN-LAST:event_btn_suivantMouseClicked
+
+    private void btn_validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_validerMouseClicked
+        if(!qstRepondue){
+            int questionChoisie = 0;
+
+            int cpt = 0;
+            if(checkBox_repA.isSelected()){
+                cpt++;
+                questionChoisie = 1;
+            }
+            if(checkBox_repB.isSelected()){
+                cpt++;
+                questionChoisie = 2;
+            }
+            if(checkBox_repC.isSelected()){
+                cpt++;
+                questionChoisie = 3;
+            }
+            if(checkBox_repD.isSelected()){
+                cpt++;
+                questionChoisie = 4;
+            }
+
+            if(cpt!=1){
+                lbl_error.setText("Veuillez choisir une réponse");
+            }
+            else {
+                if (joueur.saisir(qst, questionChoisie)) lbl_error.setText("Bonne réponse !");
+                else lbl_error.setText("Mauvaise réponse !");
+                qstRepondue = true;
+                btn_suivant.setVisible(true);
+                btn_valider.setVisible(false);
+
+            }
+        }
+        
+        
+    }//GEN-LAST:event_btn_validerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -284,6 +345,7 @@ public class Jeux_QCM extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_b;
     private javax.swing.JLabel lbl_c;
     private javax.swing.JLabel lbl_d;
+    private javax.swing.JLabel lbl_error;
     private javax.swing.JLabel lbl_joueur;
     private javax.swing.JLabel lbl_phase;
     private javax.swing.JLabel lbl_question;

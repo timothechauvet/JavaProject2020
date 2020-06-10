@@ -21,8 +21,24 @@ public abstract class QuestionType<T> implements Serializable {
     
     public boolean checkAnswer(Object answer) {
         if(answer.getClass().equals(this.answer.getClass())) {
-            return this.answer == (T) answer;
+            if(answer.getClass() == String.class){ // pour les RC 
+                String s = (String) this.answer;
+                if(s.trim().compareToIgnoreCase((String)answer) == 0)
+                    return true;
+                else 
+                    return false;
+            }
+            else{  // pour les VF ou QCM
+                return this.answer == answer;
+            }
         }
-        return false;
+        else {
+            System.out.println("Pas la même classe");
+            return false;
+        }
+    }
+    
+    public String getEnonce(){
+        return enonce;
     }
 }

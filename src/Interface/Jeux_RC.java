@@ -5,17 +5,27 @@
  */
 package Interface;
 
+import Joueurs.Joueur;
+import Questions.Question;
+import Questions.Type.RC;
+
 /**
  *
  * @author lilian
  */
 public class Jeux_RC extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Jeux_RC
-     */
+    boolean qstRepondue;
+    Joueur joueur;
+    Question<RC> qst;
+    
     public Jeux_RC() {
+        joueur = new Joueur( "Billy");
+        qst = new Question<>(1, new RC("Quelle est la couleur du cheval blanc d'henri 4 ?", "Blanc"));
         initComponents();
+        lbl_question.setText("Question : " + qst.getEnonce().getEnonce());
+        qstRepondue = false;
+        btn_suivant.setVisible(false);
+        btn_valider.setVisible(true);
     }
 
     /**
@@ -33,8 +43,9 @@ public class Jeux_RC extends javax.swing.JFrame {
         lbl_score = new javax.swing.JLabel();
         lbl_theme = new javax.swing.JLabel();
         txtF_reponse = new javax.swing.JTextField();
-        btn_suivant = new javax.swing.JButton();
         btn_valider = new javax.swing.JButton();
+        btn_suivant = new javax.swing.JButton();
+        lbl_error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +61,13 @@ public class Jeux_RC extends javax.swing.JFrame {
 
         txtF_reponse.setText("Votre réponse");
 
+        btn_valider.setText("Valider la réponse");
+        btn_valider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_validerMouseClicked(evt);
+            }
+        });
+
         btn_suivant.setText("Joueur suivant");
         btn_suivant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -57,7 +75,7 @@ public class Jeux_RC extends javax.swing.JFrame {
             }
         });
 
-        btn_valider.setText("Valider la réponse");
+        lbl_error.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,6 +83,9 @@ public class Jeux_RC extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(txtF_reponse, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,15 +95,14 @@ public class Jeux_RC extends javax.swing.JFrame {
                         .addGap(117, 117, 117)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_theme)
-                            .addComponent(lbl_score)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(txtF_reponse, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbl_score))))
                 .addContainerGap(185, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addComponent(btn_valider, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_suivant, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -101,18 +121,36 @@ public class Jeux_RC extends javax.swing.JFrame {
                 .addComponent(lbl_question)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(txtF_reponse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_valider)
-                    .addComponent(btn_suivant))
-                .addGap(22, 22, 22))
+                    .addComponent(btn_suivant)
+                    .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_validerMouseClicked
+        if(!qstRepondue){
+            
+            if(!"Votre réponse".equals(txtF_reponse.getText()) && !"".equals(txtF_reponse.getText())){
+                if (joueur.saisir(qst, txtF_reponse.getText())) lbl_error.setText("Bonne réponse !");
+                else lbl_error.setText("Mauvaise réponse !");
+                qstRepondue = true;                
+                btn_suivant.setVisible(true);
+                btn_valider.setVisible(false);
+            }
+            else {
+                lbl_error.setText("Veuillez saisir une réponse");
+            }
+        }
+
+    }//GEN-LAST:event_btn_validerMouseClicked
+
     private void btn_suivantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suivantMouseClicked
-        
+
     }//GEN-LAST:event_btn_suivantMouseClicked
 
     /**
@@ -153,6 +191,7 @@ public class Jeux_RC extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_suivant;
     private javax.swing.JButton btn_valider;
+    private javax.swing.JLabel lbl_error;
     private javax.swing.JLabel lbl_joueur;
     private javax.swing.JLabel lbl_phase;
     private javax.swing.JLabel lbl_question;

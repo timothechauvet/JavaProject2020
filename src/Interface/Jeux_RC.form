@@ -25,7 +25,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                      <Component id="txtF_reponse" min="-2" pref="238" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbl_joueur" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -38,17 +42,15 @@
                           <Component id="lbl_score" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-                      <Component id="txtF_reponse" min="-2" pref="238" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace pref="185" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="lbl_error" min="-2" pref="178" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Component id="btn_valider" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_suivant" min="-2" pref="150" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -71,12 +73,13 @@
               <Component id="lbl_question" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="49" max="32767" attributes="0"/>
               <Component id="txtF_reponse" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_valider" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_suivant" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_error" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,6 +115,14 @@
         <Property name="text" type="java.lang.String" value="Votre r&#xe9;ponse"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JButton" name="btn_valider">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valider la r&#xe9;ponse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_validerMouseClicked"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JButton" name="btn_suivant">
       <Properties>
         <Property name="text" type="java.lang.String" value="Joueur suivant"/>
@@ -120,9 +131,11 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_suivantMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_valider">
+    <Component class="javax.swing.JLabel" name="lbl_error">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Valider la r&#xe9;ponse"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

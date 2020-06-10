@@ -5,17 +5,31 @@
  */
 package Interface;
 
+import Joueurs.Joueur;
+import Questions.Question;
+import Questions.Type.VF;
+
 /**
  *
  * @author lilian
  */
 public class Jeux_VF extends javax.swing.JFrame {
+    Joueur joueur;
+    boolean qstRepondue;
+    Question<VF> qst;
 
     /**
      * Creates new form Jeux_VF
      */
     public Jeux_VF() {
+        joueur = new Joueur( "Billy");
+        qst = new Question<>(3,new VF("vraiment?", true));
+        qstRepondue = false;
         initComponents();
+        lbl_question.setText("Question : " + qst.getEnonce().getEnonce());
+        
+        btn_suivant.setVisible(false);
+        btn_valider.setVisible(true);
     }
 
     /**
@@ -34,8 +48,9 @@ public class Jeux_VF extends javax.swing.JFrame {
         lbl_joueur = new javax.swing.JLabel();
         toggleBTN_vrai = new javax.swing.JToggleButton();
         toggleBTN_faux = new javax.swing.JToggleButton();
-        btn_suivant = new javax.swing.JButton();
         btn_valider = new javax.swing.JButton();
+        btn_suivant = new javax.swing.JButton();
+        lbl_error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +78,13 @@ public class Jeux_VF extends javax.swing.JFrame {
             }
         });
 
+        btn_valider.setText("Valider la réponse");
+        btn_valider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_validerMouseClicked(evt);
+            }
+        });
+
         btn_suivant.setText("Joueur suivant");
         btn_suivant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -70,7 +92,7 @@ public class Jeux_VF extends javax.swing.JFrame {
             }
         });
 
-        btn_valider.setText("Valider la réponse");
+        lbl_error.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,25 +103,28 @@ public class Jeux_VF extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_joueur)
-                            .addComponent(lbl_question)
-                            .addComponent(lbl_phase))
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_theme)
-                            .addComponent(lbl_score)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_joueur)
+                                    .addComponent(lbl_question)
+                                    .addComponent(lbl_phase))
+                                .addGap(117, 117, 117)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_theme)
+                                    .addComponent(lbl_score)))
+                            .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
-                        .addComponent(toggleBTN_vrai, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(toggleBTN_faux)))
-                .addContainerGap(108, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_valider, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_suivant, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_valider, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_suivant, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(toggleBTN_vrai, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(toggleBTN_faux)))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +143,9 @@ public class Jeux_VF extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(toggleBTN_vrai)
                     .addComponent(toggleBTN_faux))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_valider)
                     .addComponent(btn_suivant))
@@ -138,8 +165,29 @@ public class Jeux_VF extends javax.swing.JFrame {
         toggleBTN_vrai.setSelected(false);
     }//GEN-LAST:event_toggleBTN_fauxMouseClicked
 
+    private void btn_validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_validerMouseClicked
+        if(!qstRepondue){
+            if(!((toggleBTN_vrai.isSelected() == true && toggleBTN_faux.isSelected() == true) || (toggleBTN_vrai.isSelected() == false && toggleBTN_faux.isSelected() == false))){
+                boolean resultat;
+                if(toggleBTN_vrai.isSelected())
+                    resultat = true;
+                else
+                    resultat = false;
+                boolean X = joueur.saisir(qst, resultat);
+                if (X) lbl_error.setText("Bonne réponse !");
+                else lbl_error.setText("Mauvaise réponse !");
+                qstRepondue = true;
+                btn_suivant.setVisible(true);
+                btn_valider.setVisible(false);
+            }
+            else {
+                lbl_error.setText("Veuillez séléctionner une réponse");
+            }
+        }
+    }//GEN-LAST:event_btn_validerMouseClicked
+
     private void btn_suivantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suivantMouseClicked
-        
+
     }//GEN-LAST:event_btn_suivantMouseClicked
 
     /**
@@ -180,6 +228,7 @@ public class Jeux_VF extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_suivant;
     private javax.swing.JButton btn_valider;
+    private javax.swing.JLabel lbl_error;
     private javax.swing.JLabel lbl_joueur;
     private javax.swing.JLabel lbl_phase;
     private javax.swing.JLabel lbl_question;
