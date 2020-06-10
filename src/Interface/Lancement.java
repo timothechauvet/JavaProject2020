@@ -69,9 +69,7 @@ public class Lancement extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl_nbJoueur = new javax.swing.JLabel();
         lbl_theme = new javax.swing.JLabel();
-        comboBox_nbJoueur = new javax.swing.JComboBox<>();
         comboBox_theme = new javax.swing.JComboBox<>();
         comboBox_niveau = new javax.swing.JComboBox<>();
         lbl_niveau = new javax.swing.JLabel();
@@ -96,11 +94,7 @@ public class Lancement extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_nbJoueur.setText("Nombre de joueur");
-
         lbl_theme.setText("Thème de la question :");
-
-        comboBox_nbJoueur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4 joueurs", "5 joueurs", "6 joueurs", "7 joueurs", "8 joueurs", "9 joueurs", "10 joueurs", "11 joueurs", "12 joueurs", "13 joueurs", "14 joueurs", "15 joueurs", "16 joueurs", "17 joueurs", "18 joueurs", "19 joueurs", "20 joueurs" }));
 
         comboBox_theme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Biologie", "Sport", "Histoire", "Informatique", "Aérospatial", "Aéronautique", "Litérature", "Musique", "Film", "Culture Générale" }));
 
@@ -257,19 +251,13 @@ public class Lancement extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_theme)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(lbl_niveau)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_nbJoueur)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbl_theme)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(lbl_niveau)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
@@ -311,11 +299,7 @@ public class Lancement extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_nbJoueur)
-                    .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_theme)
                     .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +340,7 @@ public class Lancement extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_vf))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
@@ -601,7 +585,6 @@ public class Lancement extends javax.swing.JFrame {
     private javax.swing.JButton btn_qcm;
     private javax.swing.JButton btn_rc;
     private javax.swing.JButton btn_vf;
-    private javax.swing.JComboBox<String> comboBox_nbJoueur;
     private javax.swing.JComboBox<String> comboBox_niveau;
     private javax.swing.JComboBox<String> comboBox_niveau1;
     private javax.swing.JComboBox<String> comboBox_theme;
@@ -611,7 +594,6 @@ public class Lancement extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbl_creerSQT;
     private javax.swing.JLabel lbl_difficulte;
-    private javax.swing.JLabel lbl_nbJoueur;
     private javax.swing.JLabel lbl_niveau;
     private javax.swing.JLabel lbl_qst;
     private javax.swing.JLabel lbl_reponses;
