@@ -69,6 +69,7 @@ public class JAVA_Prjt {
         lq.ajouterQuestion(vf);
 
         lq.afficherListe();
+        for(int i=0 ; i<lq.getLength() ; i++) lq.getQuestionX(i).afficherReponse();
     }    
     
     public static void test_ListeQuestions () {

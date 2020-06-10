@@ -18,6 +18,7 @@ public class Joueur implements Comparable<Joueur>{
     private final String name;
     private int score;
     private int etat;
+    private int time;
     
     public static final int SELECTED        = 0;
     public static final int WINNER          = 1;
@@ -41,8 +42,19 @@ public class Joueur implements Comparable<Joueur>{
 		return score;
 	}
 
+    public int getTime() {
+        return time;
+    }
 
-//	0 = Selected
+    public void addTime(int added) {
+            time += added;
+    }
+
+    public void resetTime() {
+        time = 0;
+    }
+
+    //	0 = Selected
 //	1 = Winner
 //	2 = Super winner
 //	3 = Eliminated
@@ -58,6 +70,7 @@ public class Joueur implements Comparable<Joueur>{
         this.name 	= name;
         this.score 	= 0;
         this.etat 	= 4;
+        this.time = 0;
     }
     
     

@@ -18,4 +18,10 @@ public class RC extends QuestionType<String> {
     public void afficher() {
         super.afficher();
     }
+
+    @Override
+    public void afficherReponse() {
+        super.afficherReponse();
+        System.out.println("\t"+answer);
+    }
 }

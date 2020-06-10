@@ -6,16 +6,18 @@ import Questions.Question;
 import Questions.Theme;
 import Questions.Themes;
 
+import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TroisiemePhase implements Phase {
     private ArrayList<Joueur> inPlay;
     private int curTheme;
+    private final JLabel timerLabel;
 
-    public TroisiemePhase() {
+    public TroisiemePhase(JLabel timerLabel) {
         int [] phaseThemes = Themes.instance.selectionnerThemes(3);
+        this.timerLabel = timerLabel;
 
         SelectionerJoueurs();
 
@@ -42,19 +44,25 @@ public class TroisiemePhase implements Phase {
         Theme t = Themes.instance.getThemeAt(curTheme);
         Scanner sc = new Scanner(System.in);
 
+        Timer watch = new Timer(timerLabel);
+
         for(Joueur playing : inPlay){
             q = t.getListe().selectionnerQuestion(3);
+
+            watch.run();
             //-----This part handled in swing interface-----
             t.afficher();
             q.afficher();
 
-            //TODO activate timer here
 
             if(q.saisir(sc.next())) { //obviously this only works with RC but its very temp
                 playing.majScore(5);
             }
 
             //-----------------------------------------------
+
+            watch.stopTimer();
+            playing.addTime(watch.getTime());
         }
     }
 }

@@ -13,11 +13,10 @@ public abstract class QuestionType<T> implements Serializable {
 
     public void afficher() {
         System.out.println("'" + this.enonce + "'");
-        System.out.println("Correct rep: \t" + answer);
     }
 
-    public T getAnswerX(int i){
-        return answer;
+    public void afficherReponse() {
+        System.out.println("Réponse Correcte:");
     }
     
     public boolean checkAnswer(Object answer) {

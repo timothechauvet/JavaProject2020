@@ -43,6 +43,9 @@ public class Question <T extends QuestionType<?>> implements Serializable{
         enonce.afficher();
     }
 
+    public void afficherReponse() {
+        enonce.afficherReponse();
+    }
 
     public boolean saisir(Object reponse) {
         return enonce.checkAnswer(reponse);
