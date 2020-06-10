@@ -51,6 +51,7 @@ public class Jeux_VF extends javax.swing.JFrame {
         btn_valider = new javax.swing.JButton();
         btn_suivant = new javax.swing.JButton();
         lbl_error = new javax.swing.JLabel();
+        lbl_timer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +95,9 @@ public class Jeux_VF extends javax.swing.JFrame {
 
         lbl_error.setForeground(new java.awt.Color(255, 0, 51));
 
+        lbl_timer.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        lbl_timer.setText("Timer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,8 +115,12 @@ public class Jeux_VF extends javax.swing.JFrame {
                                 .addGap(117, 117, 117)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbl_theme)
-                                    .addComponent(lbl_score)))
-                            .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lbl_score)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                                        .addComponent(lbl_timer))))
+                            .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,15 +132,16 @@ public class Jeux_VF extends javax.swing.JFrame {
                                 .addComponent(toggleBTN_vrai, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(toggleBTN_faux)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_phase)
-                    .addComponent(lbl_score))
+                    .addComponent(lbl_score)
+                    .addComponent(lbl_timer))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_joueur)
@@ -143,7 +152,7 @@ public class Jeux_VF extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(toggleBTN_vrai)
                     .addComponent(toggleBTN_faux))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,6 +255,7 @@ public class Jeux_VF extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_question;
     private javax.swing.JLabel lbl_score;
     private javax.swing.JLabel lbl_theme;
+    private javax.swing.JLabel lbl_timer;
     private javax.swing.JToggleButton toggleBTN_faux;
     private javax.swing.JToggleButton toggleBTN_vrai;
     // End of variables declaration//GEN-END:variables
