@@ -13,13 +13,13 @@ import Questions.Type.*;
  * @author lilian
  */
 public class CreationQST_RC extends javax.swing.JFrame {
-    private final String enonce;
-    private final ListeQuestions theme;
+    private final String qst;
+    private final Theme theme;
     private final int difficulte;
-    
-    public CreationQST_RC(String q, ListeQuestions l, int d) {
-        enonce = q;
-        theme = l;
+
+    public CreationQST_RC(String q, Theme t, int d) {
+        qst = q;
+        theme = t;
         difficulte = d;
         initComponents();
     }
@@ -52,6 +52,11 @@ public class CreationQST_RC extends javax.swing.JFrame {
         });
 
         btn_exit.setText(" X ");
+        btn_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,10 +99,17 @@ public class CreationQST_RC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_addQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addQSTMouseClicked
-        Question<RC> rc= new Question<>(difficulte,new RC(enonce,txt_reponse.getText()));
+        String rep;
+        rep = txt_reponse.getText();
+        
+        Question<RC> rc = new Question<>(difficulte,new RC(qst,rep));
         theme.ajouterQuestion(rc);
         this.dispose();
     }//GEN-LAST:event_btn_addQSTMouseClicked
+
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_exitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addQST;

@@ -6,36 +6,17 @@
 package Interface;
 
 import Questions.ListeQuestions;
+import Questions.Theme;
+import Questions.Themes;
 
 /**
  *
  * @author lilian
  */
 public class CreationQST extends javax.swing.JFrame {
-    ListeQuestions bio;
-    ListeQuestions sport;
-    ListeQuestions histoire;
-    ListeQuestions info;
-    ListeQuestions aerospatial;
-    ListeQuestions aeronautique;
-    ListeQuestions litterature;
-    ListeQuestions musique;
-    ListeQuestions film;
-    ListeQuestions cultureG;
     
     public CreationQST() {
         initComponents();
-        
-        bio = new ListeQuestions();
-        sport = new ListeQuestions();
-        histoire = new ListeQuestions();
-        info = new ListeQuestions();
-        aerospatial = new ListeQuestions();
-        aeronautique = new ListeQuestions();
-        litterature = new ListeQuestions();
-        musique = new ListeQuestions();
-        film = new ListeQuestions();
-        cultureG = new ListeQuestions();
     }
 
     /**
@@ -188,138 +169,24 @@ public class CreationQST extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBox_niveau1ActionPerformed
 
     private void btn_qcmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_qcmMouseClicked
-        switch(comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex())){  // the theme selected
-            case "Biologie":
-            CreationQST_qcm qst1 = new CreationQST_qcm(txtF_addQST.getText(), bio, comboBox_niveau1.getSelectedIndex()+1);
-            qst1.setVisible(true);
-            break;
-            case "Sport":
-            CreationQST_qcm qst2 = new CreationQST_qcm(txtF_addQST.getText(), sport, comboBox_niveau1.getSelectedIndex()+1);
-            qst2.setVisible(true);
-            break;
-            case "Histoire":
-            CreationQST_qcm qst3 = new CreationQST_qcm(txtF_addQST.getText(), histoire, comboBox_niveau1.getSelectedIndex()+1);
-            qst3.setVisible(true);
-            break;
-            case "Informatique":
-            CreationQST_qcm qst4 = new CreationQST_qcm(txtF_addQST.getText(), info, comboBox_niveau1.getSelectedIndex()+1);
-            qst4.setVisible(true);
-            break;
-            case "Aérospatial":
-            CreationQST_qcm qst5 = new CreationQST_qcm(txtF_addQST.getText(), aerospatial, comboBox_niveau1.getSelectedIndex()+1);
-            qst5.setVisible(true);
-            break;
-            case "Aéronautique":
-            CreationQST_qcm qst6 = new CreationQST_qcm(txtF_addQST.getText(), aeronautique, comboBox_niveau1.getSelectedIndex()+1);
-            qst6.setVisible(true);
-            break;
-            case "Litérature":
-            CreationQST_qcm qst7 = new CreationQST_qcm(txtF_addQST.getText(), litterature, comboBox_niveau1.getSelectedIndex()+1);
-            qst7.setVisible(true);
-            break;
-            case "Musique":
-            CreationQST_qcm qst8 = new CreationQST_qcm(txtF_addQST.getText(), musique, comboBox_niveau1.getSelectedIndex()+1);
-            qst8.setVisible(true);
-            break;
-            case "Film":
-            CreationQST_qcm qst9 = new CreationQST_qcm(txtF_addQST.getText(), film, comboBox_niveau1.getSelectedIndex()+1);
-            qst9.setVisible(true);
-            break;
-            case "Culture Générale":
-            CreationQST_qcm qst10 = new CreationQST_qcm(txtF_addQST.getText(), cultureG, comboBox_niveau1.getSelectedIndex()+1);
-            qst10.setVisible(true);
-            break;
-        }
+        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme1.getSelectedItem());
+        
+        CreationQST_qcm qst = new CreationQST_qcm(txtF_addQST.getText(), t, comboBox_niveau1.getSelectedIndex()+1);
+        qst.setVisible(true);
     }//GEN-LAST:event_btn_qcmMouseClicked
 
     private void btn_rcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rcMouseClicked
-        switch(comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex())){  // the theme selected
-            case "Biologie":
-            CreationQST_RC qst1 = new CreationQST_RC(txtF_addQST.getText(), bio, comboBox_niveau1.getSelectedIndex()+1);
-            qst1.setVisible(true);
-            break;
-            case "Sport":
-            CreationQST_RC qst2 = new CreationQST_RC(txtF_addQST.getText(), sport, comboBox_niveau1.getSelectedIndex()+1);
-            qst2.setVisible(true);
-            break;
-            case "Histoire":
-            CreationQST_RC qst3 = new CreationQST_RC(txtF_addQST.getText(), histoire, comboBox_niveau1.getSelectedIndex()+1);
-            qst3.setVisible(true);
-            break;
-            case "Informatique":
-            CreationQST_RC qst4 = new CreationQST_RC(txtF_addQST.getText(), info, comboBox_niveau1.getSelectedIndex()+1);
-            qst4.setVisible(true);
-            break;
-            case "Aérospatial":
-            CreationQST_RC qst5 = new CreationQST_RC(txtF_addQST.getText(), aerospatial, comboBox_niveau1.getSelectedIndex()+1);
-            qst5.setVisible(true);
-            break;
-            case "Aéronautique":
-            CreationQST_RC qst6 = new CreationQST_RC(txtF_addQST.getText(), aeronautique, comboBox_niveau1.getSelectedIndex()+1);
-            qst6.setVisible(true);
-            break;
-            case "Litérature":
-            CreationQST_RC qst7 = new CreationQST_RC(txtF_addQST.getText(), litterature, comboBox_niveau1.getSelectedIndex()+1);
-            qst7.setVisible(true);
-            break;
-            case "Musique":
-            CreationQST_RC qst8 = new CreationQST_RC(txtF_addQST.getText(), musique, comboBox_niveau1.getSelectedIndex()+1);
-            qst8.setVisible(true);
-            break;
-            case "Film":
-            CreationQST_RC qst9 = new CreationQST_RC(txtF_addQST.getText(), film, comboBox_niveau1.getSelectedIndex()+1);
-            qst9.setVisible(true);
-            break;
-            case "Culture Générale":
-            CreationQST_RC qst10 = new CreationQST_RC(txtF_addQST.getText(), cultureG, comboBox_niveau1.getSelectedIndex()+1);
-            qst10.setVisible(true);
-            break;
-        }
+        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme1.getSelectedItem());
+        
+        CreationQST_RC qst = new CreationQST_RC(txtF_addQST.getText(), t, comboBox_niveau1.getSelectedIndex()+1);
+        qst.setVisible(true);
     }//GEN-LAST:event_btn_rcMouseClicked
 
     private void btn_vfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_vfMouseClicked
-        switch(comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex())){  // the theme selected
-            case "Biologie":
-            CreationQST_VF qst1 = new CreationQST_VF(txtF_addQST.getText(), bio, comboBox_niveau1.getSelectedIndex()+1);
-            qst1.setVisible(true);
-            break;
-            case "Sport":
-            CreationQST_VF qst2 = new CreationQST_VF(txtF_addQST.getText(), sport, comboBox_niveau1.getSelectedIndex()+1);
-            qst2.setVisible(true);
-            break;
-            case "Histoire":
-            CreationQST_VF qst3 = new CreationQST_VF(txtF_addQST.getText(), histoire, comboBox_niveau1.getSelectedIndex()+1);
-            qst3.setVisible(true);
-            break;
-            case "Informatique":
-            CreationQST_VF qst4 = new CreationQST_VF(txtF_addQST.getText(), info, comboBox_niveau1.getSelectedIndex()+1);
-            qst4.setVisible(true);
-            break;
-            case "Aérospatial":
-            CreationQST_VF qst5 = new CreationQST_VF(txtF_addQST.getText(), aerospatial, comboBox_niveau1.getSelectedIndex()+1);
-            qst5.setVisible(true);
-            break;
-            case "Aéronautique":
-            CreationQST_VF qst6 = new CreationQST_VF(txtF_addQST.getText(), aeronautique, comboBox_niveau1.getSelectedIndex()+1);
-            qst6.setVisible(true);
-            break;
-            case "Litérature":
-            CreationQST_VF qst7 = new CreationQST_VF(txtF_addQST.getText(), litterature, comboBox_niveau1.getSelectedIndex()+1);
-            qst7.setVisible(true);
-            break;
-            case "Musique":
-            CreationQST_VF qst8 = new CreationQST_VF(txtF_addQST.getText(), musique, comboBox_niveau1.getSelectedIndex()+1);
-            qst8.setVisible(true);
-            break;
-            case "Film":
-            CreationQST_VF qst9 = new CreationQST_VF(txtF_addQST.getText(), film, comboBox_niveau1.getSelectedIndex()+1);
-            qst9.setVisible(true);
-            break;
-            case "Culture Générale":
-            CreationQST_VF qst10 = new CreationQST_VF(txtF_addQST.getText(), cultureG, comboBox_niveau1.getSelectedIndex()+1);
-            qst10.setVisible(true);
-            break;
-        }
+        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme1.getSelectedItem());
+        
+        CreationQST_VF qst = new CreationQST_VF(txtF_addQST.getText(), t, comboBox_niveau1.getSelectedIndex()+1);
+        qst.setVisible(true);
     }//GEN-LAST:event_btn_vfMouseClicked
 
     private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked

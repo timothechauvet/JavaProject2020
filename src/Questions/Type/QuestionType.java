@@ -1,5 +1,6 @@
 package Questions.Type;
 
+import Interface.StringWrapper;
 import java.io.Serializable;
 
 public abstract class QuestionType<T> implements Serializable {
@@ -11,12 +12,8 @@ public abstract class QuestionType<T> implements Serializable {
         this.answer = correct;
     }
 
-    public void afficher() {
-        System.out.println("'" + this.enonce + "'");
-    }
-
-    public void afficherReponse() {
-        System.out.println("Réponse Correcte:");
+    public void afficher(StringWrapper enonce,StringWrapper r1,StringWrapper r2,StringWrapper r3,StringWrapper r4,StringWrapper reponse) {
+        enonce.setText(this.enonce);
     }
     
     public boolean checkAnswer(Object answer) {

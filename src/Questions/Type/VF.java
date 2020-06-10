@@ -5,6 +5,8 @@
  */
 package Questions.Type;
 
+import Interface.StringWrapper;
+
 /**
  * @author remyc
  */
@@ -14,14 +16,12 @@ public class VF extends QuestionType<Boolean> {
     }
 
     @Override
-    public void afficher() {
-        super.afficher();
-    }
-
-    @Override
-    public void afficherReponse() {
-        super.afficherReponse();
-        String rep= answer ? "Vrai" : "Faux";
-        System.out.println("\t"+rep);
+    public void afficher(StringWrapper enonce,StringWrapper r1,StringWrapper r2,StringWrapper r3,StringWrapper r4,StringWrapper reponse) {
+        super.afficher(enonce,null,null,null,null,null);
+        r1.setText("Vrai");
+        r2.setText("Faux");
+        r3.setText("-");
+        r4.setText("-");
+        reponse.setText(answer ? "Vrai" : "Faux");
     }
 }

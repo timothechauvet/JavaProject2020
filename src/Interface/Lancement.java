@@ -10,6 +10,7 @@ import Questions.*;
 import Questions.Type.QCM;
 import Questions.Type.RC;
 import Questions.Type.VF;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -19,13 +20,15 @@ import javax.swing.table.DefaultTableModel;
  * @author lilian
  */
 public class Lancement extends javax.swing.JFrame {
-    DefaultTableModel modelQCM;
-    DefaultTableModel modelVF;
-    DefaultTableModel modelRC;
+    DefaultTableModel modelQuestions;
         
     public Lancement() {
+        Themes themes = Themes.instance;
         
         initComponents();
+        modelQuestions =(DefaultTableModel) table_questions.getModel();
+        
+        Arrays.stream(themes.getThemes()).forEach(t -> comboBox_theme.addItem(t.toString()));
         /*
         try {
             fillArray();
@@ -33,10 +36,7 @@ public class Lancement extends javax.swing.JFrame {
             Logger.getLogger(Lancement.class.getName()).log(Level.SEVERE, null, ex);
         }
         */
-        
-        Question<QCM> qcm= new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go"));
-        Question<RC> rc= new Question<>(1,new RC("un hotel?","trivago"));
-        Question<VF> vf = new Question<>(3,new VF("vraiment?", true));
+      
     }
 
     /**
@@ -50,58 +50,20 @@ public class Lancement extends javax.swing.JFrame {
 
         lbl_theme = new javax.swing.JLabel();
         comboBox_theme = new javax.swing.JComboBox<>();
-        comboBox_niveau = new javax.swing.JComboBox<>();
-        lbl_niveau = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table_questions_RC = new javax.swing.JTable();
         btn_jeu = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        table_questions_qcm = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        table_questions_VF = new javax.swing.JTable();
+        table_questions = new javax.swing.JTable();
         btn_newQST = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbl_theme.setText("Thème de la question :");
 
-        comboBox_theme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Biologie", "Sport", "Histoire", "Informatique", "Aérospatial", "Aéronautique", "Litérature", "Musique", "Film", "Culture Générale" }));
-
-        comboBox_niveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Niveau 1", "Niveau 2", "Niveau 3" }));
-
-        lbl_niveau.setText("Niveau :");
-
-        table_questions_RC.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Question", "Réponse"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        comboBox_theme.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBox_themeItemStateChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(table_questions_RC);
-        if (table_questions_RC.getColumnModel().getColumnCount() > 0) {
-            table_questions_RC.getColumnModel().getColumn(0).setResizable(false);
-            table_questions_RC.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         btn_jeu.setText("Commencer le jeu");
         btn_jeu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,22 +72,19 @@ public class Lancement extends javax.swing.JFrame {
             }
         });
 
-        table_questions_qcm.setModel(new javax.swing.table.DefaultTableModel(
+        table_questions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Question", "Réponse 1", "Réponse 2", "Réponse 3", "Réponse 4", "Solution"
+                "Niveau", "Question", "Réponse 1", "Réponse 2", "Réponse 3", "Réponse 4", "Solution"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -136,38 +95,16 @@ public class Lancement extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(table_questions_qcm);
-
-        table_questions_VF.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Question", "Réponse"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(table_questions_VF);
-        if (table_questions_VF.getColumnModel().getColumnCount() > 0) {
-            table_questions_VF.getColumnModel().getColumn(0).setResizable(false);
-            table_questions_VF.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane2.setViewportView(table_questions);
+        if (table_questions.getColumnModel().getColumnCount() > 0) {
+            table_questions.getColumnModel().getColumn(0).setResizable(false);
+            table_questions.getColumnModel().getColumn(0).setPreferredWidth(7);
+            table_questions.getColumnModel().getColumn(1).setResizable(false);
+            table_questions.getColumnModel().getColumn(2).setResizable(false);
+            table_questions.getColumnModel().getColumn(3).setResizable(false);
+            table_questions.getColumnModel().getColumn(4).setResizable(false);
+            table_questions.getColumnModel().getColumn(5).setResizable(false);
+            table_questions.getColumnModel().getColumn(6).setResizable(false);
         }
 
         btn_newQST.setText("Ajouter une question");
@@ -183,29 +120,21 @@ public class Lancement extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(lbl_theme)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(lbl_niveau)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(913, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_theme)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(211, 211, 211))))
+                        .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,19 +142,14 @@ public class Lancement extends javax.swing.JFrame {
                 .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_theme)
-                    .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_niveau))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
+                    .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,6 +164,14 @@ public class Lancement extends javax.swing.JFrame {
         CreationQST crea = new CreationQST();
         crea.setVisible(true);
     }//GEN-LAST:event_btn_newQSTMouseClicked
+
+    private void comboBox_themeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBox_themeItemStateChanged
+        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme.getSelectedItem());
+        
+        modelQuestions.setRowCount(0);
+        
+        t.getListe().afficherListe(modelQuestions);
+    }//GEN-LAST:event_comboBox_themeItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -279,15 +211,9 @@ public class Lancement extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_jeu;
     private javax.swing.JButton btn_newQST;
-    private javax.swing.JComboBox<String> comboBox_niveau;
     private javax.swing.JComboBox<String> comboBox_theme;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lbl_niveau;
     private javax.swing.JLabel lbl_theme;
-    private javax.swing.JTable table_questions_RC;
-    private javax.swing.JTable table_questions_VF;
-    private javax.swing.JTable table_questions_qcm;
+    private javax.swing.JTable table_questions;
     // End of variables declaration//GEN-END:variables
 }

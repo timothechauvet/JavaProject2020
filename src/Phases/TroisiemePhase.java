@@ -52,7 +52,7 @@ public class TroisiemePhase implements Phase {
             watch.run();
             //-----This part handled in swing interface-----
             t.afficher();
-            q.afficher();
+            //q.afficher();
 
 
             if(q.saisir(sc.next())) { //obviously this only works with RC but its very temp

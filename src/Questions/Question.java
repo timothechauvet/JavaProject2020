@@ -5,6 +5,7 @@
  */
 package Questions;
 
+import Interface.StringWrapper;
 import Questions.Type.QuestionType;
 import java.io.Serializable;
 
@@ -37,14 +38,10 @@ public class Question <T extends QuestionType<?>> implements Serializable{
         return this.difficulty;
     }
 
-    public void afficher() {
-        System.out.println("\n\nQuestion n°\t" + this.number);
-        System.out.println("Difficulty: \t" + this.difficulty);
-        enonce.afficher();
-    }
-
-    public void afficherReponse() {
-        enonce.afficherReponse();
+    public void afficher(StringWrapper qNum, StringWrapper diff,StringWrapper enonce,StringWrapper r1,StringWrapper r2,StringWrapper r3,StringWrapper r4,StringWrapper reponse) {
+        qNum.setText(Integer.toString(this.number));
+        diff.setText(Integer.toString(this.difficulty));
+        this.enonce.afficher(enonce,r1,r2,r3,r4,reponse);
     }
 
     public boolean saisir(Object reponse) {

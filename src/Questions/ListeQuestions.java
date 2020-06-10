@@ -5,8 +5,10 @@
  */
 package Questions;
 
+import Interface.StringWrapper;
 import java.io.Serializable;
 import java.util.LinkedList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author remyc
@@ -18,8 +20,22 @@ public class ListeQuestions implements Serializable {
         questions = new LinkedList <> ();
     }
 
-    public void afficherListe () {
-        questions.forEach(Question :: afficher);
+    public void afficherListe (DefaultTableModel model) {
+        StringWrapper diff,enonce,r1,r2,r3,r4,reponse;
+        diff = new StringWrapper();
+        enonce = new StringWrapper();
+        r1 = new StringWrapper();
+        r2 = new StringWrapper();
+        r3 = new StringWrapper();
+        r4 = new StringWrapper();
+        reponse = new StringWrapper();
+        
+        questions.stream().map((q) -> {        
+            q.afficher(new StringWrapper(),diff,enonce,r1,r2,r3,r4,reponse);
+            return q;
+        }).forEachOrdered((_item) -> {
+            model.addRow(new Object[]{diff.getText(),enonce.getText(),r1.getText(),r2.getText(),r3.getText(),r4.getText(),reponse.getText()});
+        });
     }
 
     public boolean ajouterQuestion (Question<?> question) {

@@ -7,6 +7,7 @@ package Interface;
 
 import Questions.ListeQuestions;
 import Questions.Question;
+import Questions.Theme;
 import Questions.Type.VF;
 
 /**
@@ -15,12 +16,12 @@ import Questions.Type.VF;
  */
 public class CreationQST_VF extends javax.swing.JFrame {
     private final String qst;
-    private final ListeQuestions theme;
+    private final Theme theme;
     private final int difficulte;
 
-    public CreationQST_VF(String q, ListeQuestions l, int d) {
+    public CreationQST_VF(String q, Theme t, int d) {
         qst = q;
-        theme = l;
+        theme = t;
         difficulte = d;
         initComponents();
     }
@@ -66,6 +67,11 @@ public class CreationQST_VF extends javax.swing.JFrame {
         });
 
         btn_exit.setText(" X ");
+        btn_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,15 +124,19 @@ public class CreationQST_VF extends javax.swing.JFrame {
 
     private void btn_addQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addQSTMouseClicked
         boolean rep;
-        if(toggleBTN_vrai.isSelected())
-            rep = true;
-        else
-            rep = false;
+        rep = toggleBTN_vrai.isSelected();
         
-        Question<VF> vf = new Question<>(difficulte,new VF(qst,rep));
-        theme.ajouterQuestion(vf);
-        this.dispose();  
+        if(toggleBTN_vrai.isSelected() || toggleBTN_faux.isSelected())
+        {
+            Question<VF> vf = new Question<>(difficulte,new VF(qst,rep));
+            theme.ajouterQuestion(vf);
+            this.dispose();  
+        }
     }//GEN-LAST:event_btn_addQSTMouseClicked
+
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_exitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addQST;

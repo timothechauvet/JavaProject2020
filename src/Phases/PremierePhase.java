@@ -60,7 +60,7 @@ public class PremierePhase implements Phase {
             watch.run();
             //-----This part handled in swing interface-----
             chosen.afficher();
-            q.afficher();
+            //q.afficher();
 
 
             if(q.saisir(sc.next())) { //obviously this only works with RC but its very temp

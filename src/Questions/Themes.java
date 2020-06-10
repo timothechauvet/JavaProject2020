@@ -46,15 +46,22 @@ public class Themes {
     public Theme[] getThemes() { return this.themes; }
     //---------------------------------
     
-    
-    public boolean addQuestion(String theme, Question<?> q)
+    public Theme getThemeNamed(String name)
     {
         int i;
         for (i = 0; i < this.themes.length; i++) {
-            if(this.themes[i].toString().equals(theme)) break;
+            if(this.themes[i].toString().equals(name)) break;
         }
-        if(i==this.themes.length) return false;
-        else return this.themes[i].getListe().ajouterQuestion(q);
+        
+        if(i==this.themes.length) return null;
+        else return this.themes[i];
+    }
+    
+    public boolean addQuestion(String theme, Question<?> q)
+    {
+        Theme t=getThemeNamed(theme);
+        if(t==null) return false;
+        else return t.getListe().ajouterQuestion(q);
     }
 
     public void modifierTheme(int index, String newTheme) {

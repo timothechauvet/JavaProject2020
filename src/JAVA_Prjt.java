@@ -23,6 +23,7 @@ import Joueurs.EnsJoueurs;
 
 
 import Files_Managment.FileManager;
+import Interface.Lancement;
 
 /**
  * @author remyc
@@ -33,9 +34,7 @@ public class JAVA_Prjt {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-        
+        /*
         test_Question();
         test_ListeQuestions();
         
@@ -48,12 +47,13 @@ public class JAVA_Prjt {
         
         
         test_FileManager();
+        */
     }
     
     
     
     
-    
+    /*
     public static void test_Question () {
         System.out.println("\n\t -------- test_Question --------");
         Themes t = Themes.instance;    //there is a single instance of themes, the different themes are hard coded
@@ -192,4 +192,5 @@ public class JAVA_Prjt {
         ListeQuestions lq2 = FM.getListeQuestionsFromFile("ListeQuestions");
         lq2.afficherListe();
     }
+    */
 }

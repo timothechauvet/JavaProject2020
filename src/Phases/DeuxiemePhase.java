@@ -69,7 +69,7 @@ public class DeuxiemePhase implements Phase {
             watch.run();
 
             chosen.afficher();
-            q.afficher();
+            //q.afficher();
 
 
             if(q.saisir(sc.next())) { //obviously this only works with RC but its very temp
