@@ -40,12 +40,9 @@ public class Jeux_QCM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        reponses = new javax.swing.ButtonGroup();
         btn_valider = new javax.swing.JButton();
         btn_suivant = new javax.swing.JButton();
-        checkBox_repA = new javax.swing.JCheckBox();
-        checkBox_repC = new javax.swing.JCheckBox();
-        checkBox_repD = new javax.swing.JCheckBox();
-        checkBox_repB = new javax.swing.JCheckBox();
         lbl_a = new javax.swing.JLabel();
         lbl_b = new javax.swing.JLabel();
         lbl_c = new javax.swing.JLabel();
@@ -61,6 +58,10 @@ public class Jeux_QCM extends javax.swing.JFrame {
         lbl_rep3 = new javax.swing.JLabel();
         lbl_error = new javax.swing.JLabel();
         lbl_timer = new javax.swing.JLabel();
+        checkBox_repA = new javax.swing.JRadioButton();
+        checkBox_repC = new javax.swing.JRadioButton();
+        checkBox_repB = new javax.swing.JRadioButton();
+        checkBox_repD = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,34 +76,6 @@ public class Jeux_QCM extends javax.swing.JFrame {
         btn_suivant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_suivantMouseClicked(evt);
-            }
-        });
-
-        checkBox_repA.setText("a est la bonne réponse");
-        checkBox_repA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                checkBox_repAMouseClicked(evt);
-            }
-        });
-
-        checkBox_repC.setText("c est la bonne réponse");
-        checkBox_repC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                checkBox_repCMouseClicked(evt);
-            }
-        });
-
-        checkBox_repD.setText("d est la bonne réponse");
-        checkBox_repD.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                checkBox_repDMouseClicked(evt);
-            }
-        });
-
-        checkBox_repB.setText("b est la bonne réponse");
-        checkBox_repB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                checkBox_repBMouseClicked(evt);
             }
         });
 
@@ -137,6 +110,23 @@ public class Jeux_QCM extends javax.swing.JFrame {
         lbl_timer.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         lbl_timer.setText("Timer");
 
+        reponses.add(checkBox_repA);
+        checkBox_repA.setText("A");
+
+        reponses.add(checkBox_repC);
+        checkBox_repC.setText("C");
+        checkBox_repC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox_repCActionPerformed(evt);
+            }
+        });
+
+        reponses.add(checkBox_repB);
+        checkBox_repB.setText("B");
+
+        reponses.add(checkBox_repD);
+        checkBox_repD.setText("D");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,12 +148,12 @@ public class Jeux_QCM extends javax.swing.JFrame {
                             .addComponent(lbl_rep4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_rep3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(checkBox_repC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkBox_repB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkBox_repA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkBox_repD, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(133, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkBox_repA)
+                            .addComponent(checkBox_repC)
+                            .addComponent(checkBox_repB)
+                            .addComponent(checkBox_repD))))
+                .addContainerGap(275, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -221,9 +211,9 @@ public class Jeux_QCM extends javax.swing.JFrame {
                             .addComponent(checkBox_repD)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(checkBox_repA)
                             .addComponent(lbl_a)
-                            .addComponent(lbl_rep1))
+                            .addComponent(lbl_rep1)
+                            .addComponent(checkBox_repA))
                         .addGap(92, 92, 92)))
                 .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -235,30 +225,6 @@ public class Jeux_QCM extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void checkBox_repAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkBox_repAMouseClicked
-        checkBox_repB.setSelected(false);
-        checkBox_repC.setSelected(false);
-        checkBox_repD.setSelected(false);
-    }//GEN-LAST:event_checkBox_repAMouseClicked
-
-    private void checkBox_repCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkBox_repCMouseClicked
-        checkBox_repA.setSelected(false);
-        checkBox_repB.setSelected(false);
-        checkBox_repD.setSelected(false);
-    }//GEN-LAST:event_checkBox_repCMouseClicked
-
-    private void checkBox_repDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkBox_repDMouseClicked
-        checkBox_repA.setSelected(false);
-        checkBox_repB.setSelected(false);
-        checkBox_repC.setSelected(false);
-    }//GEN-LAST:event_checkBox_repDMouseClicked
-
-    private void checkBox_repBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkBox_repBMouseClicked
-        checkBox_repA.setSelected(false);
-        checkBox_repC.setSelected(false);
-        checkBox_repD.setSelected(false);
-    }//GEN-LAST:event_checkBox_repBMouseClicked
 
     private void btn_suivantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suivantMouseClicked
         MenuJeu menu = new MenuJeu();
@@ -275,11 +241,11 @@ public class Jeux_QCM extends javax.swing.JFrame {
                 cpt++;
                 questionChoisie = 1;
             }
-            if(checkBox_repB.isSelected()){
+            if(checkBox_repC.isSelected()){
                 cpt++;
                 questionChoisie = 2;
             }
-            if(checkBox_repC.isSelected()){
+            if(checkBox_repB.isSelected()){
                 cpt++;
                 questionChoisie = 3;
             }
@@ -303,6 +269,10 @@ public class Jeux_QCM extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btn_validerMouseClicked
+
+    private void checkBox_repCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_repCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkBox_repCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,10 +319,10 @@ public class Jeux_QCM extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_suivant;
     private javax.swing.JButton btn_valider;
-    private javax.swing.JCheckBox checkBox_repA;
-    private javax.swing.JCheckBox checkBox_repB;
-    private javax.swing.JCheckBox checkBox_repC;
-    private javax.swing.JCheckBox checkBox_repD;
+    private javax.swing.JRadioButton checkBox_repA;
+    private javax.swing.JRadioButton checkBox_repB;
+    private javax.swing.JRadioButton checkBox_repC;
+    private javax.swing.JRadioButton checkBox_repD;
     private javax.swing.JLabel lbl_a;
     private javax.swing.JLabel lbl_b;
     private javax.swing.JLabel lbl_c;
@@ -368,5 +338,6 @@ public class Jeux_QCM extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_score;
     private javax.swing.JLabel lbl_theme;
     private javax.swing.JLabel lbl_timer;
+    private javax.swing.ButtonGroup reponses;
     // End of variables declaration//GEN-END:variables
 }
