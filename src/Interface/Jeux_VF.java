@@ -196,18 +196,8 @@ public class Jeux_VF extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_validerMouseClicked
 
     private void btn_suivantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suivantMouseClicked
-        if(true){
-            Jeux_QCM qcm = new Jeux_QCM();
-            qcm.setVisible(true);
-        }
-        else if(false){
-            Jeux_RC rc = new Jeux_RC();
-            rc.setVisible(true);
-        }
-        else {
-            Jeux_VF vf = new Jeux_VF();
-            vf.setVisible(true);
-        }
+        MenuJeu menu = new MenuJeu();
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_suivantMouseClicked
 

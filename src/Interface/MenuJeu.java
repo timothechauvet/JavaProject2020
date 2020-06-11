@@ -88,9 +88,9 @@ public class MenuJeu extends javax.swing.JFrame {
 
         btn_Ready.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btn_Ready.setText("Ready!");
-        btn_Ready.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ReadyActionPerformed(evt);
+        btn_Ready.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ReadyMouseClicked(evt);
             }
         });
 
@@ -147,9 +147,21 @@ public class MenuJeu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_ReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReadyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ReadyActionPerformed
+    private void btn_ReadyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReadyMouseClicked
+        if(true){
+            Jeux_QCM qcm = new Jeux_QCM();
+            qcm.setVisible(true);
+        }
+        else if(false){
+            Jeux_RC rc = new Jeux_RC();
+            rc.setVisible(true);
+        }
+        else {
+            Jeux_VF vf = new Jeux_VF();
+            vf.setVisible(true);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btn_ReadyMouseClicked
 
     /**
      * @param args the command line arguments
