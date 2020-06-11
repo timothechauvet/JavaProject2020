@@ -256,21 +256,11 @@ public class Jeux_QCM extends javax.swing.JFrame {
                 time.stopTimer();
                 joueur.addTime(time.getTime());
                 
-                for(int i=0 ;i<4; i++ )
-                {
-                    System.out.println(qst.getNumber());
-                    if (qst.getEnonce().getAnswer() == i){
-                    System.out.println("god");
-                    lbl_error.setText("Bonne réponse !");
-                    joueur.majScore(this.points);
-                    }
-                }
-                /*
-                if (joueur.saisir(qst, questionChoisie)){
+                if (qst.getEnonce().getAnswer() == questionChoisie){
                     lbl_error.setText("Bonne réponse !");
                     joueur.majScore(this.points);
                 }
-                else lbl_error.setText("Mauvaise réponse! Correct: " + this.correctReponse); */
+                else lbl_error.setText("Mauvaise réponse! Correct: " + this.correctReponse);
                 qstRepondue = true;
                 btn_suivant.setVisible(true);
                 btn_valider.setVisible(false);

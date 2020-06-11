@@ -71,7 +71,9 @@ public class EnsJoueurs {
     }
 
     public ArrayList<Joueur> getSelected() {
-        return joueurs.stream().filter(j -> j.getEtat() == Joueur.SELECTED).collect(toCollection(ArrayList::new));
+        ArrayList<Joueur> r = joueurs.stream().filter(j -> j.getEtat() == Joueur.SELECTED).collect(toCollection(ArrayList::new));
+        System.out.println(r.size());
+        return r;
     }
     
     public ArrayList<Joueur> getChosen() {
@@ -82,6 +84,7 @@ public class EnsJoueurs {
         for(int i=0; i<joueurs.size(); i++) {
             if(j.getNbr() == joueurs.get(i).getNbr()) {
                 joueurs.set(i, j);
+                System.out.println("UPDATED");
             }
         }
     }

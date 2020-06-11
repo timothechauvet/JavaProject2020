@@ -25,7 +25,6 @@ public class MenuJeu extends javax.swing.JFrame {
         initComponents();
         
         p1= new PremierePhase(inPhase, inJoueur, inTheme, cBox_availableTheme);
-        p1.PhaseDeJeu();
         
         modelJoueurs =(DefaultTableModel) JoueurInfo.getModel();
         
@@ -162,6 +161,7 @@ public class MenuJeu extends javax.swing.JFrame {
 
     private void btn_ReadyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReadyMouseClicked
         GameActions.getJeuStatus(modelJoueurs);
+        p1.PhaseDeJeu();
         p1.doQuestion();
     }//GEN-LAST:event_btn_ReadyMouseClicked
 
