@@ -46,6 +46,7 @@ public class Lancement extends javax.swing.JFrame {
         btn_newQST = new javax.swing.JButton();
         btn_delQST = new javax.swing.JButton();
         lbl_error = new javax.swing.JLabel();
+        btn_modifTheme = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -121,6 +122,13 @@ public class Lancement extends javax.swing.JFrame {
         lbl_error.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbl_error.setForeground(new java.awt.Color(255, 0, 0));
 
+        btn_modifTheme.setText("Renommer le thème");
+        btn_modifTheme.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_modifThemeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +140,8 @@ public class Lancement extends javax.swing.JFrame {
                         .addComponent(lbl_theme)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_modifTheme))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -148,10 +157,11 @@ public class Lancement extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_theme)
-                    .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_modifTheme))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
@@ -163,12 +173,25 @@ public class Lancement extends javax.swing.JFrame {
                         .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_delQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void reload(){
+        Themes themes = Themes.instance;
+        modelQuestions =(DefaultTableModel) table_questions.getModel();
+        comboBox_theme.removeAllItems();
+        for( Theme t : themes.getThemes()) {
+            if(t!=null) comboBox_theme.addItem(t.toString());
+        }
+        
+        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme.getSelectedItem());        
+        modelQuestions.setRowCount(0);        
+        t.getListe().afficherListe(modelQuestions);
+    }
+    
     private void btn_jeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jeuMouseClicked
         MenuJeu jeu = new MenuJeu();
         jeu.setVisible(true);
@@ -179,14 +202,6 @@ public class Lancement extends javax.swing.JFrame {
         CreationQST crea = new CreationQST();
         crea.setVisible(true);
     }//GEN-LAST:event_btn_newQSTMouseClicked
-
-    private void comboBox_themeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBox_themeItemStateChanged
-        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme.getSelectedItem());
-        
-        modelQuestions.setRowCount(0);
-        
-        t.getListe().afficherListe(modelQuestions);
-    }//GEN-LAST:event_comboBox_themeItemStateChanged
 
     private void btn_delQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_delQSTMouseClicked
         if(table_questions.getSelectedRow() == -1){
@@ -199,9 +214,7 @@ public class Lancement extends javax.swing.JFrame {
 
             // on change la liste
             t.setListe(t.supprQuestion(niveau, question));
-            // on reaffiche      
-            modelQuestions.setRowCount(0);
-            t.getListe().afficherListe(modelQuestions);
+            reload();
         }
     }//GEN-LAST:event_btn_delQSTMouseClicked
 
@@ -210,6 +223,17 @@ public class Lancement extends javax.swing.JFrame {
         fn.clearSaved();
         fn.saveThemes();
     }//GEN-LAST:event_formWindowClosing
+
+    private void btn_modifThemeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_modifThemeMouseClicked
+        Renommer_theme nouv = new Renommer_theme(Themes.instance.getThemeNamed((String) comboBox_theme.getSelectedItem()), this);
+        nouv.setVisible(true);
+    }//GEN-LAST:event_btn_modifThemeMouseClicked
+
+    private void comboBox_themeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBox_themeItemStateChanged
+        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme.getSelectedItem());        
+        modelQuestions.setRowCount(0);        
+        t.getListe().afficherListe(modelQuestions);    
+    }//GEN-LAST:event_comboBox_themeItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -249,6 +273,7 @@ public class Lancement extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_delQST;
     private javax.swing.JButton btn_jeu;
+    private javax.swing.JButton btn_modifTheme;
     private javax.swing.JButton btn_newQST;
     private javax.swing.JComboBox<String> comboBox_theme;
     private javax.swing.JScrollPane jScrollPane2;

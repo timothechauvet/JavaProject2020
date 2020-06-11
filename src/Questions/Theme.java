@@ -1,7 +1,7 @@
 package Questions;
 
 public class Theme {
-    private final String nom;
+    private String nom;
     private ListeQuestions liste;
 
     public Theme(String nom) {
@@ -45,5 +45,9 @@ public class Theme {
 
     public void afficher() {
         System.out.println("\tTheme: " + nom);
+    }
+    
+    public void modifNom(String nouv){
+        nom = nouv;
     }
 }
