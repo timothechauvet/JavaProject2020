@@ -25,13 +25,15 @@ public class Jeux_QCM extends javax.swing.JFrame {
     int points;
     Timer time;
     DefaultTableModel modelJoueurs;
+    MenuJeu m;
     /**
      * Creates new form Jeux
      */
-    public Jeux_QCM(Joueur joueur, Question<?> qst, int points) {
+    public Jeux_QCM(Joueur joueur, Question<?> qst, int points,MenuJeu m) {
         this.joueur = joueur;
         this.qst = (Question<QCM>) qst;
         this.points = points;
+        this.m=m;
         
         initComponents();
         
@@ -265,6 +267,7 @@ public class Jeux_QCM extends javax.swing.JFrame {
                 btn_suivant.setVisible(true);
                 btn_valider.setVisible(false);
                 
+                m.reload();
                 EnsJoueurs.instance.updateJoueur(joueur);
             }
         }
