@@ -133,6 +133,11 @@ public class JAVA_Prjt {
         for (int index : cinqThemes) {
             System.out.println(" -> " + Themes.instance.getThemeAt(index));
         }
+        
+        System.out.println("\n\tdisplay content of all themes");
+        for (int i = 0; i < 9; i++) {
+            t.getThemeAt(i).afficher();
+        }
     }
     
     

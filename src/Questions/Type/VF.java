@@ -5,7 +5,6 @@
  */
 package Questions.Type;
 
-import Questions.Question;
 
 /**
  * @author remyc
