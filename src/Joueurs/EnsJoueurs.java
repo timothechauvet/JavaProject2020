@@ -5,9 +5,12 @@
  */
 package Joueurs;
 
+import Interface.StringWrapper;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static java.util.stream.Collectors.toCollection;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -43,8 +46,22 @@ public class EnsJoueurs {
         }
     }
 
-    public void afficher() {
-        for (Joueur j : joueurs) j.afficher();
+    public void afficher(DefaultTableModel model) {
+        ArrayList<Joueur> chosen = this.getChosen();
+        Collections.sort(chosen);
+        
+        StringWrapper nbr = new StringWrapper();
+        StringWrapper name = new StringWrapper();
+        StringWrapper score = new StringWrapper();
+        StringWrapper status = new StringWrapper();
+        StringWrapper time = new StringWrapper();
+        
+        chosen.stream().map((j) -> {
+            j.afficher(nbr, name, score, status, time);
+            return j;
+        }).forEachOrdered((_item) -> {
+            model.addRow(new Object[]{nbr.getText(), name.getText(), score.getText(), status.getText(), time.getText()});
+        });
     }
 
     public Joueur selectionnerJoueur() {
@@ -57,5 +74,9 @@ public class EnsJoueurs {
 
     public ArrayList<Joueur> getSelected() {
         return joueurs.stream().filter(j -> j.getScore() == Joueur.SELECTED).collect(toCollection(ArrayList::new));
+    }
+    
+    public ArrayList<Joueur> getChosen() {
+        return joueurs.stream().filter(j -> j.getScore() != Joueur.WAITING).collect(toCollection(ArrayList::new));
     }
 }

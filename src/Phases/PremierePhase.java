@@ -20,10 +20,11 @@ public class PremierePhase implements Phase {
 
 
         SelectionerJoueurs();
-
+        
+        /*
         for(int round = 0; round < 4; round++) {
             PhaseDeJeu();
-        }
+        }*/
 
     }
 

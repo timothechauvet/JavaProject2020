@@ -2,6 +2,8 @@ package Phases;
 
 import Joueurs.EnsJoueurs;
 import Joueurs.Joueur;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -27,5 +29,17 @@ public class GameActions {
         }
         inJoueurs.forEach(Joueur::resetTime);
         return inJoueurs;
+    }
+    
+    public static String parseTimer(int time)
+    {
+        NumberFormat nf = new DecimalFormat("00");
+        
+        int m = time % 6000;
+        time-= m * 6000;
+        int s = time % 100;
+        time -= s*100;
+        
+        return nf.format(m) + ":" + nf.format(s) + "." + nf.format(time); 
     }
 }

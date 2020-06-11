@@ -5,17 +5,38 @@
  */
 package Interface;
 
+import Joueurs.EnsJoueurs;
+import Joueurs.Joueur;
+import Phases.PremierePhase;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Theo
  */
 public class MenuJeu extends javax.swing.JFrame {
-
+    DefaultTableModel modelJoueurs;
     /**
      * Creates new form MenuJeu
      */
     public MenuJeu() {
         initComponents();
+        
+        PremierePhase p1= new PremierePhase(new JLabel());
+        
+        getJeuStatus();
+        
+        
+    }
+    
+    public void getJeuStatus() {
+        ArrayList<Joueur> chosen = EnsJoueurs.instance.getChosen();
+        Collections.sort(chosen);
+        
+        EnsJoueurs.instance.afficher(modelJoueurs);
     }
 
     /**

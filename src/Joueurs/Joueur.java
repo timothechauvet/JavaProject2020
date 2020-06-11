@@ -5,6 +5,8 @@
  */
 package Joueurs;
 
+import Interface.StringWrapper;
+import Phases.GameActions;
 import Questions.Question;
 
 /**
@@ -82,28 +84,30 @@ public class Joueur implements Comparable<Joueur>{
     
     
     
-    public void afficher () {
-        System.out.println("Player # " + this.nbr + " : \t" + this.name);
-        System.out.println(" -> Score = " + this.score);
-        System.out.print(" -> State = ");
+    public void afficher (StringWrapper nbr, StringWrapper name, StringWrapper score, StringWrapper status, StringWrapper time) {
+        nbr.setText(Integer.toString(this.nbr));
+        name.setText(this.name);
+        score.setText(Integer.toString(this.score));
         
         switch(etat) {
         case SELECTED :
-        	System.out.println("SELECTED");
+        	status.setText("SELECTED");
         	break;
         case WINNER :
-        	System.out.println("WINNER");
+        	status.setText("WINNER");
         	break;
         case SUPER_WINNER :
-        	System.out.println("SUPER WINNER");
+        	status.setText("SUPER WINNER");
         	break;
         case ELIMINATED :
-        	System.out.println("ELIMINATED");
+        	status.setText("ELIMINATED");
         	break;
         case WAITING :
-        	System.out.println("WAITING");
+        	status.setText("WAITING");
         	break;
         }
+        
+        time.setText(GameActions.parseTimer(this.time));
     }
     
     public void majScore (int s) {  //depends on the current phase

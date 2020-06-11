@@ -5,6 +5,7 @@
  */
 package Questions;
 
+import Files_Managment.FileManager;
 import java.util.Arrays;
 
 /**
@@ -31,6 +32,11 @@ public class Themes {
         themes[9] = new Theme("Culture Générale");
         /* ... à continuer*/
         this.prev = -1; //initial value of prev is -1 so that any theme can be selected
+        
+        FileManager fm = new FileManager();
+        for (Theme t : themes) {
+            t.setListe(fm.getListeQuestionsFromFile(t.toString()));
+        }
     }
     
     boolean DEBBUGING = false;
@@ -88,7 +94,7 @@ public class Themes {
         int[] selectedThemes = new int[n];
         int newTheme;
 
-        for (int i = 0; i < 5; i++) {    //select 5 differents themes
+        for (int i = 0; i < n; i++) {    //select n differents themes
             if (DEBBUGING) System.out.println("prev = " + prev);
 
             do{

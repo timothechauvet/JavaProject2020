@@ -19,17 +19,15 @@ public class Timer implements Runnable {
 
     @Override
     public void run() {
+        this.stop = false;
         NumberFormat nf = new DecimalFormat("00");
-        for (min = 0; min < 60; min++) {
-            for (sec = 0; sec < 60; sec++) {
-                for (ms = 0; ms < 100; ms++) {
-                    if(stop)
-                        break;
-
-                    stopwatch.setText(nf.format(min) + ":" + nf.format(sec) + "." + nf.format(ms));
-                    try {Thread.sleep(10);} catch (Exception e) {};
-                }
-            }
+        int ms=0;
+        
+        while(!stop)
+        {
+            stopwatch.setText(GameActions.parseTimer(ms));
+            try {Thread.sleep(10);} catch (Exception e) {};
+            ms++;
         }
     }
 

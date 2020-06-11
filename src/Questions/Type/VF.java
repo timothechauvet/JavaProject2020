@@ -5,7 +5,10 @@
  */
 package Questions.Type;
 
+<<<<<<< HEAD
+=======
 import Interface.StringWrapper;
+>>>>>>> master
 
 /**
  * @author remyc
