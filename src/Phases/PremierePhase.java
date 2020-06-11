@@ -35,7 +35,7 @@ public class PremierePhase implements Phase {
 
         for (int i = 0; i < 4; i++) {
             newPlayer = ej.selectionnerJoueur();
-            newPlayer.changerEtat(Joueur.SELECTED);
+            ej.selectionnerJoueur().changerEtat(Joueur.SELECTED);
             inPlay.add(newPlayer);
         }
         inPlay.forEach(Joueur::resetTime);

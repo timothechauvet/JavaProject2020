@@ -17,6 +17,11 @@ public class CreationQST extends javax.swing.JFrame {
     
     public CreationQST() {
         initComponents();
+        
+        Themes themes = Themes.instance;
+        for( Theme t : themes.getThemes()) {
+            if(t!=null) comboBox_theme1.addItem(t.toString());
+        }
     }
 
     /**
@@ -80,8 +85,6 @@ public class CreationQST extends javax.swing.JFrame {
         });
 
         lbl_creerSQT.setText("Créer une question :");
-
-        comboBox_theme1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Biologie", "Sport", "Histoire", "Informatique", "Aérospatial", "Aéronautique", "Litérature", "Musique", "Film", "Culture Générale" }));
 
         lbl_thematique.setText("1 : choisir le thème");
 

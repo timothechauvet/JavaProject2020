@@ -26,6 +26,7 @@ public class MenuJeu extends javax.swing.JFrame {
         initComponents();
         
         PremierePhase p1= new PremierePhase(new JLabel());
+        modelJoueurs =(DefaultTableModel) JoueurInfo.getModel();
         
         getJeuStatus();
         
@@ -63,20 +64,17 @@ public class MenuJeu extends javax.swing.JFrame {
 
         JoueurInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Joueur", "Status", "Score", "Temps"
+                "Joueur", "Nom", "Status", "Score", "Temps"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -93,6 +91,7 @@ public class MenuJeu extends javax.swing.JFrame {
             JoueurInfo.getColumnModel().getColumn(1).setResizable(false);
             JoueurInfo.getColumnModel().getColumn(2).setResizable(false);
             JoueurInfo.getColumnModel().getColumn(3).setResizable(false);
+            JoueurInfo.getColumnModel().getColumn(4).setResizable(false);
         }
 
         lbl_Phase.setText("Phase :");
@@ -145,8 +144,8 @@ public class MenuJeu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Phase)
                     .addComponent(inPhase))

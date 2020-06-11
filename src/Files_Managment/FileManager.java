@@ -6,6 +6,8 @@
 package Files_Managment;
 
 import Questions.ListeQuestions;
+import Questions.Theme;
+import Questions.Themes;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +18,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  *
@@ -27,7 +31,7 @@ public class FileManager {
     private final String RC_path =      Prjt_path + "Questions\\RC";
     private final String QCM_path =     Prjt_path + "Questions\\QCM";
     
-    private final String Questions_path =   Prjt_path + "Questions";
+    private final String Questions_path =   Prjt_path + "Questions\\Save";
     private final String CultG_path =       Prjt_path + "Questions\\Culture Générale";
     
     boolean DEBBUGING = true;
@@ -51,7 +55,12 @@ public class FileManager {
         
     }
 
-    
+    public void saveThemes() {
+        Theme[] themes = Themes.instance.getThemes();
+        for(Theme t : themes) {
+            ajouterListeQuestions(t.toString(),t.getListe());
+        }
+    }
     
     public void ajouterListeQuestions (String fileName, ListeQuestions lq) {
         try {
@@ -67,6 +76,32 @@ public class FileManager {
         }
     }    
     
+    public void getThemesFromFiles (Theme[] themes) {
+        int fNameLength, i=0;
+        String newThemeName;
+        File f = new File(Questions_path);
+        
+        String[] filenames = f.list();
+        while(filenames.length !=0 && i<10 && i<filenames.length)
+        {
+            
+            newThemeName = filenames[i];
+            fNameLength = newThemeName.length();
+            newThemeName = filenames[i].substring(0, fNameLength-4);
+            
+            themes[i] = new Theme(newThemeName);
+            themes[i].setListe(this.getListeQuestionsFromFile(newThemeName));
+            i++;
+        }
+    }
+    
+    public void clearSaved() {
+        File f = new File(Questions_path);
+        for(File file: f.listFiles()) 
+            if (!file.isDirectory()) 
+                file.delete();
+    }
+    
     public ListeQuestions getListeQuestionsFromFile (String fileName) {
         File file = new File(Questions_path + "\\"+fileName+".txt");
         try {
@@ -74,7 +109,9 @@ public class FileManager {
             try {
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 try {
-                    return (ListeQuestions) ois.readObject();
+                    ListeQuestions lq = (ListeQuestions) ois.readObject();
+                    ois.close();
+                    return lq;
                 }
                 catch (ClassNotFoundException cnfe) {
                     cnfe.printStackTrace();

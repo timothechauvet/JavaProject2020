@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import Files_Managment.FileManager;
 import Questions.*;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +23,9 @@ public class Lancement extends javax.swing.JFrame {
         initComponents();
         modelQuestions =(DefaultTableModel) table_questions.getModel();
         
-        Arrays.stream(themes.getThemes()).forEach(t -> comboBox_theme.addItem(t.toString()));
+        for( Theme t : themes.getThemes()) {
+            if(t!=null) comboBox_theme.addItem(t.toString());
+        }
       
     }
 
@@ -45,6 +48,11 @@ public class Lancement extends javax.swing.JFrame {
         lbl_error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lbl_theme.setText("Thème de la question :");
 
@@ -147,13 +155,14 @@ public class Lancement extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_delQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_delQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -195,6 +204,12 @@ public class Lancement extends javax.swing.JFrame {
             t.getListe().afficherListe(modelQuestions);
         }
     }//GEN-LAST:event_btn_delQSTMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        FileManager fn = new FileManager();
+        fn.clearSaved();
+        fn.saveThemes();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

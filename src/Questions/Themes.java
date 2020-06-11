@@ -20,6 +20,11 @@ public class Themes {
 
 
     private Themes () {
+        FileManager fm = new FileManager();
+        
+        fm.getThemesFromFiles(themes);
+        
+        /*
         themes[0] = new Theme("Biologie");
         themes[1] = new Theme("Sport");
         themes[2] = new Theme("Histoire");
@@ -30,13 +35,9 @@ public class Themes {
         themes[7] = new Theme("Musique");
         themes[8] = new Theme("Films");
         themes[9] = new Theme("Culture Générale");
-        /* ... à continuer*/
-        this.prev = -1; //initial value of prev is -1 so that any theme can be selected
+        */
         
-        FileManager fm = new FileManager();
-        for (Theme t : themes) {
-            t.setListe(fm.getListeQuestionsFromFile(t.toString()));
-        }
+        this.prev = -1; //initial value of prev is -1 so that any theme can be selected
     }
     
     boolean DEBBUGING = false;

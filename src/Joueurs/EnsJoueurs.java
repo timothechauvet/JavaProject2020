@@ -56,12 +56,10 @@ public class EnsJoueurs {
         StringWrapper status = new StringWrapper();
         StringWrapper time = new StringWrapper();
         
-        chosen.stream().map((j) -> {
+        for(Joueur j : chosen) {
             j.afficher(nbr, name, score, status, time);
-            return j;
-        }).forEachOrdered((_item) -> {
-            model.addRow(new Object[]{nbr.getText(), name.getText(), score.getText(), status.getText(), time.getText()});
-        });
+            model.addRow(new Object[]{nbr.getText(), name.getText(), status.getText(), score.getText(), time.getText()});
+        }
     }
 
     public Joueur selectionnerJoueur() {
@@ -73,10 +71,10 @@ public class EnsJoueurs {
     }
 
     public ArrayList<Joueur> getSelected() {
-        return joueurs.stream().filter(j -> j.getScore() == Joueur.SELECTED).collect(toCollection(ArrayList::new));
+        return joueurs.stream().filter(j -> j.getEtat() == Joueur.SELECTED).collect(toCollection(ArrayList::new));
     }
     
     public ArrayList<Joueur> getChosen() {
-        return joueurs.stream().filter(j -> j.getScore() != Joueur.WAITING).collect(toCollection(ArrayList::new));
+        return joueurs.stream().filter(j -> j.getEtat() != Joueur.WAITING).collect(toCollection(ArrayList::new));
     }
 }
