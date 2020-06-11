@@ -7,38 +7,31 @@ package Interface;
 
 import Joueurs.EnsJoueurs;
 import Joueurs.Joueur;
+import Phases.GameActions;
 import Phases.PremierePhase;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Theo
- */
 public class MenuJeu extends javax.swing.JFrame {
     DefaultTableModel modelJoueurs;
+    boolean ready;
+    PremierePhase p1;
     /**
      * Creates new form MenuJeu
      */
     public MenuJeu() {
         initComponents();
         
-        PremierePhase p1= new PremierePhase(new JLabel());
+        p1= new PremierePhase(inPhase, inJoueur, inTheme, cBox_availableTheme);
+        p1.PhaseDeJeu();
+        
         modelJoueurs =(DefaultTableModel) JoueurInfo.getModel();
         
-        getJeuStatus();
-        
-        
+        GameActions.getJeuStatus(modelJoueurs);
     }
     
-    public void getJeuStatus() {
-        ArrayList<Joueur> chosen = EnsJoueurs.instance.getChosen();
-        Collections.sort(chosen);
-        
-        EnsJoueurs.instance.afficher(modelJoueurs);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,19 +161,8 @@ public class MenuJeu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_ReadyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ReadyMouseClicked
-        if(true){
-            Jeux_QCM qcm = new Jeux_QCM();
-            qcm.setVisible(true);
-        }
-        else if(false){
-            Jeux_RC rc = new Jeux_RC();
-            rc.setVisible(true);
-        }
-        else {
-            Jeux_VF vf = new Jeux_VF();
-            vf.setVisible(true);
-        }
-        this.dispose();
+        GameActions.getJeuStatus(modelJoueurs);
+        p1.doQuestion();
     }//GEN-LAST:event_btn_ReadyMouseClicked
 
     /**

@@ -18,7 +18,8 @@ public abstract class QuestionType<T> implements Serializable {
     
     public boolean checkAnswer(Object answer) {
         if(answer.getClass().equals(this.answer.getClass())) {
-            if(answer.getClass() == String.class){ // pour les RC 
+            T a = (T) answer;
+            if(a.getClass() == String.class){ // pour les RC 
                 String s = (String) this.answer;
                 if(s.trim().compareToIgnoreCase((String)answer) == 0)
                     return true;
@@ -26,7 +27,7 @@ public abstract class QuestionType<T> implements Serializable {
                     return false;
             }
             else{  // pour les VF ou QCM
-                return this.answer == answer;
+                return this.answer == a;
             }
         }
         else {
@@ -38,4 +39,6 @@ public abstract class QuestionType<T> implements Serializable {
     public String getEnonce(){
         return enonce;
     }
+    
+    public T getAnswer(){ return answer;};
 }

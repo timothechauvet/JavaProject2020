@@ -7,8 +7,11 @@ package Interface;
 
 import Joueurs.EnsJoueurs;
 import Joueurs.Joueur;
+import Phases.Timer;
 import Questions.Question;
 import Questions.Type.*;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,17 +21,41 @@ public class Jeux_QCM extends javax.swing.JFrame {
     Joueur joueur;
     boolean qstRepondue;
     Question<QCM> qst;
+    String correctReponse;
+    int points;
+    Timer time;
+    DefaultTableModel modelJoueurs;
     /**
      * Creates new form Jeux
      */
-    public Jeux_QCM() {
-        joueur = new Joueur( "Billy");
-        qst =new Question<>(1, new QCM("répondez svp", 1, "hey", "ho", "let's", "go"));
+    public Jeux_QCM(Joueur joueur, Question<?> qst, int points) {
+        this.joueur = joueur;
+        this.qst = (Question<QCM>) qst;
+        this.points = points;
+        
         initComponents();
-        lbl_question.setText("Question : " + qst.getEnonce().getEnonce());
+        
+        StringWrapper enonce = new StringWrapper();
+        StringWrapper r1 = new StringWrapper();
+        StringWrapper r2 = new StringWrapper();
+        StringWrapper r3 = new StringWrapper();
+        StringWrapper r4 = new StringWrapper();
+        StringWrapper reponse = new StringWrapper();
+        
+        this.qst.afficher(new StringWrapper(),new StringWrapper(),enonce,r1,r2,r3,r4,reponse);
+        lbl_question.setText(enonce.getText());
+        lbl_rep1.setText(r1.getText());
+        lbl_rep2.setText(r2.getText());
+        lbl_rep3.setText(r3.getText());
+        lbl_rep4.setText(r4.getText());
+        this.correctReponse = reponse.getText();
         qstRepondue = false;
         btn_suivant.setVisible(false);
         btn_valider.setVisible(true);
+        
+        time = new Timer(lbl_timer);
+        Thread thread = new Thread(time);
+        thread.start();
     }
 
     /**
@@ -47,11 +74,7 @@ public class Jeux_QCM extends javax.swing.JFrame {
         lbl_b = new javax.swing.JLabel();
         lbl_c = new javax.swing.JLabel();
         lbl_d = new javax.swing.JLabel();
-        lbl_theme = new javax.swing.JLabel();
-        lbl_phase = new javax.swing.JLabel();
-        lbl_joueur = new javax.swing.JLabel();
         lbl_question = new javax.swing.JLabel();
-        lbl_score = new javax.swing.JLabel();
         lbl_rep1 = new javax.swing.JLabel();
         lbl_rep2 = new javax.swing.JLabel();
         lbl_rep4 = new javax.swing.JLabel();
@@ -87,15 +110,7 @@ public class Jeux_QCM extends javax.swing.JFrame {
 
         lbl_d.setText("d )");
 
-        lbl_theme.setText("Thème  de la question :");
-
-        lbl_phase.setText("Phase :");
-
-        lbl_joueur.setText("Tour du joueur :");
-
         lbl_question.setText("Question :");
-
-        lbl_score.setText("Score actuel :");
 
         lbl_rep1.setText("Rep1");
 
@@ -131,15 +146,15 @@ public class Jeux_QCM extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lbl_d, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbl_c, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbl_b, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbl_b, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbl_a, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,83 +167,63 @@ public class Jeux_QCM extends javax.swing.JFrame {
                             .addComponent(checkBox_repA)
                             .addComponent(checkBox_repC)
                             .addComponent(checkBox_repB)
-                            .addComponent(checkBox_repD))))
-                .addContainerGap(275, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkBox_repD)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_joueur)
-                            .addComponent(lbl_question)
-                            .addComponent(lbl_phase))
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_theme)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_score)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbl_timer))))
+                        .addGap(1, 1, 1)
+                        .addComponent(lbl_question))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_valider, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_suivant, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addComponent(lbl_timer)
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_phase)
-                    .addComponent(lbl_score)
-                    .addComponent(lbl_timer))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_joueur)
-                    .addComponent(lbl_theme))
-                .addGap(18, 18, 18)
-                .addComponent(lbl_question)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_b)
-                            .addComponent(lbl_rep2)
-                            .addComponent(checkBox_repB))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_c)
-                            .addComponent(lbl_rep3)
-                            .addComponent(checkBox_repC))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_d)
-                            .addComponent(lbl_rep4)
-                            .addComponent(checkBox_repD)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_a)
-                            .addComponent(lbl_rep1)
-                            .addComponent(checkBox_repA))
-                        .addGap(92, 92, 92)))
-                .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbl_b)
+                                    .addComponent(lbl_rep2)
+                                    .addComponent(checkBox_repB))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbl_c)
+                                    .addComponent(lbl_rep3)
+                                    .addComponent(checkBox_repC))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbl_d)
+                                    .addComponent(lbl_rep4)
+                                    .addComponent(checkBox_repD)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbl_a)
+                                    .addComponent(lbl_rep1)
+                                    .addComponent(checkBox_repA))
+                                .addGap(92, 92, 92)))
+                        .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbl_timer)
+                        .addComponent(lbl_question)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_valider)
                     .addComponent(btn_suivant))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_suivantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suivantMouseClicked
-        MenuJeu menu = new MenuJeu();
-        menu.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_btn_suivantMouseClicked
 
@@ -239,31 +234,48 @@ public class Jeux_QCM extends javax.swing.JFrame {
             int cpt = 0;
             if(checkBox_repA.isSelected()){
                 cpt++;
+                questionChoisie = 0;
+            }
+            if(checkBox_repB.isSelected()){
+                cpt++;
                 questionChoisie = 1;
             }
             if(checkBox_repC.isSelected()){
                 cpt++;
                 questionChoisie = 2;
             }
-            if(checkBox_repB.isSelected()){
-                cpt++;
-                questionChoisie = 3;
-            }
             if(checkBox_repD.isSelected()){
                 cpt++;
-                questionChoisie = 4;
+                questionChoisie = 3;
             }
 
             if(cpt!=1){
                 lbl_error.setText("Veuillez choisir une réponse");
             }
             else {
-                if (joueur.saisir(qst, questionChoisie)) lbl_error.setText("Bonne réponse !");
-                else lbl_error.setText("Mauvaise réponse !");
+                time.stopTimer();
+                joueur.addTime(time.getTime());
+                
+                for(int i=0 ;i<4; i++ )
+                {
+                    System.out.println(qst.getNumber());
+                    if (qst.getEnonce().getAnswer() == i){
+                    System.out.println("god");
+                    lbl_error.setText("Bonne réponse !");
+                    joueur.majScore(this.points);
+                    }
+                }
+                /*
+                if (joueur.saisir(qst, questionChoisie)){
+                    lbl_error.setText("Bonne réponse !");
+                    joueur.majScore(this.points);
+                }
+                else lbl_error.setText("Mauvaise réponse! Correct: " + this.correctReponse); */
                 qstRepondue = true;
                 btn_suivant.setVisible(true);
                 btn_valider.setVisible(false);
-
+                
+                EnsJoueurs.instance.updateJoueur(joueur);
             }
         }
         
@@ -271,50 +283,8 @@ public class Jeux_QCM extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_validerMouseClicked
 
     private void checkBox_repCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_repCActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_checkBox_repCActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Jeux_QCM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Jeux_QCM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Jeux_QCM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Jeux_QCM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Jeux_QCM().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_suivant;
@@ -328,15 +298,11 @@ public class Jeux_QCM extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_c;
     private javax.swing.JLabel lbl_d;
     private javax.swing.JLabel lbl_error;
-    private javax.swing.JLabel lbl_joueur;
-    private javax.swing.JLabel lbl_phase;
     private javax.swing.JLabel lbl_question;
     private javax.swing.JLabel lbl_rep1;
     private javax.swing.JLabel lbl_rep2;
     private javax.swing.JLabel lbl_rep3;
     private javax.swing.JLabel lbl_rep4;
-    private javax.swing.JLabel lbl_score;
-    private javax.swing.JLabel lbl_theme;
     private javax.swing.JLabel lbl_timer;
     private javax.swing.ButtonGroup reponses;
     // End of variables declaration//GEN-END:variables

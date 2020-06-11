@@ -77,4 +77,12 @@ public class EnsJoueurs {
     public ArrayList<Joueur> getChosen() {
         return joueurs.stream().filter(j -> j.getEtat() != Joueur.WAITING).collect(toCollection(ArrayList::new));
     }
+    
+    public void updateJoueur(Joueur j) {
+        for(int i=0; i<joueurs.size(); i++) {
+            if(j.getNbr() == joueurs.get(i).getNbr()) {
+                joueurs.set(i, j);
+            }
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class TieBreak implements Phase {
     }
 
     @Override
-    public void PhaseDeJeu() {
-
+    public boolean PhaseDeJeu() {
+        return true;
     }
 }

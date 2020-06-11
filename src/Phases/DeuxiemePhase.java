@@ -39,7 +39,7 @@ public class DeuxiemePhase implements Phase {
     }
 
     @Override
-    public void PhaseDeJeu() {
+    public boolean PhaseDeJeu() {
         Scanner sc = new Scanner(System.in);
         String inStr;
 
@@ -83,5 +83,6 @@ public class DeuxiemePhase implements Phase {
 
             //put in something like a next button here
         }
+        return true;
     }
 }

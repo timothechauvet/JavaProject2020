@@ -34,6 +34,8 @@ public class JAVA_Prjt {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        new Lancement().setVisible(true);
+        
         /*
         test_Question();
         test_ListeQuestions();

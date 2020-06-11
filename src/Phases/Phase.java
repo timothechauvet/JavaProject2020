@@ -3,5 +3,5 @@ package Phases;
 interface Phase {
     public void SelectionerJoueurs();
 
-    public void PhaseDeJeu();
+    public boolean PhaseDeJeu();
 }

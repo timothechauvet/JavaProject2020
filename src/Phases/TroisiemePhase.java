@@ -39,7 +39,7 @@ public class TroisiemePhase implements Phase {
     }
 
     @Override
-    public void PhaseDeJeu() {
+    public boolean PhaseDeJeu() {
         Question<?> q;
         Theme t = Themes.instance.getThemeAt(curTheme);
         Scanner sc = new Scanner(System.in);
@@ -64,5 +64,6 @@ public class TroisiemePhase implements Phase {
             watch.stopTimer();
             playing.addTime(watch.getTime());
         }
+        return true;
     }
 }
