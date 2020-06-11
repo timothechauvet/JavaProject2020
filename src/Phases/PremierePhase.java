@@ -91,10 +91,10 @@ public class PremierePhase implements Phase {
         } else if(q.getEnonce() instanceof VF){
             Jeux_VF vf = new Jeux_VF(playing,q,2);
             vf.setVisible(true);
-        } /*else {
-            Jeux_RC rc = new Jeux_RC();
+        } else {
+            Jeux_RC rc = new Jeux_RC(playing,q,2);
             rc.setVisible(true);
-        } */
+        } 
         
     }
 }

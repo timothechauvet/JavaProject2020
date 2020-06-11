@@ -13,10 +13,6 @@ import Questions.Type.QCM;
 import Questions.Type.VF;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author lilian
- */
 public class Jeux_VF extends javax.swing.JFrame {
     Joueur joueur;
     boolean qstRepondue;
