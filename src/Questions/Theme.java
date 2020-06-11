@@ -15,6 +15,17 @@ public class Theme {
         liste.ajouterQuestion(q);
     }
     
+    public ListeQuestions supprQuestion(int difficulte, String question){
+        ListeQuestions nouvelleListe = new ListeQuestions();
+        for(int i = 0; i < this.getLenght(); i++){
+            if(liste.getQuestionX(i).getDifficulty() == difficulte && liste.getQuestionX(i).getEnonce().getEnonce().equals(question))
+                System.out.println("Question supprimée");
+            else
+                nouvelleListe.ajouterQuestion(liste.getQuestionX(i));
+        }
+        return nouvelleListe;
+    }
+    
     public void setListe (ListeQuestions lq) {
         liste = lq;
     }
@@ -23,7 +34,9 @@ public class Theme {
         return liste;
     }
 
-    
+    public int getLenght(){
+        return liste.getLength();
+    }
     
     @Override
     public String toString() {
