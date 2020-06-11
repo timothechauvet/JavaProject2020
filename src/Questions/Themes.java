@@ -77,9 +77,9 @@ public class Themes {
 
     public int selectionnerTheme() {
         int newTheme;
-        do {   //then new theme is same as previous and need to be changed
+        do {   
             newTheme = (int) (Math.random() * 10);
-        } while (newTheme == this.prev);
+        } while (newTheme == this.prev); //then new theme is same as previous and need to be changed
 
         this.prev = newTheme;
         return this.prev;

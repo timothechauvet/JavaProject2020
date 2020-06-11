@@ -21,7 +21,7 @@ public class Timer implements Runnable {
     public void run() {
         this.stop = false;
         NumberFormat nf = new DecimalFormat("00");
-        int ms=0;
+        ms=0;
 
         while(!stop)
         {

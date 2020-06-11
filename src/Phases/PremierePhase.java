@@ -61,11 +61,12 @@ public class PremierePhase implements Phase {
 
     @Override
     public boolean PhaseDeJeu() {
+        Themes t = Themes.instance;
+        curTheme = t.getThemeAt(t.selectionnerTheme());
         if(waiting.isEmpty()) {
             waiting = new ArrayList<>(inPlay);
             round++;
-            Themes t = Themes.instance;
-            curTheme = t.getThemeAt(t.selectionnerTheme());
+            //curTheme = t.getThemeAt(t.selectionnerTheme());
         }
 
         if(round < 4) {
