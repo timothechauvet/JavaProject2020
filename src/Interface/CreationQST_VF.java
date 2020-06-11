@@ -5,16 +5,21 @@
  */
 package Interface;
 
+import Questions.ListeQuestions;
+import Questions.Question;
+import Questions.Theme;
+import Questions.Type.VF;
+
 /**
  *
  * @author lilian
  */
 public class CreationQST_VF extends javax.swing.JFrame {
     private final String qst;
-    private final String theme;
+    private final Theme theme;
     private final int difficulte;
 
-    public CreationQST_VF(String q, String t, int d) {
+    public CreationQST_VF(String q, Theme t, int d) {
         qst = q;
         theme = t;
         difficulte = d;
@@ -34,6 +39,7 @@ public class CreationQST_VF extends javax.swing.JFrame {
         toggleBTN_vrai = new javax.swing.JToggleButton();
         toggleBTN_faux = new javax.swing.JToggleButton();
         btn_addQST = new javax.swing.JButton();
+        btn_exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +66,13 @@ public class CreationQST_VF extends javax.swing.JFrame {
             }
         });
 
+        btn_exit.setText(" X ");
+        btn_exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,13 +89,17 @@ public class CreationQST_VF extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(toggleBTN_faux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(toggleBTN_vrai, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_exit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lbl_reponses)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_reponses)
+                    .addComponent(btn_exit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(toggleBTN_vrai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -106,11 +123,24 @@ public class CreationQST_VF extends javax.swing.JFrame {
     }//GEN-LAST:event_toggleBTN_fauxMouseClicked
 
     private void btn_addQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addQSTMouseClicked
-        this.dispose();
+        boolean rep;
+        rep = toggleBTN_vrai.isSelected();
+        
+        if(toggleBTN_vrai.isSelected() || toggleBTN_faux.isSelected())
+        {
+            Question<VF> vf = new Question<>(difficulte,new VF(qst,rep));
+            theme.ajouterQuestion(vf);
+            this.dispose();  
+        }
     }//GEN-LAST:event_btn_addQSTMouseClicked
+
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_exitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addQST;
+    private javax.swing.JButton btn_exit;
     private javax.swing.JLabel lbl_reponses;
     private javax.swing.JToggleButton toggleBTN_faux;
     private javax.swing.JToggleButton toggleBTN_vrai;

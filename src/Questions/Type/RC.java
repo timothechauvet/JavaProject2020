@@ -5,6 +5,8 @@
  */
 package Questions.Type;
 
+import Interface.StringWrapper;
+
 
 /**
  * @author remyc
@@ -15,8 +17,12 @@ public class RC extends QuestionType<String> {
     }
 
     @Override
-    public void afficher() {
-        super.afficher();
-        System.out.print("Your answer: ");
+    public void afficher(StringWrapper enonce,StringWrapper r1,StringWrapper r2,StringWrapper r3,StringWrapper r4,StringWrapper reponse) {
+        super.afficher(enonce,null,null,null,null,null);
+        r1.setText("Entrée Utilisateur");
+        r2.setText("-");
+        r3.setText("-");
+        r4.setText("-");
+        reponse.setText(this.answer);
     }
 }

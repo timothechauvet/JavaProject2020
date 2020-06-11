@@ -32,6 +32,5 @@ public class Theme {
 
     public void afficher() {
         System.out.println("\tTheme: " + nom);
-        liste.afficherListe();
     }
 }

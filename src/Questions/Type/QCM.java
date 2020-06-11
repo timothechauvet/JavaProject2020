@@ -5,6 +5,8 @@
  */
 package Questions.Type;
 
+import Interface.StringWrapper;
+
 /**
  * @author remyc
  */
@@ -19,11 +21,14 @@ public class QCM extends QuestionType<Integer> {
         this.answers[2] = r3;
         this.answers[3] = r4;
     }
-
     
-    public void afficher() {
-        super.afficher();
-        for (String answer : this.answers) System.out.println(" -> " + answer);
-        System.out.print("Your answer: ");
+    @Override
+    public void afficher(StringWrapper enonce,StringWrapper r1,StringWrapper r2,StringWrapper r3,StringWrapper r4,StringWrapper reponse) {
+        super.afficher(enonce,null,null,null,null,null);
+        r1.setText(this.answers[0]);
+        r2.setText(this.answers[1]);
+        r3.setText(this.answers[2]);
+        r4.setText(this.answers[3]);
+        reponse.setText(this.answers[answer]);
     }
 }

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lbl_error" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lbl_d" alignment="1" max="32767" attributes="0"/>
+                          <Component id="lbl_c" alignment="1" max="32767" attributes="0"/>
+                          <Component id="lbl_b" alignment="1" max="32767" attributes="0"/>
+                          <Component id="lbl_a" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbl_rep1" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lbl_rep2" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lbl_rep4" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="lbl_rep3" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="checkBox_repC" alignment="0" max="32767" attributes="0"/>
+                          <Component id="checkBox_repB" alignment="0" max="32767" attributes="0"/>
+                          <Component id="checkBox_repA" alignment="0" max="32767" attributes="0"/>
+                          <Component id="checkBox_repD" alignment="1" min="-2" pref="175" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="133" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbl_joueur" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_question" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_phase" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lbl_theme" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="251" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lbl_score" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lbl_timer" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btn_valider" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_suivant" min="-2" pref="150" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbl_phase" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_score" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_timer" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbl_joueur" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_theme" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lbl_question" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbl_b" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_rep2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkBox_repB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbl_c" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_rep3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkBox_repC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbl_d" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_rep4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkBox_repD" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="checkBox_repA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_a" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_rep1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Component id="lbl_error" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btn_valider" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_suivant" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="btn_valider">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valider la r&#xe9;ponse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_validerMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_suivant">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Joueur suivant"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_suivantMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="checkBox_repA">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="a est la bonne r&#xe9;ponse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="checkBox_repAMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="checkBox_repC">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="c est la bonne r&#xe9;ponse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="checkBox_repCMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="checkBox_repD">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="d est la bonne r&#xe9;ponse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="checkBox_repDMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="checkBox_repB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="b est la bonne r&#xe9;ponse"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="checkBox_repBMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_a">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="a )"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_b">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="b )"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_c">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="c )"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_d">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="d )"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_theme">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Th&#xe8;me  de la question :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_phase">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Phase :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_joueur">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tour du joueur :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_question">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Question :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_score">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Score actuel :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_rep1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rep1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_rep2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rep2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_rep4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rep4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_rep3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rep3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_error">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_timer">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DialogInput" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Timer"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

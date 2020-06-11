@@ -18,12 +18,24 @@ public class EnsJoueurs {
     public static final EnsJoueurs instance = new EnsJoueurs();
 
     private ArrayList<Joueur> joueurs;
+    private int joueurActuel;
 
     public EnsJoueurs() {
         joueurs = new ArrayList<Joueur>(20);
+        joueurActuel = 0;
         creer();
     }
 
+    public void tourSuivant(){
+        joueurActuel++;
+        if(joueurActuel == 20)
+            joueurActuel =0;
+    }
+    
+    public int getJoueurActuel(){
+        return joueurActuel;
+    }
+    
     private void creer() {
         char name = 'A';
         for (int i = 0; i < 20; i++) {

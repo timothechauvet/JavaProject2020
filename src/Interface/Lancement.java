@@ -5,17 +5,38 @@
  */
 package Interface;
 
+import Joueurs.EnsJoueurs;
+import Questions.*;
+import Questions.Type.QCM;
+import Questions.Type.RC;
+import Questions.Type.VF;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lilian
  */
 public class Lancement extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Lancement
-     */
+    DefaultTableModel modelQuestions;
+        
     public Lancement() {
+        Themes themes = Themes.instance;
+        
         initComponents();
+        modelQuestions =(DefaultTableModel) table_questions.getModel();
+        
+        Arrays.stream(themes.getThemes()).forEach(t -> comboBox_theme.addItem(t.toString()));
+        /*
+        try {
+            fillArray();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Lancement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+      
     }
 
     /**
@@ -27,57 +48,43 @@ public class Lancement extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl_nbJoueur = new javax.swing.JLabel();
         lbl_theme = new javax.swing.JLabel();
-        comboBox_nbJoueur = new javax.swing.JComboBox<>();
         comboBox_theme = new javax.swing.JComboBox<>();
-        comboBox_niveau = new javax.swing.JComboBox<>();
-        lbl_niveau = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table_questions = new javax.swing.JTable();
-        lbl_creerSQT = new javax.swing.JLabel();
-        comboBox_theme1 = new javax.swing.JComboBox<>();
-        lbl_thematique = new javax.swing.JLabel();
-        lbl_difficulte = new javax.swing.JLabel();
-        comboBox_niveau1 = new javax.swing.JComboBox<>();
-        lbl_qst = new javax.swing.JLabel();
-        txtF_addQST = new javax.swing.JTextField();
-        lbl_reponses = new javax.swing.JLabel();
         btn_jeu = new javax.swing.JButton();
-        btn_qcm = new javax.swing.JButton();
-        btn_rc = new javax.swing.JButton();
-        btn_vf = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        table_questions = new javax.swing.JTable();
+        btn_newQST = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_nbJoueur.setText("Nombre de joueur");
-
         lbl_theme.setText("Thème de la question :");
 
-        comboBox_nbJoueur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4 joueurs", "5 joueurs", "6 joueurs", "7 joueurs", "8 joueurs", "9 joueurs", "10 joueurs", "11 joueurs", "12 joueurs", "13 joueurs", "14 joueurs", "15 joueurs", "16 joueurs", "17 joueurs", "18 joueurs", "19 joueurs", "20 joueurs" }));
+        comboBox_theme.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBox_themeItemStateChanged(evt);
+            }
+        });
 
-        comboBox_theme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personnages importants", "Technologie", "Sport", "Géographie", "Culture générale", "Dates", "Internet", "Géopolitique", "Logique", "Thème surprise" }));
-
-        comboBox_niveau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Niveau 1", "Niveau 2", "Niveau 3" }));
-
-        lbl_niveau.setText("Niveau :");
+        btn_jeu.setText("Commencer le jeu");
+        btn_jeu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_jeuMouseClicked(evt);
+            }
+        });
 
         table_questions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Question", "Réponse 1", "Réponse 2", "Réponse 3", "Réponse 4", "Solution"
+                "Niveau", "Question", "Réponse 1", "Réponse 2", "Réponse 3", "Réponse 4", "Solution"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -88,49 +95,22 @@ public class Lancement extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(table_questions);
+        jScrollPane2.setViewportView(table_questions);
+        if (table_questions.getColumnModel().getColumnCount() > 0) {
+            table_questions.getColumnModel().getColumn(0).setResizable(false);
+            table_questions.getColumnModel().getColumn(0).setPreferredWidth(7);
+            table_questions.getColumnModel().getColumn(1).setResizable(false);
+            table_questions.getColumnModel().getColumn(2).setResizable(false);
+            table_questions.getColumnModel().getColumn(3).setResizable(false);
+            table_questions.getColumnModel().getColumn(4).setResizable(false);
+            table_questions.getColumnModel().getColumn(5).setResizable(false);
+            table_questions.getColumnModel().getColumn(6).setResizable(false);
+        }
 
-        lbl_creerSQT.setText("Créer une question :");
-
-        comboBox_theme1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Personnages importants", "Technologie", "Sport", "Géographie", "Culture générale", "Dates", "Internet", "Géopolitique", "Logique", "Thème surprise" }));
-
-        lbl_thematique.setText("1 : choisir le thème");
-
-        lbl_difficulte.setText("2 : Choisir la difficultée");
-
-        comboBox_niveau1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Niveau 1", "Niveau 2", "Niveau 3" }));
-        comboBox_niveau1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBox_niveau1ActionPerformed(evt);
-            }
-        });
-
-        lbl_qst.setText("3 : Ecrire la question");
-
-        txtF_addQST.setText("une question...");
-
-        lbl_reponses.setText("4 : Type de la question et réponses");
-
-        btn_jeu.setText("Commencer le jeu");
-
-        btn_qcm.setText("QCM");
-        btn_qcm.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_newQST.setText("Ajouter une question");
+        btn_newQST.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_qcmMouseClicked(evt);
-            }
-        });
-
-        btn_rc.setText("Réponse courte");
-        btn_rc.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_rcMouseClicked(evt);
-            }
-        });
-
-        btn_vf.setText("Vrai / Faux");
-        btn_vf.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_vfMouseClicked(evt);
+                btn_newQSTMouseClicked(evt);
             }
         });
 
@@ -139,120 +119,60 @@ public class Lancement extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_theme)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(lbl_niveau)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_nbJoueur)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1238, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_creerSQT)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_qst)
-                                    .addComponent(lbl_thematique)
-                                    .addComponent(lbl_difficulte))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtF_addQST, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBox_theme1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBox_niveau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(110, 110, 110)
-                                        .addComponent(lbl_reponses))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(131, 131, 131)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btn_rc)
-                                            .addComponent(btn_vf)
-                                            .addComponent(btn_qcm))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                                .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_theme)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_nbJoueur)
-                    .addComponent(comboBox_nbJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_theme)
-                    .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBox_niveau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_niveau))
+                    .addComponent(comboBox_theme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(comboBox_theme1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(comboBox_niveau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtF_addQST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_qst, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_creerSQT)
-                            .addComponent(lbl_reponses))
-                        .addGap(26, 26, 26)
-                        .addComponent(lbl_thematique)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbl_difficulte))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(btn_qcm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_rc))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_vf)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_newQST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboBox_niveau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_niveau1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBox_niveau1ActionPerformed
+    private void btn_jeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jeuMouseClicked
+        MenuJeu jeu = new MenuJeu();
+        jeu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_jeuMouseClicked
 
-    private void btn_qcmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_qcmMouseClicked
-        CreationQST_qcm addQST = new CreationQST_qcm(txtF_addQST.getText(), comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex()), comboBox_niveau1.getSelectedIndex()+1);
-        addQST.setVisible(true);
-    }//GEN-LAST:event_btn_qcmMouseClicked
+    private void btn_newQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_newQSTMouseClicked
+        CreationQST crea = new CreationQST();
+        crea.setVisible(true);
+    }//GEN-LAST:event_btn_newQSTMouseClicked
 
-    private void btn_rcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rcMouseClicked
-        CreationQST_RC addQST = new CreationQST_RC(txtF_addQST.getText(), comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex()), comboBox_niveau1.getSelectedIndex()+1);
-        addQST.setVisible(true);
-    }//GEN-LAST:event_btn_rcMouseClicked
-
-    private void btn_vfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_vfMouseClicked
-        CreationQST_VF addQST = new CreationQST_VF(txtF_addQST.getText(), comboBox_theme1.getItemAt(comboBox_theme1.getSelectedIndex()), comboBox_niveau1.getSelectedIndex()+1);
-        addQST.setVisible(true);
-    }//GEN-LAST:event_btn_vfMouseClicked
+    private void comboBox_themeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBox_themeItemStateChanged
+        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme.getSelectedItem());
+        
+        modelQuestions.setRowCount(0);
+        
+        t.getListe().afficherListe(modelQuestions);
+    }//GEN-LAST:event_comboBox_themeItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -291,24 +211,10 @@ public class Lancement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_jeu;
-    private javax.swing.JButton btn_qcm;
-    private javax.swing.JButton btn_rc;
-    private javax.swing.JButton btn_vf;
-    private javax.swing.JComboBox<String> comboBox_nbJoueur;
-    private javax.swing.JComboBox<String> comboBox_niveau;
-    private javax.swing.JComboBox<String> comboBox_niveau1;
+    private javax.swing.JButton btn_newQST;
     private javax.swing.JComboBox<String> comboBox_theme;
-    private javax.swing.JComboBox<String> comboBox_theme1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbl_creerSQT;
-    private javax.swing.JLabel lbl_difficulte;
-    private javax.swing.JLabel lbl_nbJoueur;
-    private javax.swing.JLabel lbl_niveau;
-    private javax.swing.JLabel lbl_qst;
-    private javax.swing.JLabel lbl_reponses;
-    private javax.swing.JLabel lbl_thematique;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_theme;
     private javax.swing.JTable table_questions;
-    private javax.swing.JTextField txtF_addQST;
     // End of variables declaration//GEN-END:variables
 }
