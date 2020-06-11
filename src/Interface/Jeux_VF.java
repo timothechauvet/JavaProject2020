@@ -5,9 +5,13 @@
  */
 package Interface;
 
+import Joueurs.EnsJoueurs;
 import Joueurs.Joueur;
+import Phases.Timer;
 import Questions.Question;
+import Questions.Type.QCM;
 import Questions.Type.VF;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,19 +21,38 @@ public class Jeux_VF extends javax.swing.JFrame {
     Joueur joueur;
     boolean qstRepondue;
     Question<VF> qst;
+    String correctReponse;
+    int points;
+    Timer time;
+    DefaultTableModel modelJoueurs;
 
     /**
      * Creates new form Jeux_VF
      */
-    public Jeux_VF() {
-        joueur = new Joueur( "Billy");
-        qst = new Question<>(3,new VF("vraiment?", true));
-        qstRepondue = false;
-        initComponents();
-        lbl_question.setText("Question : " + qst.getEnonce().getEnonce());
+    public Jeux_VF(Joueur joueur, Question<?> qst, int points) {
+        this.joueur = joueur;
+        this.qst = (Question<VF>) qst;
+        this.points = points;
         
+        initComponents();
+        
+        StringWrapper enonce = new StringWrapper();
+        StringWrapper reponse = new StringWrapper();
+        
+        this.qst.afficher(new StringWrapper(),new StringWrapper(),enonce,new StringWrapper(),new StringWrapper(),new StringWrapper(),new StringWrapper(),reponse);
+        lbl_question.setText(enonce.getText());
+        this.correctReponse = reponse.getText();
+        qstRepondue = false;
         btn_suivant.setVisible(false);
         btn_valider.setVisible(true);
+        
+        time = new Timer(lbl_timer);
+        Thread thread = new Thread(time);
+        thread.start();
+    }
+
+    public Jeux_VF() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -42,11 +65,7 @@ public class Jeux_VF extends javax.swing.JFrame {
     private void initComponents() {
 
         reponse = new javax.swing.ButtonGroup();
-        lbl_score = new javax.swing.JLabel();
-        lbl_theme = new javax.swing.JLabel();
         lbl_question = new javax.swing.JLabel();
-        lbl_phase = new javax.swing.JLabel();
-        lbl_joueur = new javax.swing.JLabel();
         btn_valider = new javax.swing.JButton();
         btn_suivant = new javax.swing.JButton();
         lbl_error = new javax.swing.JLabel();
@@ -56,15 +75,7 @@ public class Jeux_VF extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_score.setText("Score actuel :");
-
-        lbl_theme.setText("Thème  de la question :");
-
         lbl_question.setText("Question :");
-
-        lbl_phase.setText("Phase :");
-
-        lbl_joueur.setText("Tour du joueur :");
 
         btn_valider.setText("Valider la réponse");
         btn_valider.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,17 +110,9 @@ public class Jeux_VF extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_joueur)
-                            .addComponent(lbl_question)
-                            .addComponent(lbl_phase))
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_theme)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_score)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                                .addComponent(lbl_timer))))
+                        .addComponent(lbl_question)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
+                        .addComponent(lbl_timer))
                     .addComponent(lbl_error, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
@@ -130,15 +133,8 @@ public class Jeux_VF extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_phase)
-                    .addComponent(lbl_score)
-                    .addComponent(lbl_timer))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_joueur)
-                    .addComponent(lbl_theme))
-                .addGap(18, 18, 18)
+                .addComponent(lbl_timer)
+                .addGap(52, 52, 52)
                 .addComponent(lbl_question)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -164,12 +160,20 @@ public class Jeux_VF extends javax.swing.JFrame {
                     resultat = true;
                 else
                     resultat = false;
+                
+                time.stopTimer();
+                joueur.addTime(time.getTime());
                 boolean X = joueur.saisir(qst, resultat);
-                if (X) lbl_error.setText("Bonne réponse !");
-                else lbl_error.setText("Mauvaise réponse !");
+                if (qst.getEnonce().getAnswer() == resultat){
+                    lbl_error.setText("Bonne réponse !");
+                    joueur.majScore(this.points);
+                }
+                else lbl_error.setText("Mauvaise réponse! Correct: " + this.correctReponse);
                 qstRepondue = true;
                 btn_suivant.setVisible(true);
                 btn_valider.setVisible(false);
+                
+                EnsJoueurs.instance.updateJoueur(joueur);
             }
             else {
                 lbl_error.setText("Veuillez séléctionner une réponse");
@@ -178,55 +182,14 @@ public class Jeux_VF extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_validerMouseClicked
 
     private void btn_suivantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suivantMouseClicked
-        MenuJeu menu = new MenuJeu();
-        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_suivantMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Jeux_VF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Jeux_VF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Jeux_VF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Jeux_VF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Jeux_VF().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_suivant;
     private javax.swing.JButton btn_valider;
     private javax.swing.JLabel lbl_error;
-    private javax.swing.JLabel lbl_joueur;
-    private javax.swing.JLabel lbl_phase;
     private javax.swing.JLabel lbl_question;
-    private javax.swing.JLabel lbl_score;
-    private javax.swing.JLabel lbl_theme;
     private javax.swing.JLabel lbl_timer;
     private javax.swing.ButtonGroup reponse;
     private javax.swing.JRadioButton toggleBTN_faux;

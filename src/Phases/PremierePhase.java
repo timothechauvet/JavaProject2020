@@ -83,15 +83,15 @@ public class PremierePhase implements Phase {
     
     
     public void doQuestion() {
-        Question<?> q = curTheme.getListe().selectionnerQuestion(1);
+        Question<?> q = curTheme.getListe().selectionnerQuestion((int) (Math.random()*3) +1);
         
         if(q.getEnonce() instanceof QCM) {
             Jeux_QCM qcm = new Jeux_QCM(playing,q,2);
             qcm.setVisible(true);
-        } /*else if(q.getEnonce() instanceof VF){
-            Jeux_VF vf = new Jeux_VF();
+        } else if(q.getEnonce() instanceof VF){
+            Jeux_VF vf = new Jeux_VF(playing,q,2);
             vf.setVisible(true);
-        } else {
+        } /*else {
             Jeux_RC rc = new Jeux_RC();
             rc.setVisible(true);
         } */

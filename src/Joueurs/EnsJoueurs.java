@@ -84,7 +84,6 @@ public class EnsJoueurs {
         for(int i=0; i<joueurs.size(); i++) {
             if(j.getNbr() == joueurs.get(i).getNbr()) {
                 joueurs.set(i, j);
-                System.out.println("UPDATED");
             }
         }
     }

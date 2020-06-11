@@ -31,20 +31,9 @@
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbl_joueur" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbl_question" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbl_phase" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbl_theme" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbl_score" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="142" max="32767" attributes="0"/>
-                              <Component id="lbl_timer" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="lbl_question" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="359" max="32767" attributes="0"/>
+                      <Component id="lbl_timer" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="lbl_error" min="-2" pref="251" max="-2" attributes="0"/>
               </Group>
@@ -73,17 +62,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbl_phase" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_score" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_timer" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbl_joueur" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_theme" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lbl_timer" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Component id="lbl_question" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="37" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -103,29 +83,9 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lbl_score">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Score actuel :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_theme">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Th&#xe8;me  de la question :"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lbl_question">
       <Properties>
         <Property name="text" type="java.lang.String" value="Question :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_phase">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Phase :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbl_joueur">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tour du joueur :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_valider">
