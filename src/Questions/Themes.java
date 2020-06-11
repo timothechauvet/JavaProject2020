@@ -25,88 +25,19 @@ public class Themes {
     private Themes () {
         FileManager fm = new FileManager();
         
-        fm.getThemesFromFiles(themes);
+        if(fm.existSaved())
+        {
+            fm.getThemesFromFiles(themes);
+        } else {
+            generateThemes();
+            generateQuestions();
+        }
         
-        //hardcodeQuestions();
-        
-        this.prev = -1; //initial value of prev is -1 so that any theme can be selected
+        this.prev = 0; //initial value of prev is -1 so that any theme can be selected
     }
     
     boolean DEBBUGING = false;
 
-    public void hardcodeQuestions () {    
-        //Aéronautique
-        themes[0].ajouterQuestion(new Question(1, 
-                new QCM("De quand date le premier vol en avion ?", 1, "1902", "1903", "1908", "1910" )));
-        themes[0].ajouterQuestion(new Question(2, 
-                new VF("Les avions commerciaux rejettent délibérément des produit chimiques dans l'atmosphère", false)));
-        themes[0].ajouterQuestion(new Question(3, 
-                new RC("Quel est le nom des frères ayant fait voler le premier avion ?", "Wright")));//avril 1952
-        //Aérospatial
-        themes[1].ajouterQuestion(new Question(1, 
-                new QCM("De quand date le première objet dans l'espace ?", 1, "1951", "1957", "1958", "1960" )));
-        themes[1].ajouterQuestion(new Question(2, 
-                new VF("Les Etats-Unis ont gagné la course à l'espace", false)));
-        themes[1].ajouterQuestion(new Question(3, 
-                new RC("Quel est le nom du première homme dans l'espace ?", "Youri Gagarine")));    
-        //Biologie
-        themes[2].ajouterQuestion(new Question(1, 
-                new QCM("Combien de noyeau(x) dans une cellule?", 1, "0", "1", "2", "3" )));
-        themes[2].ajouterQuestion(new Question(2, 
-                new VF("There are only two genders", true)));
-        themes[2].ajouterQuestion(new Question(3, 
-                new RC("Combien de doigts sur une main droite ?", "5")));
-        //Culture Générale
-        themes[3].ajouterQuestion(new Question(1, 
-                new QCM("Combien des nations peuplent l'Union Européene?", 1, "19", "27", "30", "33" )));
-        themes[3].ajouterQuestion(new Question(2, 
-                new VF("La murraile de Chine est visible depui l'espace", false)));
-        themes[3].ajouterQuestion(new Question(3, 
-                new RC("Qui à été le tout premier président de la Réublique Française ?", "Napoléon Bonaparte")));
-        //Films
-        themes[4].ajouterQuestion(new Question(1, 
-                new QCM("De quelle année date le premier film parlant ?", 1, "1914", "1927", "1930", "1933" )));
-        themes[4].ajouterQuestion(new Question(2, 
-                new VF("Charlie Chaplin à réaliser le premier film parlant", false)));
-        themes[4].ajouterQuestion(new Question(3, 
-                new RC("Quel est le plus vue de Charlie Chaplin ?", "City Light")));
-        //Histoire
-        themes[5].ajouterQuestion(new Question(1, 
-                new QCM("En quelle année les femmes Française ont-elles obtenue le droit de vote ?", 1, "1886", "1944", "1945", "1947" )));
-        themes[5].ajouterQuestion(new Question(2, 
-                new VF("Il existe environ 7000 langues parlées dans le monde", true)));
-        themes[5].ajouterQuestion(new Question(3, 
-                new RC("Quel est le nom complet de Napoleon Bonaparte", "Napoleon Bonaparte")));
-        //Informatique
-        themes[6].ajouterQuestion(new Question(1, 
-                new QCM("Combien de bit dans un octet ?", 1, "1", "8", "16", "32" )));
-        themes[6].ajouterQuestion(new Question(2, 
-                new VF("Internet à été inventé à des fins militaires", true)));
-        themes[6].ajouterQuestion(new Question(3, 
-                new RC("Quel était le nom du premier ordinateur du monde ?", "IBM701")));
-        //Literature
-        themes[7].ajouterQuestion(new Question(1, 
-                new QCM("En quelle année est né Victor Hugo ?", 1, "1702", "1802", "1902", "2002" )));
-        themes[7].ajouterQuestion(new Question(2, 
-                new VF("Paul Verlaine à contribué à l'écriture de 'L'Encyclopédie", false)));
-        themes[7].ajouterQuestion(new Question(3, 
-                new RC("De qui Arthur Rimbaud était le contemporain ?", "Paul Verlaine")));
-        //Musique
-        themes[8].ajouterQuestion(new Question(1, 
-                new QCM("De quelle nationallité est le groupe 'The Rolling Stones' ?", 1, "Français", "Britanique", "Russe", "Américain" )));
-        themes[8].ajouterQuestion(new Question(2, 
-                new VF("Freddy Mercury est mort d'un cancer", false)));
-        themes[8].ajouterQuestion(new Question(3, 
-                new RC("Quel est l'album le plus vendu de Michael Jackson ?", "Thriller")));
-        //Sport
-        themes[9].ajouterQuestion(new Question(1, 
-                new QCM("Combien de fois la france à t-elle gagné la coupe du monde de Football?", 1, "1", "2", "3", "4" )));
-        themes[9].ajouterQuestion(new Question(2, 
-                new VF("Teddy Rinner à passé 9 ans sans perdre 1 seul match", true)));
-        themes[9].ajouterQuestion(new Question(3, 
-                new RC("Qui détient le record du monde du 100m ?", "Usain Bolt")));
-    }
-    
     
     //-------TEMP FOR TESTS(?)--------
     public Theme getThemeAt(int index) {
@@ -184,5 +115,89 @@ public class Themes {
         System.out.println("selected theme: " + (this.prev == -1 ? "none" : this.themes[this.prev]));
     }
 
-
+    public final void generateThemes() {
+        themes[0] = new Theme("Biologie");
+        themes[1] = new Theme("Sport");
+        themes[2] = new Theme("Histoire");
+        themes[3] = new Theme("Informatique");
+        themes[4] = new Theme("Aérospatial");
+        themes[5] = new Theme("Aéronautique");
+        themes[6] = new Theme("Literature");
+        themes[7] = new Theme("Musique");
+        themes[8] = new Theme("Films");
+        themes[9] = new Theme("Culture Générale");
+    }
+    
+    public final void generateQuestions() {
+        //Biologie
+        themes[0].ajouterQuestion(new Question(1, 
+                new QCM("Combien de noyeau(x) dans une cellule?", 1, "0", "1", "2", "3" )));
+        themes[0].ajouterQuestion(new Question(2, 
+                new VF("There are only two genders", false)));
+        themes[0].ajouterQuestion(new Question(3, 
+                new RC("Combien de doigts sur une main droite ?", "5")));
+        //Sport
+        themes[1].ajouterQuestion(new Question(1, 
+                new QCM("Combien de fois la france à t-elle gagné la coupe du monde de Football?", 1, "1", "2", "3", "4" )));
+        themes[1].ajouterQuestion(new Question(2, 
+                new VF("Teddy Rinner à passé 9 ans sans perdre 1 seul match", true)));
+        themes[1].ajouterQuestion(new Question(3, 
+                new RC("Qui détient le record du monde du 100m ?", "Usain Bolt")));
+        //Histoire
+        themes[2].ajouterQuestion(new Question(1, 
+                new QCM("En quelle année les femmes Française ont-elles obtenue le droit de vote ?", 1, "1886", "1944", "1945", "1947" )));
+        themes[2].ajouterQuestion(new Question(2, 
+                new VF("Il existe environ 7000 langues parlées dans le monde", true)));
+        themes[2].ajouterQuestion(new Question(3, 
+                new RC("Quel est le nom complet de Napoleon Bonaparte", "Napoleon Bonaparte")));
+        //Informatique
+        themes[3].ajouterQuestion(new Question(1, 
+                new QCM("Combien de bit dans un octet ?", 1, "1", "8", "16", "32" )));
+        themes[3].ajouterQuestion(new Question(2, 
+                new VF("Internet à été inventé à des fins militaires", true)));
+        themes[3].ajouterQuestion(new Question(3, 
+                new RC("Quel était le nom du premier ordinateur du monde ?", "IBM701")));
+        //Aérospatial
+        themes[4].ajouterQuestion(new Question(1, 
+                new QCM("De quand date le première objet dans l'espace ?", 1, "1951", "1957", "1958", "1960" )));
+        themes[4].ajouterQuestion(new Question(2, 
+                new VF("Les Etats-Unis ont gagné la course à l'espace", false)));
+        themes[4].ajouterQuestion(new Question(3, 
+                new RC("Quel est le nom du première homme dans l'espace ?", "Youri Gagarine")));
+        //Aéronautique
+        themes[5].ajouterQuestion(new Question(1, 
+                new QCM("De quand date le premier vol en avion ?", 1, "1902", "1903", "1908", "1910" )));
+        themes[5].ajouterQuestion(new Question(2, 
+                new VF("Les avions commerciaux rejettent délibérément des produit chimiques dans l'atmosphère", false)));
+        themes[5].ajouterQuestion(new Question(3, 
+                new RC("Quel est le nom des frères ayant fait voler le premier avion ?", "Wright")));//avril 1952
+        //Literature
+        themes[6].ajouterQuestion(new Question(1, 
+                new QCM("En quelle année est né Victor Hugo ?", 1, "1702", "1802", "1902", "2002" )));
+        themes[6].ajouterQuestion(new Question(2, 
+                new VF("Paul Verlaine à contribué à l'écriture de 'L'Encyclopédie", false)));
+        themes[6].ajouterQuestion(new Question(3, 
+                new RC("De qui Arthur Rimbaud était le contemporain ?", "Paul Verlaine")));
+        //Musique
+        themes[7].ajouterQuestion(new Question(1, 
+                new QCM("De quelle nationallité est le groupe 'The Rolling Stones' ?", 1, "Français", "Britanique", "Russe", "Américain" )));
+        themes[7].ajouterQuestion(new Question(2, 
+                new VF("Freddy Mercury est mort d'un cancer", false)));
+        themes[7].ajouterQuestion(new Question(3, 
+                new RC("Quel est l'album le plus vendu de Michael Jackson ?", "Thriller")));
+        //Films
+        themes[8].ajouterQuestion(new Question(1, 
+                new QCM("De quelle année date le premier film parlant ?", 1, "1914", "1927", "1930", "1933" )));
+        themes[8].ajouterQuestion(new Question(2, 
+                new VF("Charlie Chaplin à réaliser le premier film parlant", false)));
+        themes[8].ajouterQuestion(new Question(3, 
+                new RC("Quel est le plus vue de Charlie Chaplin ?", "City Light")));
+        //Culture Générale
+        themes[9].ajouterQuestion(new Question(1, 
+                new QCM("Combien des nations peuplent l'Union Européene?", 1, "19", "27", "30", "33" )));
+        themes[9].ajouterQuestion(new Question(2, 
+                new VF("La murraile de Chine est visible depui l'espace", false)));
+        themes[9].ajouterQuestion(new Question(3, 
+                new RC("Qui à été le tout premier président de la Réublique Française ?", "Napoléon Bonaparte")));
+    }
 }

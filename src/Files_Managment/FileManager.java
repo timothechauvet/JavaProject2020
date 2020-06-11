@@ -102,6 +102,11 @@ public class FileManager {
                 file.delete();
     }
     
+    public boolean existSaved() {
+        File f = new File(Questions_path);
+        return f.list().length > 0;
+    }
+    
     public ListeQuestions getListeQuestionsFromFile (String fileName) {
         File file = new File(Questions_path + "\\"+fileName+".txt");
         try {
