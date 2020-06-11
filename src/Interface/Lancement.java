@@ -95,9 +95,7 @@ public class Lancement extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(table_questions);
         if (table_questions.getColumnModel().getColumnCount() > 0) {
-            table_questions.getColumnModel().getColumn(0).setResizable(false);
             table_questions.getColumnModel().getColumn(0).setPreferredWidth(7);
-            table_questions.getColumnModel().getColumn(1).setResizable(false);
             table_questions.getColumnModel().getColumn(2).setResizable(false);
             table_questions.getColumnModel().getColumn(3).setResizable(false);
             table_questions.getColumnModel().getColumn(4).setResizable(false);
