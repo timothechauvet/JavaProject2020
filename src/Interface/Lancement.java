@@ -177,19 +177,6 @@ public class Lancement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public void reload(){
-        Themes themes = Themes.instance;
-        modelQuestions =(DefaultTableModel) table_questions.getModel();
-        comboBox_theme.removeAllItems();
-        for( Theme t : themes.getThemes()) {
-            if(t!=null) comboBox_theme.addItem(t.toString());
-        }
-        
-        Theme t = Themes.instance.getThemeNamed((String) comboBox_theme.getSelectedItem());        
-        modelQuestions.setRowCount(0);        
-        t.getListe().afficherListe(modelQuestions);
-    }
-    
     private void btn_jeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jeuMouseClicked
         MenuJeu jeu = new MenuJeu();
         jeu.setVisible(true);
@@ -212,7 +199,9 @@ public class Lancement extends javax.swing.JFrame {
 
             // on change la liste
             t.setListe(t.supprQuestion(niveau, question));
-            reload();
+            // on reload les questions     
+            modelQuestions.setRowCount(0);         
+            t.getListe().afficherListe(modelQuestions);
         }
     }//GEN-LAST:event_btn_delQSTMouseClicked
 
