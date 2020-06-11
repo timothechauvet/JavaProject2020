@@ -156,8 +156,9 @@ public class Lancement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_jeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jeuMouseClicked
-        
-        
+        MenuJeu jeu = new MenuJeu();
+        jeu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_jeuMouseClicked
 
     private void btn_newQSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_newQSTMouseClicked
